@@ -1,0 +1,1456 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Language" content="en">
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      showProcessingMessages: false,
+      tex2jax: { inlineMath: [['\\(','\\)']] },
+      TeX: { equationNumbers: {autoNumber: "AMS"} }
+    });
+  </script>
+  <script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+  <script type="text/javascript"
+    src="http://code.jquery.com/jquery-2.1.3.min.js">
+  </script><title>markover - Web Literate Programming</title>
+<style>html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
+  display: block;
+  margin:0;
+  padding:0;
+  border:0;
+  outline:0;
+  line-height: 140%;
+  font-size: 100%;
+  vertical-align:baseline;
+  text-decoration: none;
+  background:transparent;
+}
+
+code, span, b, i, em { display: inline; }
+
+p { text-indent: 2%; }
+
+pre, code { font-family: monospace; }
+#content {font-family: Georgia, serif; }
+
+#title {
+  clear: both;
+  text-align: center;
+  font-size: 140%;
+  font-weight: bold;
+  margin: 2% 0 0 0;
+}
+
+#tag {
+  clear: both;
+  text-align: center;
+  font-size: 110%;
+  margin: 0 0 1% 0;
+}
+#toc {
+    margin: 0 1em 0 1em;
+    padding: 0 0 0 1em;
+    max-width: 96%;
+}
+
+@media screen and (min-width: 641px) {
+  #toc {
+    float: left;
+    max-width: 26%;
+  }
+}
+
+.tocsn { float: left; }
+.tocsr { overflow: hidden; }
+
+#toc ol {
+  list-style-type: none;
+}
+
+#toc ol ol {
+  margin: 0 0 0 1em;
+}
+#doc {
+  margin: 1em 0;
+}
+
+@media screen and (min-width: 641px) {
+  #doc {
+    overflow: hidden;
+    max-width: 70%;
+  }
+}
+pre .field {
+  display:block;
+  margin: 1em 1em 0em 0em;
+}
+
+pre .field::after {
+  content: " :=";
+}
+pre code {
+  display: block;
+  margin: 1em;
+  padding: 1em;
+  border: solid 1px #aaa;
+}
+
+@media screen {
+  pre code {
+    overflow: auto;
+    max-height: 30em;
+  }
+}
+
+@media print {
+  pre {
+    page-break-inside: avoid;
+  }
+  pre code {
+    overflow: visible;
+    word-wrap: break-word;
+  }
+}
+@media screen {
+  .lang-js { background-color: ivory; }
+  .lang-md { background-color: lightyellow; }
+  .lang-html { background-color: floralwhite; }
+  .lang-json { background-color: honeydew; }
+  .lang-css { background-color: cornsilk; }
+  .lang-sh { background-color: lemonchiffon; }
+}
+h1, h2, h3, h4, h5, h6 {
+  margin: 0.5em 0em;
+  page-break-after: avoid
+}
+
+h1 { font-size: 140%; }
+h2 { font-size: 130%; }
+h3 { font-size: 120%; }
+h4, h5, h6 { font-size: 110%; }
+a:hover { color: #aaa; }
+
+a:visited, a { color: #000;}
+
+@media screen {
+  a {
+    text-decoration: underline;
+  }
+}
+
+@media print {
+  a {
+    text-decoration: none;
+  }
+  #doc a[href]:after {
+    content: " (" attr(href) ")";
+    font-size: 90%;
+  }
+}
+.hljs {
+    overflow: auto;
+    padding: 0.5em;
+    color: #333;
+}
+.hljs-comment, .diff .hljs-header, .hljs-javadoc {
+    color: #999;
+    font-style: italic;
+}
+.hljs-keyword, .css .rule .hljs-keyword, .hljs-winutils, .nginx .hljs-title,
+.hljs-subst, .hljs-request, .hljs-status {
+    color: #333;
+    font-weight: bold;
+}
+.hljs-number, .hljs-hexcolor, .ruby .hljs-constant {
+    color: #088;
+}
+.hljs-string, .hljs-tag .hljs-value, .hljs-phpdoc, .hljs-dartdoc, .tex .hljs-formula {
+    color: #d14;
+}
+.hljs-title, .hljs-id, .scss .hljs-preprocessor {
+    color: #900;
+    font-weight: bold;
+}
+.hljs-list .hljs-keyword, .hljs-subst {
+    font-weight: normal;
+}
+.hljs-class .hljs-title, .hljs-type, .vhdl .hljs-literal, .tex .hljs-command {
+    color: #458;
+    font-weight: bold;
+}
+.hljs-tag, .hljs-tag .hljs-title, .hljs-rules .hljs-property, .django .hljs-tag .hljs-keyword {
+    color: #000080;
+    font-weight: normal;
+}
+.hljs-attribute, .hljs-variable, .lisp .hljs-body {
+    color: #008080;
+}
+.hljs-regexp {
+    color: #009926;
+}
+.hljs-built_in {
+    color: #0086b3;
+}
+.hljs-symbol, .ruby .hljs-symbol .hljs-string, .lisp .hljs-keyword,
+.clojure .hljs-keyword, .scheme .hljs-keyword, .tex .hljs-special,
+.hljs-prompt {
+    color: #990073;
+}
+.hljs-preprocessor, .hljs-pragma, .hljs-pi, .hljs-doctype, .hljs-shebang,
+.hljs-cdata {
+    color: #999;
+    font-weight: bold;
+}
+.hljs-deletion {
+    background: #fdd;
+}
+.hljs-addition {
+    background: #dfd;
+}
+.diff .hljs-change {
+    background: #0086b3;
+}
+.hljs-chunk {
+    color: #aaa;
+}
+@media print {
+  .hljs {
+    overflow: visible;
+    word-wrap: break-word;
+  }
+  .hljs-number, .hljs-hexcolor, .ruby .hljs-constant {
+    color: #888;
+  }
+  .hljs-string, .hljs-tag .hljs-value, .hljs-phpdoc, .hljs-dartdoc, .tex .hljs-formula {
+    color: #ddd;
+  }
+  .hljs-title, .hljs-id, .scss .hljs-preprocessor {
+    color: #999;
+  }
+  .hljs-class .hljs-title, .hljs-type, .vhdl .hljs-literal, .tex .hljs-command {
+    color: #888;
+  }
+  .hljs-tag, .hljs-tag .hljs-title, .hljs-rules .hljs-property, .django .hljs-tag .hljs-keyword {
+    color: #888;
+  }
+  .hljs-attribute, .hljs-variable, .lisp .hljs-body {
+    color: #888;
+  }
+  .hljs-regexp {
+    color: #999;
+  }
+  .hljs-symbol, .ruby .hljs-symbol .hljs-string, .lisp .hljs-keyword,
+  .clojure .hljs-keyword, .scheme .hljs-keyword, .tex .hljs-special,
+  .hljs-prompt {
+    color: #999;
+  }
+  .hljs-built_in {
+    color: #888;
+  }
+  .hljs-deletion {
+    background: #ddd;
+  }
+  .hljs-addition {
+    background: #ddd;
+  }
+  .diff .hljs-change {
+    background: #888;
+  }
+}</style></head>
+<body><div id="content"><div id="title">markover</div><div id="tag">Web Literate Programming</div><div id="toc"><h1>Contents</h1>
+<ol><li><div class="tocsn">1.&nbsp;</div><div class="tocsr"><a href="#introduction">Introduction</a></div>
+<li><div class="tocsn">2.&nbsp;</div><div class="tocsr"><a href="#literate-programming">Literate Programming</a></div>
+<ol><li><div class="tocsn">2.1&nbsp;</div><div class="tocsr"><a href="#code-blocks">Code blocks</a></div>
+</ol><li><div class="tocsn">3.&nbsp;</div><div class="tocsr"><a href="#markover-fields">Markover fields</a></div>
+<ol><li><div class="tocsn">3.1&nbsp;</div><div class="tocsr"><a href="#file-structure">File structure</a></div>
+<li><div class="tocsn">3.2&nbsp;</div><div class="tocsr"><a href="#display-document">Display Document</a></div>
+<ol><li><div class="tocsn">3.2.1&nbsp;</div><div class="tocsr"><a href="#basic-structure">Basic structure</a></div>
+<li><div class="tocsn">3.2.2&nbsp;</div><div class="tocsr"><a href="#additional-header-material">Additional Header Material</a></div>
+<li><div class="tocsn">3.2.3&nbsp;</div><div class="tocsr"><a href="#mathjax-configuration">MathJax configuration</a></div>
+<li><div class="tocsn">3.2.4&nbsp;</div><div class="tocsr"><a href="#jquery-configuration">JQuery configuration</a></div>
+<li><div class="tocsn">3.2.5&nbsp;</div><div class="tocsr"><a href="#html-stylesheet">HTML stylesheet</a></div>
+<ol><li><div class="tocsn">3.2.5.1&nbsp;</div><div class="tocsr"><a href="#vanilla-style">Vanilla style</a></div>
+<li><div class="tocsn">3.2.5.2&nbsp;</div><div class="tocsr"><a href="#preliminary-material">Preliminary Material</a></div>
+<li><div class="tocsn">3.2.5.3&nbsp;</div><div class="tocsr"><a href="#main-body">Main body</a></div>
+<li><div class="tocsn">3.2.5.4&nbsp;</div><div class="tocsr"><a href="#highlight-markup">Highlight markup</a></div>
+</ol></ol></ol><li><div class="tocsn">4.&nbsp;</div><div class="tocsr"><a href="#program-structure">Program structure</a></div>
+<ol><li><div class="tocsn">4.1&nbsp;</div><div class="tocsr"><a href="#utilities">Utilities</a></div>
+<li><div class="tocsn">4.2&nbsp;</div><div class="tocsr"><a href="#tangle">tangle</a></div>
+<ol><li><div class="tocsn">4.2.1&nbsp;</div><div class="tocsr"><a href="#tangle-formating">tangle Formating</a></div>
+<li><div class="tocsn">4.2.2&nbsp;</div><div class="tocsr"><a href="#tanglejson">tangleJSON</a></div>
+<li><div class="tocsn">4.2.3&nbsp;</div><div class="tocsr"><a href="#tanglestream">tangleStream</a></div>
+</ol><li><div class="tocsn">4.3&nbsp;</div><div class="tocsr"><a href="#weave">weave</a></div>
+<ol><li><div class="tocsn">4.3.1&nbsp;</div><div class="tocsr"><a href="#weave-headings">weave headings</a></div>
+<li><div class="tocsn">4.3.2&nbsp;</div><div class="tocsr"><a href="#weave-code-highlighting">weave code highlighting</a></div>
+<li><div class="tocsn">4.3.3&nbsp;</div><div class="tocsr"><a href="#weavecode">weaveCode</a></div>
+<li><div class="tocsn">4.3.4&nbsp;</div><div class="tocsr"><a href="#weave-parsing">weave parsing</a></div>
+<li><div class="tocsn">4.3.5&nbsp;</div><div class="tocsr"><a href="#weave-document">weave document</a></div>
+<li><div class="tocsn">4.3.6&nbsp;</div><div class="tocsr"><a href="#weavestream">weaveStream</a></div>
+</ol><li><div class="tocsn">4.4&nbsp;</div><div class="tocsr"><a href="#untangle">untangle</a></div>
+</ol><li><div class="tocsn">5.&nbsp;</div><div class="tocsr"><a href="#unix-build-instructions">Unix build instructions</a></div>
+<li><div class="tocsn">6.&nbsp;</div><div class="tocsr"><a href="#remarks">Remarks</a></div></ol></div>
+<div id="doc"><h1 id="introduction">1. Introduction</h1>
+<p>Programming methodology continues to rapidly change.
+There have been vast improvements in increasing the reliability
+of programs.
+Several interesting changes involve the use of interpreted languages
+compared to compiled languages.
+Some languages offered translations into an intermediate code representation.
+Some translate into machine specific code.
+The result is that interpreted languages are now approaching the speed of
+compiled languages.
+There are cases where interpreted languages are faster than compiled
+languages due to run-time optimization strategies.
+One such interpreted language is
+<a href="http://en.wikipedia.org/wiki/JavaScript">javascript</a>:
+it is standards based, it runs quickly, and its syntax is familiar.
+<code>javascript</code> started in the Web browser and is now available on the server
+side too. Interpreters like <a href="http://nodejs.org">nodejs</a> and
+<a href="https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey">spidermonkey</a> have made <code>javascript</code>
+available in many situations.</p>
+<p>Along with the Web came a number of document markup languages, such as <a href="http://www.w3.org/html">HTML</a>.
+These languages provided a means of displaying documents on screen
+and could be formatted into print.
+Over time, <code>HTML</code> document information was separated from its display.
+The display of <code>HTML</code> documents were encoded in <a href="http://www.w3.org/Style/CSS">CSS</a>.
+These languages seemed syntactically heavy and inappropriate for transmitting
+data between machines with limited bandwidth.
+This led to the development of <a href="http://www.json.org">JSON</a> to represent simple data structures in
+an readable format that borrowed its structure from <code>javascript</code>.
+However, <code>JSON</code> fields can appear in any order.
+And <code>JSON</code> is easily used to provide configuration information to programs.</p>
+<p>Given the complexity of <code>HTML</code> documents a number of authoring languages were
+developed, such as <a href="http://en.wikipedia.org/wiki/Markdown">markdown</a>.
+The purpose of the languages was to facilitate
+the generation of <code>HTML</code> documents.
+There are many other authoring that have been used
+in the past, such as <a href="http://en.wikipedia.org/wiki/TeX">TeX</a> and
+<a href="http://en.wikipedia.org/wiki/Troff">troff</a>.
+Although <code>TeX</code> pre-dates the Web, <a href="http://www.mathjax.org/">MathJax</a> can be used
+to render <code>TeX</code> based math formulas.</p>
+<p>One service that makes use of <code>javascript</code> and <code>JSON</code> is <a href="http://couchdb.apache.org">couchdb</a>
+database management system server. It uses <code>JSON</code> for the configuration of its
+database and for delivering data to clients.
+<a href="http://docs.couchdb.org/en/latest/couchapp/index.html?highlight=couchapp">couchapp</a>
+is a client-server application framework based
+on a Web browser front-end and a <code>couchdb</code> back-end.
+A feature of this framework is that all the configuration can be written using Web
+standards: <code>CSS</code>, <code>HTML</code>, and <code>javascript</code>. Since <code>couchdb</code> uses 
+<a href="http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">HTTP</a> and
+<a href="http://en.wikipedia.org/wiki/HTTP_Secure">HTTPS</a> to communicate
+with Web browsers is relatively straight forward.</p>
+<p>This seems an appropriate time to revisit the &#39;Literate Programming&#39; idea of 
+<a href="http://en.wikipedia.org/wiki/Donald_Knuth">Knuth</a>
+in the context of Web standards.
+<a href="https://github.com/cygnyx/markover">markover</a> is a <code>javascript</code> library implemented as a
+<a href="http://wiki.commonjs.org/wiki/CommonJS">CommonJS</a> module.</p>
+<h1 id="literate-programming">2. Literate Programming</h1>
+<p>This document is a literate program that can be used to make the <code>markover</code> system.
+It describes the source code used in <code>markover</code> and can generate the source code.
+That is, the same authoring document (the <code>markover</code> document)
+is used <code>tangle</code> itself into a program (the source code) and to <code>weave</code>
+itself into a viewable document (the display document).
+The <code>markover</code> document is written in <code>markdown</code>.
+The primary source code target is a <code>javascript</code> object.
+The <code>javascript</code> object might be used as a configuration file (in the form of a <code>JSON</code> object),
+or as a couchapp (as a <code>JSON</code> object or a CommonJS module),
+or a javascript library (a CommonJS module).
+The primary display document target is <code>HTML</code>, <code>CSS</code> and <code>MathJax</code>.</p>
+<p>Other tools have targeted similar platforms, like the
+<code>literate</code> option in <a href="http://coffeescript.org">coffeescript</a>
+However, literate coffeescript lacks the ability to <code>tangle</code>
+code. The order of the code is constrained by the needs of the
+programming language compiler. <code>markover</code> is more similiar to
+Knuth&#39;s system by allowing greater flexibility in the order that
+the program is presented. However, it doesn&#39;t provide as much
+flexibility as Knuth&#39;s system.</p>
+<h2 id="code-blocks">2.1 Code blocks</h2>
+<p><code>markover</code> has enough flexibility to produce source code for many text based programming
+language. However, it is designed to work with a single <code>javascript</code> object.</p>
+<p><code>markdown</code> has had a number of extensions added to it.
+One set, called GFM (GitHub Flavored Markdown), is used by <code>markover</code>.
+In GFM <code>markdown</code> a section of code is marked off, like this:</p>
+<pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Hello, World!'</span>)
+</code></pre>
+<p>which is produced by:</p>
+<pre><code class="lang-md"><span class="hljs-code">```</span>js
+console.log('Hello, World!')
+<span class="hljs-code">```</span>
+</code></pre>
+<p>The word after the fence normally identifies the language that the code block is written in.
+<code>markover</code> extends this syntax to include a field name.
+This is used to add
+the code block to the object field. When the field name is repeated, the additional
+code is appended to the object field. So, when markover processes a markdown file, it looks
+for lines starting with a fence, followed by an optional language id, a hash tag, an optional
+plus sign, followed by the field name.
+The source code is appended line by line until the closing fence is found.
+Code blocks that don&#39;t have a field name are ignored.</p>
+<p>The optional plus sign is a flag that the field should be quoted in the output.
+This conveniently reduces the need to use a large number of escape characters in the
+<code>markover</code> document.
+By flagging a field as a quoted string,
+markover will make appropriate escape sequences.
+This keeps the structure of fields fairly neat
+and more consistent with the embedded languages
+that are sometimes used inside the strings.</p>
+<p>For example:</p>
+<pre><code class="lang-md"><span class="hljs-code">```</span>json#foo
+[1,2]
+<span class="hljs-code">```</span>
+</code></pre>
+<p>will set the field &#39;foo&#39; to be an array with two values. Whereas,</p>
+<pre><code class="lang-md"><span class="hljs-code">```</span>json#+foo
+[1,2]
+<span class="hljs-code">```</span>
+</code></pre>
+<p>will set the field to the string &quot;[1,2]&quot;.</p>
+<p>There are a few special markers used in <code>markover</code>.
+A language of <code>noweave</code> indicates
+that the code block will not be included in the <code>weave</code> output.
+Fields of <code>#first</code> and <code>#last</code> are used to
+include arbitrary beginning and ending material, respectively.
+A missing language with a field name (like <code>#foo</code>) will default
+to <code>json</code>.</p>
+<h1 id="markover-fields">3. Markover fields</h1>
+<p>By convention <code>markover</code> documents have a few common fields.
+A <code>title</code> which names the document and a <code>tag</code> which is a one-line
+description of the document. You may include a <code>version</code> field as well.</p>
+<p>That all there is to know about the structure of <code>markover</code>
+documents.
+There are no specific dependencies on the target language.</p>
+<h2 id="file-structure">3.1 File structure</h2>
+<p>For a CommonJS module there is usually some
+beginning and ending material that is needed.
+For this module, the object is written
+within an anonymous function so that the name
+space won&#39;t be polluted.</p>
+<pre><div class="field">first</div><code class="lang-js">!(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
+
+<span class="hljs-keyword">var</span> markover =
+</code></pre>
+<p>The trailing material allows the object to be
+used in several environments.
+This is attached to the anonymous function
+after the literate object is declared.
+It does several checks to determine which
+environment it is operating in.</p>
+<pre><div class="field">last</div><code class="lang-js"><span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> <span class="hljs-built_in">module</span> !== <span class="hljs-string">'undefined'</span> &amp;&amp; <span class="hljs-keyword">typeof</span> exports === <span class="hljs-string">'object'</span>) {
+    <span class="hljs-built_in">module</span>.exports = markover
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> define === <span class="hljs-string">'function'</span> &amp;&amp; define.amd) {
+    define(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> markover })
+} <span class="hljs-keyword">else</span> {
+    <span class="hljs-keyword">this</span>.markover = markover
+}
+
+}).call(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span> || (<span class="hljs-keyword">typeof</span> <span class="hljs-built_in">window</span> !== <span class="hljs-string">'undefined'</span> ? <span class="hljs-built_in">window</span> : global)
+})
+</code></pre>
+<h2 id="display-document">3.2 Display Document</h2>
+<p>It seems like every system as standard boilerplate material that must be included.
+<code>HTML</code> documents has quite a bit.</p>
+<h3 id="basic-structure">3.2.1 Basic structure</h3>
+<p>Here is the typical start of an HTML document, which comes before the actual header.</p>
+<pre><div class="field">head</div><code class="lang-html"><span class="hljs-doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">html</span> <span class="hljs-attribute">lang</span>=<span class="hljs-value">"en"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">""</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
+</code></pre>
+<p>The <code>HTML</code> has a section the separates the header from the body of the document.</p>
+<pre><div class="field">transition</div><code class="lang-html"><span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
+</code></pre>
+<p>And some ending material.</p>
+<pre><div class="field">tail</div><code class="lang-html"><span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
+</code></pre>
+<h3 id="additional-header-material">3.2.2 Additional Header Material</h3>
+<p>These meta provide additional information about the display document encoding.</p>
+<pre><div class="field">head</div><code class="lang-html">  <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">"utf-8"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">http-equiv</span>=<span class="hljs-value">"Content-Language"</span> <span class="hljs-attribute">content</span>=<span class="hljs-value">"en"</span>&gt;</span>
+</code></pre>
+<h3 id="mathjax-configuration">3.2.3 MathJax configuration</h3>
+<p>The following code enables <code>MathJax</code> on the Web.
+It requires a configuration block before the MathJax code can be included.
+In order to avoid confusion with other uses of symbols, <code>markover</code> only
+uses <code>\\(</code> and <code>\\)</code> to delimit inline math equations.</p>
+<pre><div class="field">head</div><code class="lang-html">  <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text/x-mathjax-config"</span>&gt;</span><span class="javascript">
+    MathJax.Hub.Config({
+      showProcessingMessages: <span class="hljs-literal">false</span>,
+      tex2jax: { inlineMath: [[<span class="hljs-string">'\\('</span>,<span class="hljs-string">'\\)'</span>]] },
+      TeX: { equationNumbers: {autoNumber: <span class="hljs-string">"AMS"</span>} }
+    });
+  </span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text/javascript"</span>
+    <span class="hljs-attribute">src</span>=<span class="hljs-value">"http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"</span>&gt;</span><span class="javascript">
+  </span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+</code></pre>
+<p>For example, here is an equation that will be processed with <code>MathJax</code> and appear as in-line
+equations in the text: \( x \lt y \) or gamma \( \Gamma \). However if <code>MathJax</code> isn&#39;t properly
+included, the in-line equations will still be readable. <code>MathJax</code> also provides display equations,
+such as:</p>
+<p>$$
+x \lt y
+$$</p>
+<h3 id="jquery-configuration">3.2.4 JQuery configuration</h3>
+<p>The display document makes some use of <a href="http://jquery.com">jquery</a>. This tools handles
+most of the inconsistentcies between Web browser and simplifies the manipulation of
+<code>HTML</code> documents.</p>
+<pre><div class="field">head</div><code class="lang-html">  <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text/javascript"</span>
+    <span class="hljs-attribute">src</span>=<span class="hljs-value">"http://code.jquery.com/jquery-2.1.3.min.js"</span>&gt;</span><span class="javascript">
+  </span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+</code></pre>
+<p>JQuery is used to load <code>highlight.js</code> parsers for the languages used in this document.
+There isn&#39;t a one-to-one relationship between languages and parsers. For example,
+the <code>HTML</code> parser is located in <code>xml</code>.</p>
+<pre><div class="field">tail</div><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text/javascript"</span>&gt;</span><span class="javascript">
+  [<span class="hljs-string">"bash"</span>, <span class="hljs-string">"xml"</span>, <span class="hljs-string">"javascript"</span>, <span class="hljs-string">"json"</span>, <span class="hljs-string">"css"</span>, <span class="hljs-string">"markdown"</span>].forEach(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(e)</span> </span>{
+    <span class="hljs-keyword">var</span> s = $(<span class="hljs-string">'&lt;script&gt;'</span>)
+    s.type = <span class="hljs-string">'text/javascript'</span>
+    s.src = <span class="hljs-string">'http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/languages/'</span> + e + <span class="hljs-string">'.min.js'</span>
+    $(<span class="hljs-string">'head'</span>).append(s)
+  })
+</span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+</code></pre>
+<h3 id="html-stylesheet">3.2.5 HTML stylesheet</h3>
+<p>The format of the display document is largely controlled by the <code>CSS</code>.
+Part of the <code>CSS</code> is based on the <a href="https://highlightjs.org/">highlight.js</a> rendering style.
+The following <code>stylesheet</code> details how the rest of the document is displayed.</p>
+<h4 id="vanilla-style">3.2.5.1 Vanilla style</h4>
+<p>This first section resets all <code>HTML</code> elements to reasonable default values.</p>
+<pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-tag">html</span>, <span class="hljs-tag">body</span>, <span class="hljs-tag">div</span>, <span class="hljs-tag">span</span>, <span class="hljs-tag">object</span>, <span class="hljs-tag">iframe</span>, <span class="hljs-tag">h1</span>, <span class="hljs-tag">h2</span>, <span class="hljs-tag">h3</span>, <span class="hljs-tag">h4</span>, <span class="hljs-tag">h5</span>, <span class="hljs-tag">h6</span>, <span class="hljs-tag">p</span>, <span class="hljs-tag">blockquote</span>, <span class="hljs-tag">pre</span>,
+<span class="hljs-tag">abbr</span>, <span class="hljs-tag">address</span>, <span class="hljs-tag">cite</span>, <span class="hljs-tag">code</span>, <span class="hljs-tag">del</span>, <span class="hljs-tag">dfn</span>, <span class="hljs-tag">em</span>, <span class="hljs-tag">img</span>, <span class="hljs-tag">ins</span>, <span class="hljs-tag">kbd</span>, <span class="hljs-tag">q</span>, <span class="hljs-tag">samp</span>,
+<span class="hljs-tag">small</span>, <span class="hljs-tag">strong</span>, <span class="hljs-tag">sub</span>, <span class="hljs-tag">sup</span>, <span class="hljs-tag">var</span>, <span class="hljs-tag">b</span>, <span class="hljs-tag">i</span>, <span class="hljs-tag">dl</span>, <span class="hljs-tag">dt</span>, <span class="hljs-tag">dd</span>, <span class="hljs-tag">ol</span>, <span class="hljs-tag">ul</span>, <span class="hljs-tag">li</span>,
+<span class="hljs-tag">fieldset</span>, <span class="hljs-tag">form</span>, <span class="hljs-tag">label</span>, <span class="hljs-tag">legend</span>, <span class="hljs-tag">table</span>, <span class="hljs-tag">caption</span>, <span class="hljs-tag">tbody</span>, <span class="hljs-tag">tfoot</span>, <span class="hljs-tag">thead</span>, <span class="hljs-tag">tr</span>, <span class="hljs-tag">th</span>, <span class="hljs-tag">td</span>,
+<span class="hljs-tag">article</span>, <span class="hljs-tag">aside</span>, <span class="hljs-tag">canvas</span>, <span class="hljs-tag">details</span>, <span class="hljs-tag">figcaption</span>, <span class="hljs-tag">figure</span>,
+<span class="hljs-tag">footer</span>, <span class="hljs-tag">header</span>, <span class="hljs-tag">hgroup</span>, <span class="hljs-tag">menu</span>, <span class="hljs-tag">nav</span>, <span class="hljs-tag">section</span>, <span class="hljs-tag">summary</span>, <span class="hljs-tag">time</span>, <span class="hljs-tag">mark</span>, <span class="hljs-tag">audio</span>, <span class="hljs-tag">video</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">display</span>:<span class="hljs-value"> block</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">margin</span>:<span class="hljs-value"><span class="hljs-number">0</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">padding</span>:<span class="hljs-value"><span class="hljs-number">0</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">border</span>:<span class="hljs-value"><span class="hljs-number">0</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">outline</span>:<span class="hljs-value"><span class="hljs-number">0</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">line-height</span>:<span class="hljs-value"> <span class="hljs-number">140%</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">100%</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">vertical-align</span>:<span class="hljs-value">baseline</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">text-decoration</span>:<span class="hljs-value"> none</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">background</span>:<span class="hljs-value">transparent</span></span>;
+<span class="hljs-rule">}</span></span>
+
+<span class="hljs-tag">code</span>, <span class="hljs-tag">span</span>, <span class="hljs-tag">b</span>, <span class="hljs-tag">i</span>, <span class="hljs-tag">em</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">display</span>:<span class="hljs-value"> inline</span></span>; <span class="hljs-rule">}</span></span>
+
+<span class="hljs-tag">p</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">text-indent</span>:<span class="hljs-value"> <span class="hljs-number">2%</span></span></span>; <span class="hljs-rule">}</span></span>
+
+<span class="hljs-tag">pre</span>, <span class="hljs-tag">code</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">font-family</span>:<span class="hljs-value"> monospace</span></span>; <span class="hljs-rule">}</span></span>
+</code></pre>
+<h4 id="preliminary-material">3.2.5.2 Preliminary Material</h4>
+<p><code>markover</code> marks up 3 areas before the main document body:
+title, tag, and a table of contents.</p>
+<p>Title and tag are each in a single id and only appear once in the document.</p>
+<pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-id">#content</span> <span class="hljs-rules">{<span class="hljs-rule"><span class="hljs-attribute">font-family</span>:<span class="hljs-value"> Georgia, serif</span></span>; <span class="hljs-rule">}</span></span>
+
+<span class="hljs-id">#title</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">clear</span>:<span class="hljs-value"> both</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">text-align</span>:<span class="hljs-value"> center</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">140%</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">font-weight</span>:<span class="hljs-value"> bold</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">margin</span>:<span class="hljs-value"> <span class="hljs-number">2%</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span></span></span>;
+<span class="hljs-rule">}</span></span>
+
+<span class="hljs-id">#tag</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">clear</span>:<span class="hljs-value"> both</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">text-align</span>:<span class="hljs-value"> center</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">110%</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">margin</span>:<span class="hljs-value"> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">1%</span> <span class="hljs-number">0</span></span></span>;
+<span class="hljs-rule">}</span></span>
+</code></pre>
+<p>The table of contents, in a single <code>toc</code> id, is slightly more complex.</p>
+<pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-id">#toc</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">margin</span>:<span class="hljs-value"> <span class="hljs-number">0</span> <span class="hljs-number">1em</span> <span class="hljs-number">0</span> <span class="hljs-number">1em</span></span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">padding</span>:<span class="hljs-value"> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">1em</span></span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">max-width</span>:<span class="hljs-value"> <span class="hljs-number">96%</span></span></span>;
+<span class="hljs-rule">}</span></span>
+
+<span class="hljs-at_rule">@<span class="hljs-keyword">media</span> screen and (min-width: <span class="hljs-number">641px</span>) </span>{
+  <span class="hljs-id">#toc</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">float</span>:<span class="hljs-value"> left</span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">max-width</span>:<span class="hljs-value"> <span class="hljs-number">26%</span></span></span>;
+  <span class="hljs-rule">}</span></span>
+}
+
+<span class="hljs-class">.tocsn</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">float</span>:<span class="hljs-value"> left</span></span>; <span class="hljs-rule">}</span></span>
+<span class="hljs-class">.tocsr</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">overflow</span>:<span class="hljs-value"> hidden</span></span>; <span class="hljs-rule">}</span></span>
+
+<span class="hljs-id">#toc</span> <span class="hljs-tag">ol</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">list-style-type</span>:<span class="hljs-value"> none</span></span>;
+<span class="hljs-rule">}</span></span>
+
+<span class="hljs-id">#toc</span> <span class="hljs-tag">ol</span> <span class="hljs-tag">ol</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">margin</span>:<span class="hljs-value"> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">1em</span></span></span>;
+<span class="hljs-rule">}</span></span>
+</code></pre>
+<h4 id="main-body">3.2.5.3 Main body</h4>
+<p>The main document is in a single <code>doc</code> id</p>
+<pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-id">#doc</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">margin</span>:<span class="hljs-value"> <span class="hljs-number">1em</span> <span class="hljs-number">0</span></span></span>;
+<span class="hljs-rule">}</span></span>
+
+<span class="hljs-at_rule">@<span class="hljs-keyword">media</span> screen and (min-width: <span class="hljs-number">641px</span>) </span>{
+  <span class="hljs-id">#doc</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">overflow</span>:<span class="hljs-value"> hidden</span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">max-width</span>:<span class="hljs-value"> <span class="hljs-number">70%</span></span></span>;
+  <span class="hljs-rule">}</span></span>
+}
+</code></pre>
+<p>Field names are in a <code>field</code> class.</p>
+<pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-tag">pre</span> <span class="hljs-class">.field</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">display</span>:<span class="hljs-value">block</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">margin</span>:<span class="hljs-value"> <span class="hljs-number">1em</span> <span class="hljs-number">1em</span> <span class="hljs-number">0em</span> <span class="hljs-number">0em</span></span></span>;
+<span class="hljs-rule">}</span></span>
+
+<span class="hljs-tag">pre</span> <span class="hljs-class">.field</span><span class="hljs-pseudo">::after</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">content</span>:<span class="hljs-value"> <span class="hljs-string">" :="</span></span></span>;
+<span class="hljs-rule">}</span></span>
+</code></pre>
+<p>The code blocks are in the <code>code</code> tag and
+have classes that identify their language.</p>
+<pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-tag">pre</span> <span class="hljs-tag">code</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">display</span>:<span class="hljs-value"> block</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">margin</span>:<span class="hljs-value"> <span class="hljs-number">1em</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">padding</span>:<span class="hljs-value"> <span class="hljs-number">1em</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">border</span>:<span class="hljs-value"> solid <span class="hljs-number">1px</span> <span class="hljs-hexcolor">#aaa</span></span></span>;
+<span class="hljs-rule">}</span></span>
+
+<span class="hljs-at_rule">@<span class="hljs-keyword">media</span> screen </span>{
+  <span class="hljs-tag">pre</span> <span class="hljs-tag">code</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">overflow</span>:<span class="hljs-value"> auto</span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">max-height</span>:<span class="hljs-value"> <span class="hljs-number">30em</span></span></span>;
+  <span class="hljs-rule">}</span></span>
+}
+
+<span class="hljs-at_rule">@<span class="hljs-keyword">media</span> print </span>{
+  <span class="hljs-tag">pre</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">page-break-inside</span>:<span class="hljs-value"> avoid</span></span>;
+  <span class="hljs-rule">}</span></span>
+  <span class="hljs-tag">pre</span> <span class="hljs-tag">code</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">overflow</span>:<span class="hljs-value"> visible</span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">word-wrap</span>:<span class="hljs-value"> break-word</span></span>;
+  <span class="hljs-rule">}</span></span>
+}
+</code></pre>
+<p>Each language uses a slightly different light background color.</p>
+<pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-at_rule">@<span class="hljs-keyword">media</span> screen </span>{
+  <span class="hljs-class">.lang-js</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">background-color</span>:<span class="hljs-value"> ivory</span></span>; <span class="hljs-rule">}</span></span>
+  <span class="hljs-class">.lang-md</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">background-color</span>:<span class="hljs-value"> lightyellow</span></span>; <span class="hljs-rule">}</span></span>
+  <span class="hljs-class">.lang-html</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">background-color</span>:<span class="hljs-value"> floralwhite</span></span>; <span class="hljs-rule">}</span></span>
+  <span class="hljs-class">.lang-json</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">background-color</span>:<span class="hljs-value"> honeydew</span></span>; <span class="hljs-rule">}</span></span>
+  <span class="hljs-class">.lang-css</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">background-color</span>:<span class="hljs-value"> cornsilk</span></span>; <span class="hljs-rule">}</span></span>
+  <span class="hljs-class">.lang-sh</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">background-color</span>:<span class="hljs-value"> lemonchiffon</span></span>; <span class="hljs-rule">}</span></span>
+}
+</code></pre>
+<p>The header font sizes are set.</p>
+<pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-tag">h1</span>, <span class="hljs-tag">h2</span>, <span class="hljs-tag">h3</span>, <span class="hljs-tag">h4</span>, <span class="hljs-tag">h5</span>, <span class="hljs-tag">h6</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">margin</span>:<span class="hljs-value"> <span class="hljs-number">0.5em</span> <span class="hljs-number">0em</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">page-break-after</span>:<span class="hljs-value"> avoid
+</span></span></span>}
+
+<span class="hljs-tag">h1</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">140%</span></span></span>; <span class="hljs-rule">}</span></span>
+<span class="hljs-tag">h2</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">130%</span></span></span>; <span class="hljs-rule">}</span></span>
+<span class="hljs-tag">h3</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">120%</span></span></span>; <span class="hljs-rule">}</span></span>
+<span class="hljs-tag">h4</span>, <span class="hljs-tag">h5</span>, <span class="hljs-tag">h6</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">110%</span></span></span>; <span class="hljs-rule">}</span></span>
+</code></pre>
+<p>More styling</p>
+<pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-tag">a</span><span class="hljs-pseudo">:hover</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#aaa</span></span></span>; <span class="hljs-rule">}</span></span>
+
+<span class="hljs-tag">a</span><span class="hljs-pseudo">:visited</span>, <span class="hljs-tag">a</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#000</span></span></span>;<span class="hljs-rule">}</span></span>
+
+<span class="hljs-at_rule">@<span class="hljs-keyword">media</span> screen </span>{
+  <span class="hljs-tag">a</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">text-decoration</span>:<span class="hljs-value"> underline</span></span>;
+  <span class="hljs-rule">}</span></span>
+}
+
+<span class="hljs-at_rule">@<span class="hljs-keyword">media</span> print </span>{
+  <span class="hljs-tag">a</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">text-decoration</span>:<span class="hljs-value"> none</span></span>;
+  <span class="hljs-rule">}</span></span>
+  <span class="hljs-id">#doc</span> <span class="hljs-tag">a</span><span class="hljs-attr_selector">[href]</span><span class="hljs-pseudo">:after</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">content</span>:<span class="hljs-value"> <span class="hljs-string">" ("</span> <span class="hljs-function">attr</span>(href) <span class="hljs-string">")"</span></span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">90%</span></span></span>;
+  <span class="hljs-rule">}</span></span>
+}
+</code></pre>
+<h4 id="highlight-markup">3.2.5.4 Highlight markup</h4>
+<p><code>highlight.js</code> specific styles for code blocks.
+Basic type markup:</p>
+<pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-class">.hljs</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">overflow</span>:<span class="hljs-value"> auto</span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">padding</span>:<span class="hljs-value"> <span class="hljs-number">0.5em</span></span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#333</span></span></span>;
+<span class="hljs-rule">}</span></span>
+<span class="hljs-class">.hljs-comment</span>, <span class="hljs-class">.diff</span> <span class="hljs-class">.hljs-header</span>, <span class="hljs-class">.hljs-javadoc</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#999</span></span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">font-style</span>:<span class="hljs-value"> italic</span></span>;
+<span class="hljs-rule">}</span></span>
+<span class="hljs-class">.hljs-keyword</span>, <span class="hljs-class">.css</span> <span class="hljs-class">.rule</span> <span class="hljs-class">.hljs-keyword</span>, <span class="hljs-class">.hljs-winutils</span>, <span class="hljs-class">.nginx</span> <span class="hljs-class">.hljs-title</span>,
+<span class="hljs-class">.hljs-subst</span>, <span class="hljs-class">.hljs-request</span>, <span class="hljs-class">.hljs-status</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#333</span></span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">font-weight</span>:<span class="hljs-value"> bold</span></span>;
+<span class="hljs-rule">}</span></span>
+<span class="hljs-class">.hljs-number</span>, <span class="hljs-class">.hljs-hexcolor</span>, <span class="hljs-class">.ruby</span> <span class="hljs-class">.hljs-constant</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#088</span></span></span>;
+<span class="hljs-rule">}</span></span>
+<span class="hljs-class">.hljs-string</span>, <span class="hljs-class">.hljs-tag</span> <span class="hljs-class">.hljs-value</span>, <span class="hljs-class">.hljs-phpdoc</span>, <span class="hljs-class">.hljs-dartdoc</span>, <span class="hljs-class">.tex</span> <span class="hljs-class">.hljs-formula</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#d14</span></span></span>;
+<span class="hljs-rule">}</span></span>
+<span class="hljs-class">.hljs-title</span>, <span class="hljs-class">.hljs-id</span>, <span class="hljs-class">.scss</span> <span class="hljs-class">.hljs-preprocessor</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#900</span></span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">font-weight</span>:<span class="hljs-value"> bold</span></span>;
+<span class="hljs-rule">}</span></span>
+<span class="hljs-class">.hljs-list</span> <span class="hljs-class">.hljs-keyword</span>, <span class="hljs-class">.hljs-subst</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">font-weight</span>:<span class="hljs-value"> normal</span></span>;
+<span class="hljs-rule">}</span></span>
+<span class="hljs-class">.hljs-class</span> <span class="hljs-class">.hljs-title</span>, <span class="hljs-class">.hljs-type</span>, <span class="hljs-class">.vhdl</span> <span class="hljs-class">.hljs-literal</span>, <span class="hljs-class">.tex</span> <span class="hljs-class">.hljs-command</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#458</span></span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">font-weight</span>:<span class="hljs-value"> bold</span></span>;
+<span class="hljs-rule">}</span></span>
+<span class="hljs-class">.hljs-tag</span>, <span class="hljs-class">.hljs-tag</span> <span class="hljs-class">.hljs-title</span>, <span class="hljs-class">.hljs-rules</span> <span class="hljs-class">.hljs-property</span>, <span class="hljs-class">.django</span> <span class="hljs-class">.hljs-tag</span> <span class="hljs-class">.hljs-keyword</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#000080</span></span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">font-weight</span>:<span class="hljs-value"> normal</span></span>;
+<span class="hljs-rule">}</span></span>
+<span class="hljs-class">.hljs-attribute</span>, <span class="hljs-class">.hljs-variable</span>, <span class="hljs-class">.lisp</span> <span class="hljs-class">.hljs-body</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#008080</span></span></span>;
+<span class="hljs-rule">}</span></span>
+<span class="hljs-class">.hljs-regexp</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#009926</span></span></span>;
+<span class="hljs-rule">}</span></span>
+<span class="hljs-class">.hljs-built_in</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#0086b3</span></span></span>;
+<span class="hljs-rule">}</span></span>
+</code></pre>
+<p>Language specific markup</p>
+<pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-class">.hljs-symbol</span>, <span class="hljs-class">.ruby</span> <span class="hljs-class">.hljs-symbol</span> <span class="hljs-class">.hljs-string</span>, <span class="hljs-class">.lisp</span> <span class="hljs-class">.hljs-keyword</span>,
+<span class="hljs-class">.clojure</span> <span class="hljs-class">.hljs-keyword</span>, <span class="hljs-class">.scheme</span> <span class="hljs-class">.hljs-keyword</span>, <span class="hljs-class">.tex</span> <span class="hljs-class">.hljs-special</span>,
+<span class="hljs-class">.hljs-prompt</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#990073</span></span></span>;
+<span class="hljs-rule">}</span></span>
+</code></pre>
+<p>Other uncommon specialize markup:</p>
+<pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-class">.hljs-preprocessor</span>, <span class="hljs-class">.hljs-pragma</span>, <span class="hljs-class">.hljs-pi</span>, <span class="hljs-class">.hljs-doctype</span>, <span class="hljs-class">.hljs-shebang</span>,
+<span class="hljs-class">.hljs-cdata</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#999</span></span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">font-weight</span>:<span class="hljs-value"> bold</span></span>;
+<span class="hljs-rule">}</span></span>
+<span class="hljs-class">.hljs-deletion</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">background</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#fdd</span></span></span>;
+<span class="hljs-rule">}</span></span>
+<span class="hljs-class">.hljs-addition</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">background</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#dfd</span></span></span>;
+<span class="hljs-rule">}</span></span>
+<span class="hljs-class">.diff</span> <span class="hljs-class">.hljs-change</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">background</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#0086b3</span></span></span>;
+<span class="hljs-rule">}</span></span>
+<span class="hljs-class">.hljs-chunk</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#aaa</span></span></span>;
+<span class="hljs-rule">}</span></span>
+</code></pre>
+<p>Using <code>CSS</code> it is possibly to have a separate
+layout for print media.
+<code>markover</code> overrides certain values for print media.</p>
+<pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-at_rule">@<span class="hljs-keyword">media</span> print </span>{
+  <span class="hljs-class">.hljs</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">overflow</span>:<span class="hljs-value"> visible</span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">word-wrap</span>:<span class="hljs-value"> break-word</span></span>;
+  <span class="hljs-rule">}</span></span>
+  <span class="hljs-class">.hljs-number</span>, <span class="hljs-class">.hljs-hexcolor</span>, <span class="hljs-class">.ruby</span> <span class="hljs-class">.hljs-constant</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#888</span></span></span>;
+  <span class="hljs-rule">}</span></span>
+  <span class="hljs-class">.hljs-string</span>, <span class="hljs-class">.hljs-tag</span> <span class="hljs-class">.hljs-value</span>, <span class="hljs-class">.hljs-phpdoc</span>, <span class="hljs-class">.hljs-dartdoc</span>, <span class="hljs-class">.tex</span> <span class="hljs-class">.hljs-formula</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#ddd</span></span></span>;
+  <span class="hljs-rule">}</span></span>
+  <span class="hljs-class">.hljs-title</span>, <span class="hljs-class">.hljs-id</span>, <span class="hljs-class">.scss</span> <span class="hljs-class">.hljs-preprocessor</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#999</span></span></span>;
+  <span class="hljs-rule">}</span></span>
+  <span class="hljs-class">.hljs-class</span> <span class="hljs-class">.hljs-title</span>, <span class="hljs-class">.hljs-type</span>, <span class="hljs-class">.vhdl</span> <span class="hljs-class">.hljs-literal</span>, <span class="hljs-class">.tex</span> <span class="hljs-class">.hljs-command</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#888</span></span></span>;
+  <span class="hljs-rule">}</span></span>
+  <span class="hljs-class">.hljs-tag</span>, <span class="hljs-class">.hljs-tag</span> <span class="hljs-class">.hljs-title</span>, <span class="hljs-class">.hljs-rules</span> <span class="hljs-class">.hljs-property</span>, <span class="hljs-class">.django</span> <span class="hljs-class">.hljs-tag</span> <span class="hljs-class">.hljs-keyword</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#888</span></span></span>;
+  <span class="hljs-rule">}</span></span>
+  <span class="hljs-class">.hljs-attribute</span>, <span class="hljs-class">.hljs-variable</span>, <span class="hljs-class">.lisp</span> <span class="hljs-class">.hljs-body</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#888</span></span></span>;
+  <span class="hljs-rule">}</span></span>
+  <span class="hljs-class">.hljs-regexp</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#999</span></span></span>;
+  <span class="hljs-rule">}</span></span>
+  <span class="hljs-class">.hljs-symbol</span>, <span class="hljs-class">.ruby</span> <span class="hljs-class">.hljs-symbol</span> <span class="hljs-class">.hljs-string</span>, <span class="hljs-class">.lisp</span> <span class="hljs-class">.hljs-keyword</span>,
+  <span class="hljs-class">.clojure</span> <span class="hljs-class">.hljs-keyword</span>, <span class="hljs-class">.scheme</span> <span class="hljs-class">.hljs-keyword</span>, <span class="hljs-class">.tex</span> <span class="hljs-class">.hljs-special</span>,
+  <span class="hljs-class">.hljs-prompt</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#999</span></span></span>;
+  <span class="hljs-rule">}</span></span>
+  <span class="hljs-class">.hljs-built_in</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#888</span></span></span>;
+  <span class="hljs-rule">}</span></span>
+  <span class="hljs-class">.hljs-deletion</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">background</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#ddd</span></span></span>;
+  <span class="hljs-rule">}</span></span>
+  <span class="hljs-class">.hljs-addition</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">background</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#ddd</span></span></span>;
+  <span class="hljs-rule">}</span></span>
+  <span class="hljs-class">.diff</span> <span class="hljs-class">.hljs-change</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">background</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#888</span></span></span>;
+  <span class="hljs-rule">}</span></span>
+}
+</code></pre>
+<h1 id="program-structure">4. Program structure</h1>
+<p>This implementation is based on <a href="http://github.com/chjj/marked">marked</a>,
+which is a <code>javascript</code> markdown parser with a lot of flexibility.
+It provides a number of options that are very useful for <code>markover</code>.</p>
+<p>weaveStream, tangleStream and untangleStream are based on <code>nodejs</code> stream
+transformation. They read from a source stream, transform the input,
+and write out to an output stream.</p>
+<h2 id="utilities">4.1 Utilities</h2>
+<p>I&#39;m using a lazy implementation of the <code>nodejs</code> stream transform.
+Instead of processing the input buffer piece by piece, I collect
+the entire stream into a <code>pool</code>. At the end, the entire <code>pool</code>
+is flushed to the output pipe. It takes a single argument which
+is a set of options which must include a <code>convert</code> function that
+converts a string into the transformed string.
+The default <code>convert</code> function does not transform the string.
+The options are passed to the <code>convert</code> function.
+<code>pool</code> calls the <code>convert</code> function in the context of the
+optional <code>self</code> object.
+This gives the <code>convert</code> function access to all the facilities
+of the identified object (methods and members).</p>
+<pre><div class="field">pool</div><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(options)</span> </span>{
+  options = options || {}
+
+  <span class="hljs-keyword">var</span> dam = <span class="hljs-keyword">new</span> <span class="hljs-built_in">require</span>(<span class="hljs-string">'stream'</span>).Transform()
+  dam.options = options
+  dam.options.convert = dam.options.convert || <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(string, options)</span> </span>{ <span class="hljs-keyword">return</span> string }
+  dam.options.self = dam.options.self || <span class="hljs-keyword">this</span>
+
+  dam.lake = []
+  dam._transform = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(chunk, encoding, done)</span> </span>{
+    dam.lake.push(chunk.toString())
+    done()
+  }
+
+  dam._flush = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(done)</span> </span>{
+    dam.push(dam.options.convert.call(dam.options.self, dam.lake.join(<span class="hljs-string">''</span>), dam.options))
+    dam.push(<span class="hljs-string">'\n'</span>)
+    dam.lake = []
+    done()
+  }
+
+  <span class="hljs-keyword">return</span> dam
+}
+</code></pre>
+<p>For displaying a document in <code>HTML</code> there are certain character
+sequences that must be escaped and then unescaped.</p>
+<pre><div class="field">escape</div><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(html, encode)</span> </span>{
+  <span class="hljs-keyword">return</span> html
+    .replace(!encode ? <span class="hljs-regexp">/&amp;(?!#?\w+;)/g</span> : <span class="hljs-regexp">/&amp;/g</span>, <span class="hljs-string">''</span>)
+    .replace(<span class="hljs-regexp">/&lt;/g</span>, <span class="hljs-string">'&lt;'</span>)
+    .replace(<span class="hljs-regexp">/&gt;/g</span>, <span class="hljs-string">'&gt;'</span>)
+    .replace(<span class="hljs-regexp">/"/g</span>, <span class="hljs-string">'"'</span>)
+    .replace(<span class="hljs-regexp">/'/g</span>, <span class="hljs-string">''</span><span class="hljs-string">');
+}</span>
+</code></pre>
+<pre><div class="field">unescape</div><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(html)</span> </span>{
+  <span class="hljs-keyword">return</span> html.replace(<span class="hljs-regexp">/&amp;([#\w]+);/g</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(_, n)</span> </span>{
+    n = n.toLowerCase();
+    <span class="hljs-keyword">if</span> (n === <span class="hljs-string">'colon'</span>) <span class="hljs-keyword">return</span> <span class="hljs-string">':'</span>;
+    <span class="hljs-keyword">if</span> (n === <span class="hljs-string">'lt'</span>) <span class="hljs-keyword">return</span> <span class="hljs-string">'&lt;'</span>;
+    <span class="hljs-keyword">if</span> (n === <span class="hljs-string">'gt'</span>) <span class="hljs-keyword">return</span> <span class="hljs-string">'&gt;'</span>;
+    <span class="hljs-keyword">if</span> (n === <span class="hljs-string">'quot'</span>) <span class="hljs-keyword">return</span> <span class="hljs-string">'"'</span>;
+    <span class="hljs-keyword">if</span> (n.charAt(<span class="hljs-number">0</span>) === <span class="hljs-string">'#'</span>) {
+      <span class="hljs-keyword">return</span> n.charAt(<span class="hljs-number">1</span>) === <span class="hljs-string">'x'</span>
+        ? <span class="hljs-built_in">String</span>.fromCharCode(<span class="hljs-built_in">parseInt</span>(n.substring(<span class="hljs-number">2</span>), <span class="hljs-number">16</span>))
+        : <span class="hljs-built_in">String</span>.fromCharCode(+n.substring(<span class="hljs-number">1</span>));
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-string">''</span>;
+  })
+}
+</code></pre>
+<h2 id="tangle">4.2 tangle</h2>
+<p>The <code>tangle</code> process is the most important process in <code>markover</code>.</p>
+<p>The <code>tangle</code> process has to exist before <code>markover</code> can work.
+During my initial implementation I prototyped <code>javascript</code>
+code that could <code>tangle</code> a complex <code>markdown</code> document.
+Then I inserted the <code>tangle</code> prototype into a prototype
+<code>markover</code> document.
+After further adjustments I produced a <code>markdown</code> document
+that could be tangled into a functional identical <code>tangle</code> prototype.
+At this point I could make improvements to the document,
+<code>tangle</code> it, verify the results, and update the <code>tangle</code> process.
+If you don&#39;t have a <code>tangle</code> process, you can manually create 
+a prototype by applying the <code>tangle</code> algorithm described here
+to this document. Once your prototype works, you can use it
+to produce the <code>tangle</code> process described in this document.</p>
+<p><code>markover</code> uses <code>marked</code> to parse <code>markover</code> documents.
+This parser has enough flexibility to implement the main
+features of <code>markover</code>: <code>tangle</code> and <code>weave</code>.
+I haven&#39;t investigated all the options that <code>marked</code>
+provides. But I have found a set of options that produce
+good results. The <code>gfm</code> option, which is &#39;GitHub Flavored Markdown&#39;
+is particularly important to turn on.
+This option implements the fence style code blocks that
+<code>markover</code> is dependent on.
+All the renderer output functions are set to <code>noop</code> except
+for <code>code</code>.</p>
+<p>Quoting is an important element of <code>markover</code>.
+It uses % escape sequences to convert
+native codes into escape codes.</p>
+<p>The following fields describe all of the formating
+that the <code>tangle</code> process uses in creating source code
+from <code>markover</code> documents.</p>
+<pre><div class="field">tangleFormatPrefix</div><code class="lang-js"> {%n%n
+</code></pre>
+<pre><div class="field">tangleFormatSuffix</div><code class="lang-js">%n}%n%n
+</code></pre>
+<pre><div class="field">tangleFormatDelimiter</div><code class="lang-js">,%n%n
+</code></pre>
+<pre><div class="field">tangleFormatFieldPrefix</div><code class="lang-js"><span class="hljs-string">"</span>
+</code></pre>
+<pre><div class="field">tangleFormatFieldSuffix</div><code class="lang-js"><span class="hljs-string">":</span>
+</code></pre>
+<h3 id="tangle-formating">4.2.1 tangle Formating</h3>
+<p>Once a <code>markover</code> document has been tangled,
+there are 3 results: the starting material,
+the fields, and the ending material.
+The starting and ending material are passed
+straight through.</p>
+<p>The <code>tangleFormat</code> function handles the
+processing of the fields. The fields are
+stored in an object. For each field, the
+delimited field name is emitted and then
+with value.
+For <code>javascript</code> output the delimited field
+is in double quotes.
+For languages that don&#39;t use objects and 
+fields, the delimited field name could be
+put in a source code comment.
+Not that fields are not in any particular
+order.</p>
+<p>The final part of the processing is 
+to translate the % escape sequences back
+to their original representation.</p>
+<pre><div class="field">tangleFormat</div><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(ff, fields, lf)</span> </span>{
+  <span class="hljs-keyword">var</span> res = [ff, <span class="hljs-keyword">this</span>.tangleFormatPrefix]
+  <span class="hljs-keyword">var</span> firsttime = <span class="hljs-literal">true</span>
+  <span class="hljs-keyword">var</span> v
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> e <span class="hljs-keyword">in</span> fields) {
+    v = fields[e]
+    <span class="hljs-keyword">if</span> (firsttime) {
+      firsttime = <span class="hljs-literal">false</span>
+    } <span class="hljs-keyword">else</span> {
+      res.push(<span class="hljs-keyword">this</span>.tangleFormatDelimiter)
+    }
+    res.push(<span class="hljs-keyword">this</span>.tangleFormatFieldPrefix + e + <span class="hljs-keyword">this</span>.tangleFormatFieldSuffix)
+    res.push(v)
+  }
+   res.push(<span class="hljs-keyword">this</span>.tangleFormatSuffix)
+   res.push(lf)
+
+   <span class="hljs-keyword">return</span> res.join(<span class="hljs-string">''</span>)
+     .replace(<span class="hljs-regexp">/%q/gm</span>, <span class="hljs-string">'\"'</span>)
+     .replace(<span class="hljs-regexp">/%n/gm</span>, <span class="hljs-string">'\n'</span>)
+     .replace(<span class="hljs-regexp">/%s/gm</span>, <span class="hljs-string">'\\'</span>)
+     .replace(<span class="hljs-regexp">/%p/gm</span> , <span class="hljs-string">'%'</span>)
+}
+</code></pre>
+<h3 id="tanglejson">4.2.2 tangleJSON</h3>
+<p>Given a <code>makeover</code> source string <code>tangleJSON</code>
+returns the converted source code using <code>marked</code>.
+Options can have an array of field names that
+should be excluded from the output.</p>
+<pre><div class="field">tangleJSON</div><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(str, options)</span> </span>{
+  options = options || {}
+  options.exclude = options.exclude || []
+</code></pre>
+<p>We get a reference to the Renderer object
+so that it can be modified as needed.</p>
+<pre><div class="field">tangleJSON</div><code class="lang-js">  <span class="hljs-keyword">var</span> marked = <span class="hljs-built_in">require</span>(<span class="hljs-string">'marked'</span>)
+  <span class="hljs-keyword">var</span> p = <span class="hljs-keyword">new</span> marked.Renderer()
+  marked.setOptions({
+    renderer: p,
+    gfm: <span class="hljs-literal">true</span>,
+    tables: <span class="hljs-literal">true</span>,
+    breaks: <span class="hljs-literal">false</span>,
+    pedantic: <span class="hljs-literal">false</span>,
+    sanitize: <span class="hljs-literal">true</span>,
+    smartLists: <span class="hljs-literal">true</span>,
+    smartypants: <span class="hljs-literal">false</span>
+  })
+</code></pre>
+<p>The main part of the rendered used in
+<code>tangle</code> is the <code>code</code> function which
+handles the code blocks.
+Code blocks without field names are ignored.
+Quoted code blocks are encoded in strings.
+Then the entire string is % escaped.
+Each code is stored as a triple of <em>strings</em>: field, quote, &amp; text.</p>
+<pre><div class="field">tangleJSON</div><code class="lang-js">  p.code = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(code, lang, escaped)</span> </span>{
+
+    <span class="hljs-keyword">if</span> (!lang)
+      <span class="hljs-keyword">return</span> <span class="hljs-string">''</span>
+
+    <span class="hljs-keyword">var</span> field = lang.replace(<span class="hljs-regexp">/\S*#[+]?(\S*)/</span>, <span class="hljs-string">"$1"</span>)
+    <span class="hljs-keyword">if</span> (lang == field)
+      <span class="hljs-keyword">return</span> <span class="hljs-string">''</span>
+
+    <span class="hljs-keyword">var</span> quote = lang.replace(<span class="hljs-regexp">/\S*#([+]?)\S*/</span>, <span class="hljs-string">"$1"</span>)
+    lang = lang.replace(<span class="hljs-regexp">/(\S*)#[+]?\S*/</span>, <span class="hljs-string">"$1"</span>)
+    <span class="hljs-keyword">if</span> (lang == <span class="hljs-string">''</span>) lang = <span class="hljs-string">'json'</span>
+
+    <span class="hljs-keyword">if</span> (quote == <span class="hljs-string">'+'</span>) {
+      code = (<span class="hljs-string">'"'</span> +
+        code
+          .replace(<span class="hljs-regexp">/\\/gm</span>, <span class="hljs-string">'\\\\'</span>)
+          .replace(<span class="hljs-regexp">/\"/gm</span> <span class="hljs-comment">/*"*/</span>, <span class="hljs-string">'\\"'</span>)
+          .replace(<span class="hljs-regexp">/\n/gm</span> , <span class="hljs-string">'\\n'</span>)
+        + <span class="hljs-string">'"'</span>)
+    }
+
+    <span class="hljs-keyword">var</span> esccode = code
+      .replace(<span class="hljs-regexp">/%/gm</span> , <span class="hljs-string">'%p'</span>)
+      .replace(<span class="hljs-regexp">/"/gm</span> <span class="hljs-comment">/*"*/</span>, <span class="hljs-string">'%q'</span>)
+      .replace(<span class="hljs-regexp">/\n/gm</span>, <span class="hljs-string">'%n'</span>)
+      .replace(<span class="hljs-regexp">/\\/gm</span>, <span class="hljs-string">'%s'</span>)
+
+    <span class="hljs-keyword">return</span> <span class="hljs-string">',["'</span> + field + <span class="hljs-string">'", "'</span> + (quote == <span class="hljs-string">'+'</span>)  + <span class="hljs-string">'", "'</span> + esccode + <span class="hljs-string">'"]'</span>
+  }
+</code></pre>
+<p>All other rendering blocks are stopped.</p>
+<pre><div class="field">tangleJSON</div><code class="lang-js">  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">noop</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> <span class="hljs-string">''</span>}
+
+  p.blockquote = noop
+  p.html = noop
+  p.heading = noop
+  p.hr = noop
+  p.list = noop
+  p.listitem = noop
+  p.paragraph = noop
+  p.table = noop
+  p.tablerow = noop
+  p.tablecell = noop
+  p.strong = noop
+  p.em = noop
+  p.codespan = noop
+  p.br = noop
+  p.del = noop
+  p.link = noop
+  p.image = noop
+</code></pre>
+<p><code>marked</code> does all the parsing at this point.
+The resulting set of triples is converted into
+an array of objects.</p>
+<pre><div class="field">tangleJSON</div><code class="lang-js">  <span class="hljs-keyword">var</span> doc = <span class="hljs-string">'['</span> + marked(str).substring(<span class="hljs-number">1</span>) + <span class="hljs-string">']'</span>
+  <span class="hljs-keyword">var</span> obj = <span class="hljs-built_in">JSON</span>.parse(doc)
+  <span class="hljs-keyword">var</span> fields = {}
+  <span class="hljs-keyword">var</span> ff = <span class="hljs-string">''</span>
+  <span class="hljs-keyword">var</span> lf = <span class="hljs-string">''</span>
+</code></pre>
+<p>Each triple is decoded and appended to any existing text.
+There is a subtle difference in the quoted versus non-quoted
+appending: the quoted append inserts an escaped newline,
+while the non-quoted inserts a % escaped newline (which is
+converted into an actual newline in the output.
+Note that inserting these newlines prevents quote fields
+from being concatenated without a newline character.</p>
+<pre><div class="field">tangleJSON</div><code class="lang-js">  <span class="hljs-keyword">var</span> res = obj.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(e)</span> </span>{
+    <span class="hljs-keyword">var</span> k = e[<span class="hljs-number">0</span>]
+    <span class="hljs-keyword">var</span> q = (e[<span class="hljs-number">1</span>] == <span class="hljs-string">"true"</span>)
+    <span class="hljs-keyword">var</span> v = e[<span class="hljs-number">2</span>]
+    <span class="hljs-keyword">var</span> doit = <span class="hljs-literal">true</span>
+    <span class="hljs-keyword">if</span> (options.exclude.indexOf(k) != -<span class="hljs-number">1</span>)
+      doit = <span class="hljs-literal">false</span>
+    <span class="hljs-keyword">if</span> (doit) {
+      <span class="hljs-keyword">if</span> (fields[k] != <span class="hljs-literal">undefined</span>) {
+        <span class="hljs-keyword">if</span> (q) {
+          v = fields[k].substring(<span class="hljs-number">0</span>,fields[k].length-<span class="hljs-number">2</span>) + <span class="hljs-string">'\\n'</span> + v.substring(<span class="hljs-number">2</span>)
+        } <span class="hljs-keyword">else</span> {
+          v = fields[k] + <span class="hljs-string">'%n'</span> + v
+        }
+      }
+      fields[k] = v
+    }
+  })
+</code></pre>
+<p>Once all the fields are prepared, the special first and last
+field names are located and the results are formatted for output.</p>
+<pre><div class="field">tangleJSON</div><code class="lang-js">  <span class="hljs-keyword">if</span> (fields[<span class="hljs-string">"first"</span>] != <span class="hljs-literal">undefined</span>) {
+    ff = fields[<span class="hljs-string">"first"</span>]
+    <span class="hljs-keyword">delete</span> fields[<span class="hljs-string">"first"</span>]
+  }
+
+  <span class="hljs-keyword">if</span> (fields[<span class="hljs-string">"last"</span>] != <span class="hljs-literal">undefined</span>) {
+    lf = fields[<span class="hljs-string">"last"</span>]
+    <span class="hljs-keyword">delete</span> fields[<span class="hljs-string">"last"</span>]
+  }
+
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.tangleFormat(ff, fields, lf)
+}
+</code></pre>
+<h3 id="tanglestream">4.2.3 tangleStream</h3>
+<p><code>tangleStream</code> can produce a transform object or
+apply it to stdin and stdout. The input stream is
+pooled, then tangled and pushed to the output stream.</p>
+<pre><div class="field">tangleStream</div><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(opts)</span> </span>{
+  <span class="hljs-keyword">var</span> options = {convert: <span class="hljs-keyword">this</span>.tangleJSON, self:<span class="hljs-keyword">this</span>}
+  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i <span class="hljs-keyword">in</span> opts)
+    options[i] = opts[i]
+  <span class="hljs-keyword">var</span> p = <span class="hljs-keyword">this</span>.pool(options)
+
+  <span class="hljs-keyword">if</span> (!p.options.notstdio) {
+    process.stdin.pipe(p).pipe(process.stdout)
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
+  }
+
+  <span class="hljs-keyword">return</span> p
+}
+</code></pre>
+<h2 id="weave">4.3 weave</h2>
+<p>The <code>weave</code> process complements <code>tangle</code> by producing
+a readable document that describes the program&#39;s operation.
+Many document systems, such as <a href="http://www.stack.nl/~dimitri/doxygen">doxygen</a>
+use the programming languages structure to attach documentation.
+Literate programming emphasizes the documentation structure
+over the programming structure.
+Since the <code>tangle</code> process provides field names for targets and allows
+fields to be concatenated, the <code>markover</code> document layout can
+be structured in the order that makes the most sense for the
+description of the program.
+Of course, parts of a program might be best described in the
+order the the programming language requires, and this can easily be
+done in <code>markover</code> as well.</p>
+<p>The <code>weave</code> process maintains the order that the <code>markover</code>
+document is written in.
+It also weaves into the source code additional markup to
+clarify the syntax of the code.</p>
+<h3 id="weave-headings">4.3.1 weave headings</h3>
+<p>By processing the headings in the <code>markover</code> document
+a table of contents can be developed.
+As headings are rendered into <code>HTML</code>, they are appended
+to a <code>toc</code>. Each <code>toc</code> element starts as a triple: text,
+level, id.
+An array <code>n</code> is maintained to enumerate the headings.</p>
+<pre><div class="field">heading</div><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(text, level, raw, toc, prefix)</span> </span>{
+  <span class="hljs-keyword">var</span> i = raw.toLowerCase().replace(<span class="hljs-regexp">/[^\w]+/g</span>, <span class="hljs-string">'-'</span>)
+  <span class="hljs-keyword">var</span> n = [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]
+</code></pre>
+<p><code>HTML</code> defines 6 levels of headings.
+This seems more than sufficient.</p>
+<pre><div class="field">heading</div><code class="lang-js">  <span class="hljs-keyword">if</span> (level &gt; <span class="hljs-number">6</span>) level = <span class="hljs-number">6</span>
+  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (level &lt; <span class="hljs-number">1</span>) level = <span class="hljs-number">1</span>
+  toc.push([text, level, i])
+</code></pre>
+<p>The <code>n</code> array is regenerated to reflect the
+current heading count.</p>
+<pre><div class="field">heading</div><code class="lang-js">  <span class="hljs-keyword">var</span> l
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> x = <span class="hljs-number">0</span>; x &lt; toc.length; x++) {
+    l = toc[x][<span class="hljs-number">1</span>]
+    n[l] = n[l] + <span class="hljs-number">1</span>
+    <span class="hljs-keyword">while</span> (++l &lt; toc.length)
+      n[l] = <span class="hljs-number">0</span>
+  }
+</code></pre>
+<p>A section number is calculated from the <code>n</code> array
+and added to the <code>toc</code> element.</p>
+<pre><div class="field">heading</div><code class="lang-js">  <span class="hljs-keyword">var</span> sn = n.slice(<span class="hljs-number">1</span>, level+<span class="hljs-number">1</span>).join(<span class="hljs-string">'.'</span>) + (level == <span class="hljs-number">1</span> ? <span class="hljs-string">'.'</span> : <span class="hljs-string">''</span>)
+  toc[toc.length-<span class="hljs-number">1</span>].push(sn)
+</code></pre>
+<p>And the <code>HTML</code> rendering of the heading is returned, lightly formatted.</p>
+<pre><div class="field">heading</div><code class="lang-js">  <span class="hljs-keyword">return</span> <span class="hljs-string">'&lt;h'</span>
+    + level
+    + <span class="hljs-string">' id="'</span>
+    + prefix
+    + i
+    + <span class="hljs-string">'"&gt;'</span>
+    + sn + <span class="hljs-string">' '</span> + text
+    + <span class="hljs-string">'&lt;/h'</span>
+    + level
+    + <span class="hljs-string">'&gt;\n'</span>
+}
+</code></pre>
+<h3 id="weave-code-highlighting">4.3.2 weave code highlighting</h3>
+<p>Hightlighting code handled by <code>highlight.js</code>.
+This utility function returns a code block that
+is highlighted according to the identified language.</p>
+<pre><div class="field">weaveHighlight</div><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(lang, code)</span> </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">require</span>(<span class="hljs-string">'highlight.js'</span>).highlight(lang, <span class="hljs-keyword">this</span>.unescape(code), <span class="hljs-literal">true</span>)
+}
+</code></pre>
+<h3 id="weavecode">4.3.3 weaveCode</h3>
+<p>This function formats a code block for the <code>HTML</code> document.
+The formatting consists of labelling parts of the code with
+<code>HTML</code> tags with suitable classes. Code blocks that don&#39;t
+have an identified language are not highlighted.</p>
+<pre><div class="field">weaveCode</div><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(code, lang, escaped, fields, prefix)</span> </span>{
+  <span class="hljs-keyword">var</span> c = code
+  <span class="hljs-keyword">if</span> (!lang) {
+    <span class="hljs-keyword">return</span> <span class="hljs-string">'&lt;pre&gt;&lt;code&gt;'</span>
+      + c
+      + <span class="hljs-string">'\n&lt;/code&gt;&lt;/pre&gt;'</span>
+  }
+</code></pre>
+<p>Code blocks that have a language, but don&#39;t have
+a field name are highlighted.</p>
+<pre><div class="field">weaveCode</div><code class="lang-js">  <span class="hljs-keyword">var</span> i = lang.indexOf(<span class="hljs-string">'#'</span>)
+  <span class="hljs-keyword">if</span> (i == -<span class="hljs-number">1</span>) {
+    <span class="hljs-keyword">if</span> (lang == <span class="hljs-string">"noweave"</span>) <span class="hljs-keyword">return</span> <span class="hljs-string">''</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-string">'&lt;pre&gt;&lt;code class="'</span>
+      + prefix
+      + <span class="hljs-keyword">this</span>.escape(lang, <span class="hljs-literal">true</span>)
+      + <span class="hljs-string">'"&gt;'</span>
+      + <span class="hljs-keyword">this</span>.weaveHighlight(lang, c).value
+      + <span class="hljs-string">'\n&lt;/code&gt;&lt;/pre&gt;\n'</span>
+  }
+</code></pre>
+<p>Code blocks that have a field name are highlighted
+as well unless the language is <code>noweave</code>.
+Field Names are appended and retained in
+weaving too. These field names can be used in the
+output of the <code>HTML</code> document.
+This is useful for the defining the structure
+of the <code>HTML</code> document.</p>
+<pre><div class="field">weaveCode</div><code class="lang-js">  <span class="hljs-keyword">var</span> field = lang.substring(i+<span class="hljs-number">1</span>)
+  lang = lang.substring(<span class="hljs-number">0</span>, i)
+  <span class="hljs-keyword">if</span> (lang == <span class="hljs-string">""</span>) lang = <span class="hljs-string">"json"</span>
+
+  <span class="hljs-keyword">if</span> (field.substring(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>) == <span class="hljs-string">'+'</span>) {
+    field = field.substring(<span class="hljs-number">1</span>)
+  }
+
+  <span class="hljs-keyword">if</span> (fields[field] == <span class="hljs-literal">undefined</span>) {
+    fields[field] = c
+  } <span class="hljs-keyword">else</span> {
+    fields[field] = fields[field] + <span class="hljs-string">'\n'</span> + c
+  }
+
+  <span class="hljs-keyword">if</span> (lang == <span class="hljs-string">"noweave"</span>) <span class="hljs-keyword">return</span> <span class="hljs-string">''</span>
+
+  <span class="hljs-keyword">return</span> <span class="hljs-string">'&lt;pre&gt;&lt;div class="field"&gt;'</span>
+    + field + <span class="hljs-string">'&lt;/div&gt;'</span>
+    + <span class="hljs-string">'&lt;code class="'</span>
+    + prefix
+    + <span class="hljs-keyword">this</span>.escape(lang, <span class="hljs-literal">true</span>)
+    + <span class="hljs-string">'"&gt;'</span>
+    + <span class="hljs-keyword">this</span>.weaveHighlight((lang != <span class="hljs-string">""</span> ? lang : <span class="hljs-string">"json"</span>), c).value
+    + <span class="hljs-string">'\n&lt;/code&gt;&lt;/pre&gt;\n'</span>
+}
+</code></pre>
+<h3 id="weave-parsing">4.3.4 weave parsing</h3>
+<p>The <code>markover</code> parsing for weaving is done by <code>marked</code>.
+We start with the standard <code>marked</code> rendered and then
+modify routines to prepare of the <code>HTML</code> generation.</p>
+<pre><div class="field">weaveMarked</div><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+  <span class="hljs-keyword">var</span> marked = <span class="hljs-built_in">require</span>(<span class="hljs-string">'marked'</span>)
+  <span class="hljs-keyword">var</span> p = <span class="hljs-keyword">new</span> marked.Renderer()
+
+  marked.setOptions({
+    renderer: p,
+    gfm: <span class="hljs-literal">true</span>,
+    tables: <span class="hljs-literal">true</span>,
+    breaks: <span class="hljs-literal">false</span>,
+    pedantic: <span class="hljs-literal">false</span>,
+    sanitize: <span class="hljs-literal">true</span>,
+    smartLists: <span class="hljs-literal">true</span>,
+    smartypants: <span class="hljs-literal">false</span>
+  })
+</code></pre>
+<p>Create the <code>toc</code>, <code>field</code>, and    <code>self</code> members to keep
+the needed state during parsing.</p>
+<pre><div class="field">weaveMarked</div><code class="lang-js">  p.field = []
+  p.toc = []
+  p.self = <span class="hljs-keyword">this</span>
+</code></pre>
+<p>Process the heading with this object so that heading
+can access the utility functions.
+Do the same of code blocks.
+This returns the parser and the renderer.</p>
+<pre><div class="field">weaveMarked</div><code class="lang-js">  p.heading = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(text, level, raw)</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.self.heading.call(<span class="hljs-keyword">this</span>.self, text, level, raw, p.toc, <span class="hljs-keyword">this</span>.options.headerPrefix)
+  }
+  p.code = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(code, lang, escaped)</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.self.weaveCode.call(<span class="hljs-keyword">this</span>.self, code, lang, escaped, p.field, <span class="hljs-keyword">this</span>.options.langPrefix)
+  }
+
+  <span class="hljs-keyword">return</span> [marked, p]
+}
+</code></pre>
+<h3 id="weave-document">4.3.5 weave document</h3>
+<p>This function formats the final <code>HTML</code> document
+using <code>marked</code>.</p>
+<pre><div class="field">weaveJSON</div><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(str, options)</span> </span>{
+  <span class="hljs-keyword">var</span> m = <span class="hljs-keyword">this</span>.weaveMarked()
+  <span class="hljs-keyword">var</span> marked = m[<span class="hljs-number">0</span>]
+  <span class="hljs-keyword">var</span> p = m[<span class="hljs-number">1</span>]
+  <span class="hljs-keyword">var</span> doc = marked.call(<span class="hljs-keyword">this</span>, str)
+</code></pre>
+<p>Create some short cuts for setting up the document.</p>
+<pre><div class="field">weaveJSON</div><code class="lang-js">  <span class="hljs-keyword">var</span> un = <span class="hljs-keyword">this</span>.unescape
+  <span class="hljs-keyword">var</span> f = p.field
+</code></pre>
+<p>Format the basic elements of the document.
+Use reasonable default values where applicable.</p>
+<pre><div class="field">weaveJSON</div><code class="lang-js">  <span class="hljs-keyword">var</span> title = un(f[<span class="hljs-string">"title"</span>] || <span class="hljs-string">"Weave Output"</span>)
+  <span class="hljs-keyword">var</span> tag = un(f[<span class="hljs-string">"tag"</span>] || <span class="hljs-string">"from weaving"</span>)
+  <span class="hljs-keyword">var</span> stylesheet = un(f[<span class="hljs-string">"stylesheet"</span>] || <span class="hljs-string">""</span>)
+
+  <span class="hljs-keyword">var</span> headline = un(f[<span class="hljs-string">"head"</span>] || <span class="hljs-string">"&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;"</span>)
+  <span class="hljs-keyword">var</span> headtitle = <span class="hljs-string">'&lt;title&gt;'</span> + title + <span class="hljs-string">' - '</span> + tag + <span class="hljs-string">'&lt;/title&gt;\n'</span>
+  <span class="hljs-keyword">var</span> transitionline = un(f[<span class="hljs-string">"transition"</span>] || <span class="hljs-string">"&lt;/head&gt;&lt;body&gt;"</span>)
+  <span class="hljs-keyword">var</span> titleline = <span class="hljs-string">'&lt;div id="title"&gt;'</span> + title + <span class="hljs-string">'&lt;/div&gt;'</span>
+  <span class="hljs-keyword">var</span> tagline = <span class="hljs-string">'&lt;div id="tag"&gt;'</span> + tag + <span class="hljs-string">'&lt;/div&gt;'</span>
+  <span class="hljs-keyword">var</span> styleline = stylesheet == <span class="hljs-string">''</span> ? <span class="hljs-string">''</span> : <span class="hljs-string">'&lt;style&gt;'</span> + stylesheet + <span class="hljs-string">'&lt;/style&gt;'</span>
+  <span class="hljs-keyword">var</span> tailline = un(f[<span class="hljs-string">"tail"</span>] || <span class="hljs-string">"&lt;/body&gt;&lt;/html&gt;"</span>) + <span class="hljs-string">'\n'</span>
+</code></pre>
+<p>Build up the table of contents.
+Add a new ordered list element whenever there is a change
+in the heading level.</p>
+<pre><div class="field">weaveJSON</div><code class="lang-js">  <span class="hljs-keyword">var</span> tocitems = p.toc.map(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(e, i, a)</span> </span>{
+    <span class="hljs-keyword">var</span> ll = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">var</span> o = <span class="hljs-string">''</span>
+    <span class="hljs-keyword">if</span> (i &gt; <span class="hljs-number">0</span>) ll = a[i-<span class="hljs-number">1</span>][<span class="hljs-number">1</span>]
+    <span class="hljs-keyword">if</span> (ll &lt; e[<span class="hljs-number">1</span>]) {
+      <span class="hljs-keyword">while</span> (ll++ <span class="xml"><span class="hljs-tag">&lt; <span class="hljs-attribute">e</span>[<span class="hljs-attribute">1</span>])
+        <span class="hljs-attribute">o</span> = <span class="hljs-attribute">o</span> + '&lt;<span class="hljs-attribute">ol</span>&gt;</span>'
+    } else if (ll &gt; e[1]) {
+      while (ll-- &gt; e[1])
+        o = o + '<span class="hljs-tag">&lt;/<span class="hljs-title">ol</span>&gt;</span>'
+    }
+    return (
+            o + '<span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"tocsn"</span>&gt;</span>' + e[3] + '<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"tocsr"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"#' + e[2] + '"</span>&gt;</span>'
+          + e[0] + '<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>'
+           )
+  })</span>
+</code></pre>
+<p>Append enough ordered list ending tags and put the results in <code>toc</code></p>
+<pre><div class="field">weaveJSON</div><code class="lang-js">  <span class="hljs-keyword">var</span> toc = <span class="hljs-string">''</span>
+  <span class="hljs-keyword">var</span> ll
+  <span class="hljs-keyword">var</span> o
+
+  <span class="hljs-keyword">if</span> (p.toc.length &gt; <span class="hljs-number">0</span>) {
+    ll = p.toc[p.toc.length-<span class="hljs-number">1</span>][<span class="hljs-number">1</span>]
+    o = <span class="hljs-string">''</span>
+    <span class="hljs-keyword">while</span> (ll-- &gt; <span class="hljs-number">0</span>)
+      o = o + <span class="hljs-string">'&lt;/ol&gt;'</span>
+    toc = <span class="hljs-string">'&lt;div id="toc"&gt;&lt;h1&gt;Contents&lt;/h1&gt;\n'</span> + tocitems.join(<span class="hljs-string">'\n'</span>) + o + <span class="hljs-string">'&lt;/div&gt;\n'</span>
+  }
+</code></pre>
+<p>Return the assembled document.
+The bulk of the document is in the <code>doc</code> variable.</p>
+<pre><div class="field">weaveJSON</div><code class="lang-js">  <span class="hljs-keyword">return</span> (headline + headtitle + styleline + transitionline +
+          <span class="hljs-string">'&lt;div id="content"&gt;'</span> +
+             titleline + tagline + toc +
+          <span class="hljs-string">'&lt;div id="doc"&gt;'</span> + doc + <span class="hljs-string">'&lt;/div&gt;'</span> +
+          <span class="hljs-string">'&lt;/div&gt;'</span> + tailline)
+}
+</code></pre>
+<h3 id="weavestream">4.3.6 weaveStream</h3>
+<p><code>weaveStream</code> can produce a transform object or
+apply it to stdin and stdout. The input stream is
+pooled, then weaved and pushed to the output stream.</p>
+<pre><div class="field">weaveStream</div><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(opts)</span> </span>{
+  <span class="hljs-keyword">var</span> options = {convert: <span class="hljs-keyword">this</span>.weaveJSON, self:<span class="hljs-keyword">this</span>}
+  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i <span class="hljs-keyword">in</span> opts)
+    options[i] = opts[i]
+  <span class="hljs-keyword">var</span> p = <span class="hljs-keyword">this</span>.pool(options)
+
+  <span class="hljs-keyword">if</span> (!p.options.notstdio) {
+    process.stdin.pipe(p).pipe(process.stdout)
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
+  }
+
+  <span class="hljs-keyword">return</span> p
+}
+</code></pre>
+<h2 id="untangle">4.4 untangle</h2>
+<p>untangle is a utility that embeds a code block
+into a <code>markover</code> document.
+Basically it as a fence prefix and suffix.</p>
+<pre><div class="field">untangleStream</div><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(opts)</span> </span>{
+  opts = opts || {}
+  <span class="hljs-keyword">var</span> options
+  options = {
+    convert: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(str, options)</span> </span>{
+      <span class="hljs-keyword">return</span> <span class="hljs-string">'```\n'</span> + str + <span class="hljs-string">'```\n'</span>
+    },
+    self: <span class="hljs-keyword">this</span>
+  }
+
+  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i <span class="hljs-keyword">in</span> opts)
+    options[i] = opts[i]
+
+  <span class="hljs-keyword">var</span> p = <span class="hljs-keyword">this</span>.pool(options)
+
+  <span class="hljs-keyword">if</span> (!options.notstdio) {
+    process.stdin.pipe(p).pipe(process.stdout)
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
+  }
+
+  <span class="hljs-keyword">return</span> p
+}
+</code></pre>
+<h1 id="unix-build-instructions">5. Unix build instructions</h1>
+<p>You can rebuild <code>markover</code> from this document (assuming it is called README.md) by running the following in a Unix shell:</p>
+<pre><code class="lang-sh">node <span class="hljs-operator">-e</span> <span class="hljs-string">"require('./markover').tangleStream()"</span> &lt; README.md &gt; markover.js
+</code></pre>
+<p>To bootstrap try:</p>
+<pre><code class="lang-sh">node <span class="hljs-operator">-e</span> <span class="hljs-string">"require('./markover').tangleStream()"</span> &lt; README.md &gt; markover1.js &amp;&amp; node <span class="hljs-operator">-e</span> <span class="hljs-string">"require('./markover1').tangleStream()"</span> &lt; README.md &gt; markover2.js &amp;&amp; diff markover2.js markover1.js &amp;&amp; mv markover1.js markover.js
+</code></pre>
+<h1 id="remarks">6. Remarks</h1>
+<p>Adding a table of contents was straight forward given the capabilities of the <code>marked</code> library.
+Adding an index would be considerably more challenging.
+At this point, I plan on using <code>markover</code> before adding complex enhancements like this.</p>
+<p>Another feature of Knuth&#39;s system is a trailing footnote that indicates what other sections
+of the document contributed to the current block of code.
+The value of this is unclear to me.
+I think that Knuth printed his programs and used these footnotes to get to the other code
+sections.
+I&#39;m not sure that this applies today - or perhaps it is my personal preference.</p>
+<p>Unlike Knuth&#39;s system, <code>markover</code> has a fairly straight forward mechanism for tangling code.
+Knuth&#39;s system provides a lot more flexibility for re-ordering code and inserting code at
+arbitrary places in the code.
+<code>markover</code> is more restrictive, only providing the field names as targets for code blocks.
+It seems like this is enough flexibility and it allows the author to structure code blocks
+in a readable fashion that is copied into place producing fairly readable source code.
+If a more fine grain target is need, the source code can be divided into component functions
+or subroutines. Then each subroutine can be targeted separately.</p>
+<p>Today there are sophisticate IDEs for javascript and other languages.
+The generated source files resemble the <code>markover</code> document.
+It should be possible for good programmers to work with the generated
+source files and modify the original document.
+A possible enhancement is to generate a source map file along with the
+source code. Tools like <a href="http://github.com/mishoo/UglifyJS2">uglify2</a>
+can read input source map files and generate source map files for its
+mangled output. A tool like this could be included in <code>markover</code> itself.</p>
+<p>In Knuth&#39;s system he went to some lengths to avoid using system libraries,
+much less 3rd party software.
+The development of the Web has turned this equation around.
+A tool like <code>markover</code> would be much more difficult to create without
+using libraries like <code>marked</code> and <code>highlight.js</code>.
+<a href="http://en.wikipedia.org/wiki/Content_delivery_network">CDN</a>
+providers improve user experience by downloading libraries
+quickly to their systems.
+The downside is the need to update to program as these resources change.</p>
+</div></div></body>
+</html>
+<script type="text/javascript">
+  ["bash", "xml", "javascript", "json", "css", "markdown"].forEach(function(e) {
+    var s = $('<script>')
+    s.type = 'text/javascript'
+    s.src = 'http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/languages/' + e + '.min.js'
+    $('head').append(s)
+  })
+</script>
+
