@@ -238,6 +238,7 @@ These meta provide additional information about the display document encoding.
 ```html#+head
   <meta charset="utf-8">
   <meta http-equiv="Content-Language" content="en">
+  <meta name="viewport" content="initial-scale=1">
 ```
 
 ### MathJax configuration
