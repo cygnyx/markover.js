@@ -55,9 +55,10 @@ standards: `CSS`, `HTML`, and `javascript`. Since `couchdb` uses
 with Web browsers is relatively straight forward.
 
 This seems an appropriate time to revisit the 'Literate Programming' idea of 
-[Knuth](http://en.wikipedia.org/wiki/Donald_Knuth)
+[Knuth](http://en.wikipedia.org/wiki/Donald_Knuth), published in 1984,
 in the context of Web standards.
-[markover](https://github.com/cygnyx/markover) is a `javascript` library implemented as a
+
+[markover](https://cygnyx.github.io/markover) is a `javascript` library implemented as a
 [CommonJS](http://wiki.commonjs.org/wiki/CommonJS) module.
 
 # Literate Programming
@@ -300,6 +301,12 @@ the `HTML` parser is located in `xml`.
 The format of the display document is largely controlled by the `CSS`.
 Part of the `CSS` is based on the [highlight.js](https://highlightjs.org/) rendering style.
 The following `stylesheet` details how the rest of the document is displayed.
+
+Is this necessary? No. Instead of including the stylesheet here, you can link to a stylesheet
+in the header section. Or, parts of the the style can be included in the header.
+For example, there are standard `highlight.js` style sheets available on `CDNs` that
+can be included for the language syntax highlighting. In this case, I wanted a little more
+control over the presentation on screen and in print. I've included the entire style sheet here.
 
 #### Vanilla style
 
@@ -1386,8 +1393,8 @@ And, of course, there is no table of contents.
 Nevertheless the displayed `markover` document is somewhat readable.
 
 The raw text of the `markover` documents are more readable.
-The `HTML` display document is not currently displayed on GitHub and
-its raw text is not very readable: the `markdown` text isn't too bad, but the
+The raw text of the `HTML` display document is not very readable:
+the `markdown` text isn't too bad, but the
 code blocks are extremely difficult to read.
 
 Fortunately, the output `CommonJS` module is very readable. It is included in
@@ -1398,16 +1405,48 @@ see `markover` in action.
 
 # Concluding Remarks
 
+`markover` offers authors the ability to write software in an order that is
+most suitable for understanding the code.
+It has facilities for presenting documentation on screen and in print with
+full access to `TeX` equation formatting.
+The `markdown` document is readable as plain text and easily manipulated with `marked`.
+Yet `untangling` source code into a `markover` document is trivial.
+Moving from traditional programming to literate programming can be done incrementally.
+
+In writing `markover` I found that it very easy to add reminders.
+There was no extra effort to embed notes into 'structure comments'.
+While reviewing the `markover` document or the `HTML` document,
+I naturally revisited the notes to revise them or implement the ideas.
+Including references to related work is straight forward and will be
+help to reader's with greater interest.
+In short, writing `markover` in this style improved the implementation.
+
+Is it possible to write documents for every program?
+Yes, to varying degrees.
+Experimental code might have little documentation.
+Difficult algorithms implementations might have a lot more.
+Code with many contributors might have more documenation.
+In any case, the software can start with little documentation
+and incremental be improved as needed.
+
+Knuth's system offers parameterize macros. `MathJax` does have this ability in `math` mode.
+But this implementation only uses `MathJax` for the display document.
+Including this capability might be the next required step.
+`markover` has some ability to substitute field values in the `HTML` output.
+Perhaps the an escape sequence could be used in a code block to subsitute the
+contents of another field. A pair of backtick characters might be used for the escape
+sequence, like:
+
+```
+console.log("This is ``this.title``")
+```
+
 Adding a table of contents was straight forward given the capabilities of the `marked` library.
 Adding an index would be considerably more challenging.
-At this point, I plan on using `markover` before adding complex enhancements like this.
-
 Another feature of Knuth's system is a trailing footnote that indicates what other sections
 of the document contributed to the current block of code.
-The value of this is unclear to me.
-I think that Knuth printed his programs and used these footnotes to get to the other code
-sections.
-I'm not sure that this applies today - or perhaps it is my personal preference.
+Using a series of regex pattern matching as in `highlight.js` could yield good results for
+a wide range of languages.
 
 Unlike Knuth's system, `markover` has a fairly straight forward mechanism for tangling code.
 Knuth's system provides a lot more flexibility for re-ordering code and inserting code at
