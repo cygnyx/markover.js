@@ -123,19 +123,17 @@ that are sometimes used inside the strings.
 
 For example:
 
-~~~md
-```json#foo
-[1,2]
-```
-~~~
+
+    ```json#foo
+    [1,2]
+    ```
 
 will set the field 'foo' to be an array with two values. Whereas,
 
-~~~md
-```json#+foo
-[1,2]
-```
-~~~
+
+    ```json#+foo
+    [1,2]
+    ```
 
 will set the field to the string "[1,2]".
 

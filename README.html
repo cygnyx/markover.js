@@ -403,16 +403,14 @@ This keeps the structure of fields fairly neat
 and more consistent with the embedded languages
 that are sometimes used inside the strings.</p>
 <p>For example:</p>
-<pre><code class="lang-md"><span class="hljs-code">```</span>json#foo
+<pre><code>```json#foo
 [1,2]
-<span class="hljs-code">```</span>
-</code></pre>
-<p>will set the field &#39;foo&#39; to be an array with two values. Whereas,</p>
-<pre><code class="lang-md"><span class="hljs-code">```</span>json#+foo
+```
+</code></pre><p>will set the field &#39;foo&#39; to be an array with two values. Whereas,</p>
+<pre><code>```json#+foo
 [1,2]
-<span class="hljs-code">```</span>
-</code></pre>
-<p>will set the field to the string &quot;[1,2]&quot;.</p>
+```
+</code></pre><p>will set the field to the string &quot;[1,2]&quot;.</p>
 <p>There are a few special markers used in <code>markover</code>.
 A language of <code>noweave</code> indicates
 that the code block will not be included in the <code>weave</code> output.
