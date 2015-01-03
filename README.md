@@ -1370,6 +1370,12 @@ To bootstrap try:
 node -e "require('./markover').tangleStream()" < README.md > markover1.js && node -e "require('./markover1').tangleStream()" < README.md > markover2.js && diff markover2.js markover1.js && mv markover1.js markover.js
 ```
 
+To weave:
+
+```sh
+node -e "require('./markover').weaveStream()" < README.md > index.html
+```
+
 # GitHub Notes
 
 `markover` documents do not display completely correctly on GitHub using the GitHub
