@@ -29,8 +29,8 @@ These languages seemed syntactically heavy and inappropriate for transmitting
 data between machines with limited bandwidth.
 This led to the development of [JSON](http://www.json.org) to represent simple data structures in
 an readable format that borrowed its structure from `javascript`.
-However, `JSON` fields can appear in any order.
-And `JSON` is easily used to provide configuration information to programs.
+`JSON` is easily used to provide configuration information to programs,
+although `JSON` fields can appear in any order.
 
 Given the complexity of `HTML` documents a number of authoring languages were
 developed, such as [markdown](http://en.wikipedia.org/wiki/Markdown).
@@ -75,12 +75,12 @@ or a javascript library (a CommonJS module).
 The primary display document target is `HTML`, `CSS` and `MathJax`.
 
 Other tools have targeted similar platforms, like the
-`literate` option in [coffeescript](http://coffeescript.org)
+`literate` option in [coffeescript](http://coffeescript.org).
 However, literate coffeescript lacks the ability to `tangle`
 code. The order of the code is constrained by the needs of the
 programming language compiler. `markover` is more similiar to
 Knuth's system by allowing greater flexibility in the order that
-the program is presented. However, it doesn't provide as much
+the program is presented. But it doesn't provide as much
 flexibility as Knuth's system.
 
 ## Code blocks
@@ -98,17 +98,15 @@ console.log('Hello, World!')
 
 which is produced by:
 
-~~~md
-```js
-console.log('Hello, World!')
-```
-~~~
+    ```js
+    console.log('Hello, World!')
+    ```
 
 The word after the fence normally identifies the language that the code block is written in.
 `markover` extends this syntax to include a field name.
 This is used to add
 the code block to the object field. When the field name is repeated, the additional
-code is appended to the object field. So, when markover processes a markdown file, it looks
+code is appended to the object field. So, when `markover` processes a `markdown` document, it looks
 for lines starting with a fence, followed by an optional language id, a hash tag, an optional
 plus sign, followed by the field name.
 The source code is appended line by line until the closing fence is found.
@@ -118,7 +116,7 @@ The optional plus sign is a flag that the field should be quoted in the output.
 This conveniently reduces the need to use a large number of escape characters in the
 `markover` document.
 By flagging a field as a quoted string,
-markover will make appropriate escape sequences.
+`markover` will make appropriate escape sequences.
 This keeps the structure of fields fairly neat
 and more consistent with the embedded languages
 that are sometimes used inside the strings.
@@ -144,7 +142,7 @@ will set the field to the string "[1,2]".
 There are a few special markers used in `markover`.
 A language of `noweave` indicates
 that the code block will not be included in the `weave` output.
-Fields of `#first` and `#last` are used to
+Field names of `#first` and `#last` are used to
 include arbitrary beginning and ending material, respectively.
 A missing language with a field name (like `#foo`) will default
 to `json`.
@@ -787,7 +785,7 @@ The `tangleFormat` function handles the
 processing of the fields. The fields are
 stored in an object. For each field, the
 delimited field name is emitted and then
-with value.
+the value.
 For `javascript` output the delimited field
 is in double quotes.
 For languages that don't use objects and 
@@ -1089,7 +1087,7 @@ And the `HTML` rendering of the heading is returned, lightly formatted.
 
 ### weave code highlighting
 
-Hightlighting code handled by `highlight.js`.
+Highlighting code handled by `highlight.js`.
 This utility function returns a code block that
 is highlighted according to the identified language.
 
@@ -1134,7 +1132,7 @@ a field name are highlighted.
 
 Code blocks that have a field name are highlighted
 as well unless the language is `noweave`.
-Field Names are appended and retained in
+Field names are appended and retained in
 weaving too. These field names can be used in the
 output of the `HTML` document.
 This is useful for the defining the structure
@@ -1172,7 +1170,7 @@ of the `HTML` document.
 
 The `markover` parsing for weaving is done by `marked`.
 We start with the standard `marked` rendered and then
-modify routines to prepare of the `HTML` generation.
+modify routines to prepare the `HTML` generation.
 
 ```js#weaveMarked
 function () {
@@ -1202,7 +1200,7 @@ the needed state during parsing.
 
 Process the heading with this object so that heading
 can access the utility functions.
-Do the same of code blocks.
+Do the same for code blocks.
 This returns the parser and the renderer.
 
 ```js#weaveMarked
@@ -1255,8 +1253,8 @@ Use reasonable default values where applicable.
 
 ```
 
-Build up the table of contents.
-Add a new ordered list element whenever there is a change
+Create and mark up the table of contents.
+Open or close ordered list elements whenever there is a change
 in the heading level.
 
 ```js#weaveJSON
@@ -1333,7 +1331,7 @@ function (opts) {
 
 untangle is a utility that embeds a code block
 into a `markover` document.
-Basically it as a fence prefix and suffix.
+Basically it has a fence prefix and suffix.
 
 ```js#untangleStream
 function (opts) {
@@ -1374,7 +1372,27 @@ To bootstrap try:
 node -e "require('./markover').tangleStream()" < README.md > markover1.js && node -e "require('./markover1').tangleStream()" < README.md > markover2.js && diff markover2.js markover1.js && mv markover1.js markover.js
 ```
 
-# Remarks
+# GitHub Notes
+
+`markover` documents do not display completely correctly on GitHub using the GitHub
+display system.
+The field names that are embedded in the code block fence are not interpreted by GitHub.
+The `MathJax` processing is not rendered either.
+And, of course, there is no table of contents.
+Nevertheless the displayed `markover` document is somewhat readable.
+
+The raw text of the `markover` documents are more readable.
+The `HTML` display document is not currently displayed on GitHub and
+its raw text is not very readable: the `markdown` text isn't too bad, but the
+code blocks are extremely difficult to read.
+
+Fortunately, the output `CommonJS` module is very readable. It is included in
+the source since it is needed to bootstrap `markover`.
+
+Downloading the package and viewing the `HTML` document is the best way to
+see `markover` in action.
+
+# Concluding Remarks
 
 Adding a table of contents was straight forward given the capabilities of the `marked` library.
 Adding an index would be considerably more challenging.
