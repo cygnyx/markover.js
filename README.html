@@ -296,7 +296,8 @@ a:visited, a { color: #000;}
 <li><div class="tocsn">4.3.6&nbsp;</div><div class="tocsr"><a href="#weavestream">weaveStream</a></div>
 </ol><li><div class="tocsn">4.4&nbsp;</div><div class="tocsr"><a href="#untangle">untangle</a></div>
 </ol><li><div class="tocsn">5.&nbsp;</div><div class="tocsr"><a href="#unix-build-instructions">Unix build instructions</a></div>
-<li><div class="tocsn">6.&nbsp;</div><div class="tocsr"><a href="#remarks">Remarks</a></div></ol></div>
+<li><div class="tocsn">6.&nbsp;</div><div class="tocsr"><a href="#github-notes">GitHub Notes</a></div>
+<li><div class="tocsn">7.&nbsp;</div><div class="tocsr"><a href="#concluding-remarks">Concluding Remarks</a></div></ol></div>
 <div id="doc"><h1 id="introduction">1. Introduction</h1>
 <p>Programming methodology continues to rapidly change.
 There have been vast improvements in increasing the reliability
@@ -325,8 +326,8 @@ These languages seemed syntactically heavy and inappropriate for transmitting
 data between machines with limited bandwidth.
 This led to the development of <a href="http://www.json.org">JSON</a> to represent simple data structures in
 an readable format that borrowed its structure from <code>javascript</code>.
-However, <code>JSON</code> fields can appear in any order.
-And <code>JSON</code> is easily used to provide configuration information to programs.</p>
+<code>JSON</code> is easily used to provide configuration information to programs,
+although <code>JSON</code> fields can appear in any order.</p>
 <p>Given the complexity of <code>HTML</code> documents a number of authoring languages were
 developed, such as <a href="http://en.wikipedia.org/wiki/Markdown">markdown</a>.
 The purpose of the languages was to facilitate
@@ -365,12 +366,12 @@ or as a couchapp (as a <code>JSON</code> object or a CommonJS module),
 or a javascript library (a CommonJS module).
 The primary display document target is <code>HTML</code>, <code>CSS</code> and <code>MathJax</code>.</p>
 <p>Other tools have targeted similar platforms, like the
-<code>literate</code> option in <a href="http://coffeescript.org">coffeescript</a>
+<code>literate</code> option in <a href="http://coffeescript.org">coffeescript</a>.
 However, literate coffeescript lacks the ability to <code>tangle</code>
 code. The order of the code is constrained by the needs of the
 programming language compiler. <code>markover</code> is more similiar to
 Knuth&#39;s system by allowing greater flexibility in the order that
-the program is presented. However, it doesn&#39;t provide as much
+the program is presented. But it doesn&#39;t provide as much
 flexibility as Knuth&#39;s system.</p>
 <h2 id="code-blocks">2.1 Code blocks</h2>
 <p><code>markover</code> has enough flexibility to produce source code for many text based programming
@@ -381,15 +382,14 @@ In GFM <code>markdown</code> a section of code is marked off, like this:</p>
 <pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Hello, World!'</span>)
 </code></pre>
 <p>which is produced by:</p>
-<pre><code class="lang-md"><span class="hljs-code">```</span>js
+<pre><code>```js
 console.log('Hello, World!')
-<span class="hljs-code">```</span>
-</code></pre>
-<p>The word after the fence normally identifies the language that the code block is written in.
+```
+</code></pre><p>The word after the fence normally identifies the language that the code block is written in.
 <code>markover</code> extends this syntax to include a field name.
 This is used to add
 the code block to the object field. When the field name is repeated, the additional
-code is appended to the object field. So, when markover processes a markdown file, it looks
+code is appended to the object field. So, when <code>markover</code> processes a <code>markdown</code> document, it looks
 for lines starting with a fence, followed by an optional language id, a hash tag, an optional
 plus sign, followed by the field name.
 The source code is appended line by line until the closing fence is found.
@@ -398,7 +398,7 @@ Code blocks that don&#39;t have a field name are ignored.</p>
 This conveniently reduces the need to use a large number of escape characters in the
 <code>markover</code> document.
 By flagging a field as a quoted string,
-markover will make appropriate escape sequences.
+<code>markover</code> will make appropriate escape sequences.
 This keeps the structure of fields fairly neat
 and more consistent with the embedded languages
 that are sometimes used inside the strings.</p>
@@ -416,7 +416,7 @@ that are sometimes used inside the strings.</p>
 <p>There are a few special markers used in <code>markover</code>.
 A language of <code>noweave</code> indicates
 that the code block will not be included in the <code>weave</code> output.
-Fields of <code>#first</code> and <code>#last</code> are used to
+Field names of <code>#first</code> and <code>#last</code> are used to
 include arbitrary beginning and ending material, respectively.
 A missing language with a field name (like <code>#foo</code>) will default
 to <code>json</code>.</p>
@@ -932,7 +932,7 @@ straight through.</p>
 processing of the fields. The fields are
 stored in an object. For each field, the
 delimited field name is emitted and then
-with value.
+the value.
 For <code>javascript</code> output the delimited field
 is in double quotes.
 For languages that don&#39;t use objects and 
@@ -1182,7 +1182,7 @@ and added to the <code>toc</code> element.</p>
 }
 </code></pre>
 <h3 id="weave-code-highlighting">4.3.2 weave code highlighting</h3>
-<p>Hightlighting code handled by <code>highlight.js</code>.
+<p>Highlighting code handled by <code>highlight.js</code>.
 This utility function returns a code block that
 is highlighted according to the identified language.</p>
 <pre><div class="field">weaveHighlight</div><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(lang, code)</span> </span>{
@@ -1217,7 +1217,7 @@ a field name are highlighted.</p>
 </code></pre>
 <p>Code blocks that have a field name are highlighted
 as well unless the language is <code>noweave</code>.
-Field Names are appended and retained in
+Field names are appended and retained in
 weaving too. These field names can be used in the
 output of the <code>HTML</code> document.
 This is useful for the defining the structure
@@ -1251,7 +1251,7 @@ of the <code>HTML</code> document.</p>
 <h3 id="weave-parsing">4.3.4 weave parsing</h3>
 <p>The <code>markover</code> parsing for weaving is done by <code>marked</code>.
 We start with the standard <code>marked</code> rendered and then
-modify routines to prepare of the <code>HTML</code> generation.</p>
+modify routines to prepare the <code>HTML</code> generation.</p>
 <pre><div class="field">weaveMarked</div><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
   <span class="hljs-keyword">var</span> marked = <span class="hljs-built_in">require</span>(<span class="hljs-string">'marked'</span>)
   <span class="hljs-keyword">var</span> p = <span class="hljs-keyword">new</span> marked.Renderer()
@@ -1275,7 +1275,7 @@ the needed state during parsing.</p>
 </code></pre>
 <p>Process the heading with this object so that heading
 can access the utility functions.
-Do the same of code blocks.
+Do the same for code blocks.
 This returns the parser and the renderer.</p>
 <pre><div class="field">weaveMarked</div><code class="lang-js">  p.heading = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(text, level, raw)</span> </span>{
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.self.heading.call(<span class="hljs-keyword">this</span>.self, text, level, raw, p.toc, <span class="hljs-keyword">this</span>.options.headerPrefix)
@@ -1314,8 +1314,8 @@ Use reasonable default values where applicable.</p>
   <span class="hljs-keyword">var</span> styleline = stylesheet == <span class="hljs-string">''</span> ? <span class="hljs-string">''</span> : <span class="hljs-string">'&lt;style&gt;'</span> + stylesheet + <span class="hljs-string">'&lt;/style&gt;'</span>
   <span class="hljs-keyword">var</span> tailline = un(f[<span class="hljs-string">"tail"</span>] || <span class="hljs-string">"&lt;/body&gt;&lt;/html&gt;"</span>) + <span class="hljs-string">'\n'</span>
 </code></pre>
-<p>Build up the table of contents.
-Add a new ordered list element whenever there is a change
+<p>Create and mark up the table of contents.
+Open or close ordered list elements whenever there is a change
 in the heading level.</p>
 <pre><div class="field">weaveJSON</div><code class="lang-js">  <span class="hljs-keyword">var</span> tocitems = p.toc.map(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(e, i, a)</span> </span>{
     <span class="hljs-keyword">var</span> ll = <span class="hljs-number">0</span>
@@ -1377,7 +1377,7 @@ pooled, then weaved and pushed to the output stream.</p>
 <h2 id="untangle">4.4 untangle</h2>
 <p>untangle is a utility that embeds a code block
 into a <code>markover</code> document.
-Basically it as a fence prefix and suffix.</p>
+Basically it has a fence prefix and suffix.</p>
 <pre><div class="field">untangleStream</div><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(opts)</span> </span>{
   opts = opts || {}
   <span class="hljs-keyword">var</span> options
@@ -1408,7 +1408,22 @@ Basically it as a fence prefix and suffix.</p>
 <p>To bootstrap try:</p>
 <pre><code class="lang-sh">node <span class="hljs-operator">-e</span> <span class="hljs-string">"require('./markover').tangleStream()"</span> &lt; README.md &gt; markover1.js &amp;&amp; node <span class="hljs-operator">-e</span> <span class="hljs-string">"require('./markover1').tangleStream()"</span> &lt; README.md &gt; markover2.js &amp;&amp; diff markover2.js markover1.js &amp;&amp; mv markover1.js markover.js
 </code></pre>
-<h1 id="remarks">6. Remarks</h1>
+<h1 id="github-notes">6. GitHub Notes</h1>
+<p><code>markover</code> documents do not display completely correctly on GitHub using the GitHub
+display system.
+The field names that are embedded in the code block fence are not interpreted by GitHub.
+The <code>MathJax</code> processing is not rendered either.
+And, of course, there is no table of contents.
+Nevertheless the displayed <code>markover</code> document is somewhat readable.</p>
+<p>The raw text of the <code>markover</code> documents are more readable.
+The <code>HTML</code> display document is not currently displayed on GitHub and
+its raw text is not very readable: the <code>markdown</code> text isn&#39;t too bad, but the
+code blocks are extremely difficult to read.</p>
+<p>Fortunately, the output <code>CommonJS</code> module is very readable. It is included in
+the source since it is needed to bootstrap <code>markover</code>.</p>
+<p>Downloading the package and viewing the <code>HTML</code> document is the best way to
+see <code>markover</code> in action.</p>
+<h1 id="concluding-remarks">7. Concluding Remarks</h1>
 <p>Adding a table of contents was straight forward given the capabilities of the <code>marked</code> library.
 Adding an index would be considerably more challenging.
 At this point, I plan on using <code>markover</code> before adding complex enhancements like this.</p>
