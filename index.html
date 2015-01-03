@@ -1458,8 +1458,9 @@ Including this capability might be the next required step.
 Perhaps the an escape sequence could be used in a code block to subsitute the
 contents of another field. A pair of backtick characters might be used for the escape
 sequence, like:</p>
-<pre><code>console.log("This is ``this.title``")
-</code></pre><p>Adding a table of contents was straight forward given the capabilities of the <code>marked</code> library.
+<pre><code>console.log("This is ``title``")
+</code></pre><p>Care would be needed to avoid mutually recursive macro substitutions.</p>
+<p>Adding a table of contents was straight forward given the capabilities of the <code>marked</code> library.
 Adding an index would be considerably more challenging.
 Another feature of Knuth&#39;s system is a trailing footnote that indicates what other sections
 of the document contributed to the current block of code.
