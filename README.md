@@ -1438,8 +1438,10 @@ contents of another field. A pair of backtick characters might be used for the e
 sequence, like:
 
 ```
-console.log("This is ``this.title``")
+console.log("This is ``title``")
 ```
+
+Care would be needed to avoid mutually recursive macro substitutions.
 
 Adding a table of contents was straight forward given the capabilities of the `marked` library.
 Adding an index would be considerably more challenging.
