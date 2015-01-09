@@ -19,7 +19,7 @@
   </script><title>markover - Web Literate Programming</title>
 <style>html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp,
-small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li,
+small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, a,
 fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td,
 article, aside, canvas, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
@@ -35,69 +35,76 @@ footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
   background:transparent;
 }
 
-code, span, b, i, em { display: inline; }
+a, code, span, b, i, em { display: inline; }</style><style>#content {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif; 
+}
 
-p { text-indent: 2%; }
-
-pre, code { font-family: monospace; }
-#content {font-family: Georgia, serif; }
-
-#title {
+#content #title {
   clear: both;
   text-align: center;
   font-size: 140%;
   font-weight: bold;
-  margin: 2% 0 0 0;
+  margin: 2em 0 0 0;
 }
 
-#tag {
+#content #tag {
   clear: both;
   text-align: center;
   font-size: 110%;
-  margin: 0 0 1% 0;
+  margin: 0 0 1em 0;
 }
-#toc {
-    margin: 0 1em 0 1em;
-    padding: 0 0 0 1em;
-    max-width: 96%;
+#content #toc {
+  padding: 0 0 0 1em;
+  max-width: 96%;
+  page-break-after: always;
 }
 
 @media screen and (min-width: 641px) {
-  #toc {
+  #content #toc {
     float: left;
     max-width: 26%;
   }
 }
 
-.tocsn { float: left; }
-.tocsr { overflow: hidden; }
+#content .tocsn { float: left; }
+#content .tocsr { overflow: hidden; }
 
-#toc ol {
+#content #toc ol {
   list-style-type: none;
 }
 
-#toc ol ol {
+#content #toc ol ol {
   margin: 0 0 0 1em;
 }
-#doc {
-  margin: 1em 0;
+#content #doc,
+#content #toc {
+  margin: 0 1em 0 1em;
+}
+
+#content p { text-indent: 1em; }
+
+#content code { font-size: 120%; }
+
+#content pre code {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 100%;
 }
 
 @media screen and (min-width: 641px) {
-  #doc {
+  #content #doc {
     overflow: hidden;
     max-width: 70%;
   }
 }
-pre .field {
+#content pre .field {
   display:block;
   margin: 1em 1em 0em 0em;
 }
 
-pre .field::after {
+#content pre .field::after {
   content: " :=";
 }
-pre code {
+#content pre code {
   display: block;
   margin: 1em;
   padding: 1em;
@@ -105,53 +112,61 @@ pre code {
 }
 
 @media screen {
-  pre code {
+  #content pre code {
     overflow: auto;
     max-height: 30em;
   }
 }
 
 @media print {
-  pre {
+  #content pre {
     page-break-inside: avoid;
   }
-  pre code {
+  #content pre code {
     overflow: visible;
     word-wrap: break-word;
   }
 }
 @media screen {
-  .lang-js { background-color: ivory; }
-  .lang-md { background-color: lightyellow; }
-  .lang-html { background-color: floralwhite; }
-  .lang-json { background-color: honeydew; }
-  .lang-css { background-color: cornsilk; }
-  .lang-sh { background-color: lemonchiffon; }
+  #content .lang-js { background-color: ivory; }
+  #content .lang-md { background-color: lightyellow; }
+  #content .lang-html { background-color: floralwhite; }
+  #content .lang-json { background-color: honeydew; }
+  #content .lang-css { background-color: cornsilk; }
+  #content .lang-sh { background-color: lemonchiffon; }
 }
-h1, h2, h3, h4, h5, h6 {
+#content h1,
+#content h2,
+#content h3,
+#content h4,
+#content h5,
+#content h6 {
   margin: 0.5em 0em;
   page-break-after: avoid
 }
 
-h1 { font-size: 140%; }
-h2 { font-size: 130%; }
-h3 { font-size: 120%; }
-h4, h5, h6 { font-size: 110%; }
-a:hover { color: #aaa; }
+#content h1 { font-size: 140%; }
+#content h2 { font-size: 130%; }
+#content h3 { font-size: 120%; }
+#content h4,
+#content h5,
+#content h6 { font-size: 110%; }
+#content a:hover { color: #aaa; }
 
-a:visited, a { color: #000;}
+#content a:visited,
+#content a { color: #000;}
 
 @media screen {
-  a {
+  #content a {
     text-decoration: underline;
   }
 }
 
 @media print {
-  a {
+  #content a {
     text-decoration: none;
   }
-  #doc a[href]:after {
+  #content #doc a[href]:after {
     content: " (" attr(href) ")";
     font-size: 90%;
   }
@@ -269,8 +284,7 @@ a:visited, a { color: #000;}
 <body><div id="content"><div id="title">markover</div><div id="tag">Web Literate Programming</div><div id="toc"><h1>Contents</h1>
 <ol><li><div class="tocsn">1.&nbsp;</div><div class="tocsr"><a href="#introduction">Introduction</a></div>
 <li><div class="tocsn">2.&nbsp;</div><div class="tocsr"><a href="#literate-programming">Literate Programming</a></div>
-<ol><li><div class="tocsn">2.1&nbsp;</div><div class="tocsr"><a href="#code-blocks">Code blocks</a></div>
-</ol><li><div class="tocsn">3.&nbsp;</div><div class="tocsr"><a href="#markover-fields">Markover fields</a></div>
+<li><div class="tocsn">3.&nbsp;</div><div class="tocsr"><a href="#markover-fields">Markover fields</a></div>
 <ol><li><div class="tocsn">3.1&nbsp;</div><div class="tocsr"><a href="#file-structure">File structure</a></div>
 <li><div class="tocsn">3.2&nbsp;</div><div class="tocsr"><a href="#display-document">Display Document</a></div>
 <ol><li><div class="tocsn">3.2.1&nbsp;</div><div class="tocsr"><a href="#basic-structure">Basic structure</a></div>
@@ -315,7 +329,7 @@ One such interpreted language is
 <a href="http://en.wikipedia.org/wiki/JavaScript">javascript</a>:
 it is standards based, it runs quickly, and its syntax is familiar.
 <code>javascript</code> started in the Web browser and is now available on the server
-side too. Interpreters like <a href="http://nodejs.org">nodejs</a> and
+side too. Programming environments like <a href="http://nodejs.org">nodejs</a> and
 <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Projects/SpiderMonkey">spidermonkey</a> have made <code>javascript</code>
 available in many situations.</p>
 <p>Along with the Web came a number of document markup languages, such as <a href="http://www.w3.org/html">HTML</a>.
@@ -374,7 +388,6 @@ programming language compiler. <code>markover</code> is more similiar to
 Knuth&#39;s system by allowing greater flexibility in the order that
 the program is presented. But it doesn&#39;t provide as much
 flexibility as Knuth&#39;s system.</p>
-<h2 id="code-blocks">2.1 Code blocks</h2>
 <p><code>markover</code> has enough flexibility to produce source code for many text based programming
 language. However, it is designed to work with a single <code>javascript</code> object.</p>
 <p><code>markdown</code> has had a number of extensions added to it.
@@ -530,10 +543,12 @@ For example, there are standard <code>highlight.js</code> style sheets available
 can be included for the language syntax highlighting. In this case, I wanted a little more
 control over the presentation on screen and in print. I&#39;ve included the entire style sheet here.</p>
 <h4 id="vanilla-style">3.2.5.1 Vanilla style</h4>
-<p>This first section resets all <code>HTML</code> elements to reasonable default values.</p>
-<pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-tag">html</span>, <span class="hljs-tag">body</span>, <span class="hljs-tag">div</span>, <span class="hljs-tag">span</span>, <span class="hljs-tag">object</span>, <span class="hljs-tag">iframe</span>, <span class="hljs-tag">h1</span>, <span class="hljs-tag">h2</span>, <span class="hljs-tag">h3</span>, <span class="hljs-tag">h4</span>, <span class="hljs-tag">h5</span>, <span class="hljs-tag">h6</span>, <span class="hljs-tag">p</span>, <span class="hljs-tag">blockquote</span>, <span class="hljs-tag">pre</span>,
+<p>This first section resets all <code>HTML</code> elements to reasonable default values.
+This is used in the heading of the page and has selectors that effect elements
+throughout the document.</p>
+<pre><div class="field">headstylesheet</div><code class="lang-css"><span class="hljs-tag">html</span>, <span class="hljs-tag">body</span>, <span class="hljs-tag">div</span>, <span class="hljs-tag">span</span>, <span class="hljs-tag">object</span>, <span class="hljs-tag">iframe</span>, <span class="hljs-tag">h1</span>, <span class="hljs-tag">h2</span>, <span class="hljs-tag">h3</span>, <span class="hljs-tag">h4</span>, <span class="hljs-tag">h5</span>, <span class="hljs-tag">h6</span>, <span class="hljs-tag">p</span>, <span class="hljs-tag">blockquote</span>, <span class="hljs-tag">pre</span>,
 <span class="hljs-tag">abbr</span>, <span class="hljs-tag">address</span>, <span class="hljs-tag">cite</span>, <span class="hljs-tag">code</span>, <span class="hljs-tag">del</span>, <span class="hljs-tag">dfn</span>, <span class="hljs-tag">em</span>, <span class="hljs-tag">img</span>, <span class="hljs-tag">ins</span>, <span class="hljs-tag">kbd</span>, <span class="hljs-tag">q</span>, <span class="hljs-tag">samp</span>,
-<span class="hljs-tag">small</span>, <span class="hljs-tag">strong</span>, <span class="hljs-tag">sub</span>, <span class="hljs-tag">sup</span>, <span class="hljs-tag">var</span>, <span class="hljs-tag">b</span>, <span class="hljs-tag">i</span>, <span class="hljs-tag">dl</span>, <span class="hljs-tag">dt</span>, <span class="hljs-tag">dd</span>, <span class="hljs-tag">ol</span>, <span class="hljs-tag">ul</span>, <span class="hljs-tag">li</span>,
+<span class="hljs-tag">small</span>, <span class="hljs-tag">strong</span>, <span class="hljs-tag">sub</span>, <span class="hljs-tag">sup</span>, <span class="hljs-tag">var</span>, <span class="hljs-tag">b</span>, <span class="hljs-tag">i</span>, <span class="hljs-tag">dl</span>, <span class="hljs-tag">dt</span>, <span class="hljs-tag">dd</span>, <span class="hljs-tag">ol</span>, <span class="hljs-tag">ul</span>, <span class="hljs-tag">li</span>, <span class="hljs-tag">a</span>,
 <span class="hljs-tag">fieldset</span>, <span class="hljs-tag">form</span>, <span class="hljs-tag">label</span>, <span class="hljs-tag">legend</span>, <span class="hljs-tag">table</span>, <span class="hljs-tag">caption</span>, <span class="hljs-tag">tbody</span>, <span class="hljs-tag">tfoot</span>, <span class="hljs-tag">thead</span>, <span class="hljs-tag">tr</span>, <span class="hljs-tag">th</span>, <span class="hljs-tag">td</span>,
 <span class="hljs-tag">article</span>, <span class="hljs-tag">aside</span>, <span class="hljs-tag">canvas</span>, <span class="hljs-tag">details</span>, <span class="hljs-tag">figcaption</span>, <span class="hljs-tag">figure</span>,
 <span class="hljs-tag">footer</span>, <span class="hljs-tag">header</span>, <span class="hljs-tag">hgroup</span>, <span class="hljs-tag">menu</span>, <span class="hljs-tag">nav</span>, <span class="hljs-tag">section</span>, <span class="hljs-tag">summary</span>, <span class="hljs-tag">time</span>, <span class="hljs-tag">mark</span>, <span class="hljs-tag">audio</span>, <span class="hljs-tag">video</span> <span class="hljs-rules">{
@@ -549,84 +564,95 @@ control over the presentation on screen and in print. I&#39;ve included the enti
   <span class="hljs-rule"><span class="hljs-attribute">background</span>:<span class="hljs-value">transparent</span></span>;
 <span class="hljs-rule">}</span></span>
 
-<span class="hljs-tag">code</span>, <span class="hljs-tag">span</span>, <span class="hljs-tag">b</span>, <span class="hljs-tag">i</span>, <span class="hljs-tag">em</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">display</span>:<span class="hljs-value"> inline</span></span>; <span class="hljs-rule">}</span></span>
-
-<span class="hljs-tag">p</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">text-indent</span>:<span class="hljs-value"> <span class="hljs-number">2%</span></span></span>; <span class="hljs-rule">}</span></span>
-
-<span class="hljs-tag">pre</span>, <span class="hljs-tag">code</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">font-family</span>:<span class="hljs-value"> monospace</span></span>; <span class="hljs-rule">}</span></span>
+<span class="hljs-tag">a</span>, <span class="hljs-tag">code</span>, <span class="hljs-tag">span</span>, <span class="hljs-tag">b</span>, <span class="hljs-tag">i</span>, <span class="hljs-tag">em</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">display</span>:<span class="hljs-value"> inline</span></span>; <span class="hljs-rule">}</span></span>
 </code></pre>
 <h4 id="preliminary-material">3.2.5.2 Preliminary Material</h4>
-<p><code>markover</code> marks up 3 areas before the main document body:
+<p>The following stylesheet operates within the content generated by applying <code>weave</code>
+to the source document.
+<code>markover</code> marks up 3 areas before the main document body:
 title, tag, and a table of contents.</p>
-<p>Title and tag are each in a single id and only appear once in the document.</p>
-<pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-id">#content</span> <span class="hljs-rules">{<span class="hljs-rule"><span class="hljs-attribute">font-family</span>:<span class="hljs-value"> Georgia, serif</span></span>; <span class="hljs-rule">}</span></span>
+<p>Title and tag are each in a single id and only appear once in the display document.</p>
+<pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-id">#content</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">font-family</span>:<span class="hljs-value"> <span class="hljs-string">"HelveticaNeue-Light"</span>, <span class="hljs-string">"Helvetica Neue Light"</span>, <span class="hljs-string">"Helvetica Neue"</span>, Helvetica, Arial, <span class="hljs-string">"Lucida Grande"</span>, sans-serif</span></span>; 
+<span class="hljs-rule">}</span></span>
 
-<span class="hljs-id">#title</span> <span class="hljs-rules">{
+<span class="hljs-id">#content</span> <span class="hljs-id">#title</span> <span class="hljs-rules">{
   <span class="hljs-rule"><span class="hljs-attribute">clear</span>:<span class="hljs-value"> both</span></span>;
   <span class="hljs-rule"><span class="hljs-attribute">text-align</span>:<span class="hljs-value"> center</span></span>;
   <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">140%</span></span></span>;
   <span class="hljs-rule"><span class="hljs-attribute">font-weight</span>:<span class="hljs-value"> bold</span></span>;
-  <span class="hljs-rule"><span class="hljs-attribute">margin</span>:<span class="hljs-value"> <span class="hljs-number">2%</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">margin</span>:<span class="hljs-value"> <span class="hljs-number">2em</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span></span></span>;
 <span class="hljs-rule">}</span></span>
 
-<span class="hljs-id">#tag</span> <span class="hljs-rules">{
+<span class="hljs-id">#content</span> <span class="hljs-id">#tag</span> <span class="hljs-rules">{
   <span class="hljs-rule"><span class="hljs-attribute">clear</span>:<span class="hljs-value"> both</span></span>;
   <span class="hljs-rule"><span class="hljs-attribute">text-align</span>:<span class="hljs-value"> center</span></span>;
   <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">110%</span></span></span>;
-  <span class="hljs-rule"><span class="hljs-attribute">margin</span>:<span class="hljs-value"> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">1%</span> <span class="hljs-number">0</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">margin</span>:<span class="hljs-value"> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">1em</span> <span class="hljs-number">0</span></span></span>;
 <span class="hljs-rule">}</span></span>
 </code></pre>
 <p>The table of contents, in a single <code>toc</code> id, is slightly more complex.</p>
-<pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-id">#toc</span> <span class="hljs-rules">{
-    <span class="hljs-rule"><span class="hljs-attribute">margin</span>:<span class="hljs-value"> <span class="hljs-number">0</span> <span class="hljs-number">1em</span> <span class="hljs-number">0</span> <span class="hljs-number">1em</span></span></span>;
-    <span class="hljs-rule"><span class="hljs-attribute">padding</span>:<span class="hljs-value"> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">1em</span></span></span>;
-    <span class="hljs-rule"><span class="hljs-attribute">max-width</span>:<span class="hljs-value"> <span class="hljs-number">96%</span></span></span>;
+<pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-id">#content</span> <span class="hljs-id">#toc</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">padding</span>:<span class="hljs-value"> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">1em</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">max-width</span>:<span class="hljs-value"> <span class="hljs-number">96%</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">page-break-after</span>:<span class="hljs-value"> always</span></span>;
 <span class="hljs-rule">}</span></span>
 
 <span class="hljs-at_rule">@<span class="hljs-keyword">media</span> screen and (min-width: <span class="hljs-number">641px</span>) </span>{
-  <span class="hljs-id">#toc</span> <span class="hljs-rules">{
+  <span class="hljs-id">#content</span> <span class="hljs-id">#toc</span> <span class="hljs-rules">{
     <span class="hljs-rule"><span class="hljs-attribute">float</span>:<span class="hljs-value"> left</span></span>;
     <span class="hljs-rule"><span class="hljs-attribute">max-width</span>:<span class="hljs-value"> <span class="hljs-number">26%</span></span></span>;
   <span class="hljs-rule">}</span></span>
 }
 
-<span class="hljs-class">.tocsn</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">float</span>:<span class="hljs-value"> left</span></span>; <span class="hljs-rule">}</span></span>
-<span class="hljs-class">.tocsr</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">overflow</span>:<span class="hljs-value"> hidden</span></span>; <span class="hljs-rule">}</span></span>
+<span class="hljs-id">#content</span> <span class="hljs-class">.tocsn</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">float</span>:<span class="hljs-value"> left</span></span>; <span class="hljs-rule">}</span></span>
+<span class="hljs-id">#content</span> <span class="hljs-class">.tocsr</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">overflow</span>:<span class="hljs-value"> hidden</span></span>; <span class="hljs-rule">}</span></span>
 
-<span class="hljs-id">#toc</span> <span class="hljs-tag">ol</span> <span class="hljs-rules">{
+<span class="hljs-id">#content</span> <span class="hljs-id">#toc</span> <span class="hljs-tag">ol</span> <span class="hljs-rules">{
   <span class="hljs-rule"><span class="hljs-attribute">list-style-type</span>:<span class="hljs-value"> none</span></span>;
 <span class="hljs-rule">}</span></span>
 
-<span class="hljs-id">#toc</span> <span class="hljs-tag">ol</span> <span class="hljs-tag">ol</span> <span class="hljs-rules">{
+<span class="hljs-id">#content</span> <span class="hljs-id">#toc</span> <span class="hljs-tag">ol</span> <span class="hljs-tag">ol</span> <span class="hljs-rules">{
   <span class="hljs-rule"><span class="hljs-attribute">margin</span>:<span class="hljs-value"> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">1em</span></span></span>;
 <span class="hljs-rule">}</span></span>
 </code></pre>
 <h4 id="main-body">3.2.5.3 Main body</h4>
-<p>The main document is in a single <code>doc</code> id</p>
-<pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-id">#doc</span> <span class="hljs-rules">{
-  <span class="hljs-rule"><span class="hljs-attribute">margin</span>:<span class="hljs-value"> <span class="hljs-number">1em</span> <span class="hljs-number">0</span></span></span>;
+<p>The main document is in a single <code>doc</code> id.
+Make the toc and doc with the same margins.</p>
+<pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-id">#content</span> <span class="hljs-id">#doc</span>,
+<span class="hljs-id">#content</span> <span class="hljs-id">#toc</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">margin</span>:<span class="hljs-value"> <span class="hljs-number">0</span> <span class="hljs-number">1em</span> <span class="hljs-number">0</span> <span class="hljs-number">1em</span></span></span>;
+<span class="hljs-rule">}</span></span>
+
+<span class="hljs-id">#content</span> <span class="hljs-tag">p</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">text-indent</span>:<span class="hljs-value"> <span class="hljs-number">1em</span></span></span>; <span class="hljs-rule">}</span></span>
+
+<span class="hljs-id">#content</span> <span class="hljs-tag">code</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">120%</span></span></span>; <span class="hljs-rule">}</span></span>
+
+<span class="hljs-id">#content</span> <span class="hljs-tag">pre</span> <span class="hljs-tag">code</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">font-family</span>:<span class="hljs-value"> <span class="hljs-string">"Courier New"</span>, Courier, monospace</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">100%</span></span></span>;
 <span class="hljs-rule">}</span></span>
 
 <span class="hljs-at_rule">@<span class="hljs-keyword">media</span> screen and (min-width: <span class="hljs-number">641px</span>) </span>{
-  <span class="hljs-id">#doc</span> <span class="hljs-rules">{
+  <span class="hljs-id">#content</span> <span class="hljs-id">#doc</span> <span class="hljs-rules">{
     <span class="hljs-rule"><span class="hljs-attribute">overflow</span>:<span class="hljs-value"> hidden</span></span>;
     <span class="hljs-rule"><span class="hljs-attribute">max-width</span>:<span class="hljs-value"> <span class="hljs-number">70%</span></span></span>;
   <span class="hljs-rule">}</span></span>
 }
 </code></pre>
 <p>Field names are in a <code>field</code> class.</p>
-<pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-tag">pre</span> <span class="hljs-class">.field</span> <span class="hljs-rules">{
+<pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-id">#content</span> <span class="hljs-tag">pre</span> <span class="hljs-class">.field</span> <span class="hljs-rules">{
   <span class="hljs-rule"><span class="hljs-attribute">display</span>:<span class="hljs-value">block</span></span>;
   <span class="hljs-rule"><span class="hljs-attribute">margin</span>:<span class="hljs-value"> <span class="hljs-number">1em</span> <span class="hljs-number">1em</span> <span class="hljs-number">0em</span> <span class="hljs-number">0em</span></span></span>;
 <span class="hljs-rule">}</span></span>
 
-<span class="hljs-tag">pre</span> <span class="hljs-class">.field</span><span class="hljs-pseudo">::after</span> <span class="hljs-rules">{
+<span class="hljs-id">#content</span> <span class="hljs-tag">pre</span> <span class="hljs-class">.field</span><span class="hljs-pseudo">::after</span> <span class="hljs-rules">{
   <span class="hljs-rule"><span class="hljs-attribute">content</span>:<span class="hljs-value"> <span class="hljs-string">" :="</span></span></span>;
 <span class="hljs-rule">}</span></span>
 </code></pre>
 <p>The code blocks are in the <code>code</code> tag and
 have classes that identify their language.</p>
-<pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-tag">pre</span> <span class="hljs-tag">code</span> <span class="hljs-rules">{
+<pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-id">#content</span> <span class="hljs-tag">pre</span> <span class="hljs-tag">code</span> <span class="hljs-rules">{
   <span class="hljs-rule"><span class="hljs-attribute">display</span>:<span class="hljs-value"> block</span></span>;
   <span class="hljs-rule"><span class="hljs-attribute">margin</span>:<span class="hljs-value"> <span class="hljs-number">1em</span></span></span>;
   <span class="hljs-rule"><span class="hljs-attribute">padding</span>:<span class="hljs-value"> <span class="hljs-number">1em</span></span></span>;
@@ -634,17 +660,17 @@ have classes that identify their language.</p>
 <span class="hljs-rule">}</span></span>
 
 <span class="hljs-at_rule">@<span class="hljs-keyword">media</span> screen </span>{
-  <span class="hljs-tag">pre</span> <span class="hljs-tag">code</span> <span class="hljs-rules">{
+  <span class="hljs-id">#content</span> <span class="hljs-tag">pre</span> <span class="hljs-tag">code</span> <span class="hljs-rules">{
     <span class="hljs-rule"><span class="hljs-attribute">overflow</span>:<span class="hljs-value"> auto</span></span>;
     <span class="hljs-rule"><span class="hljs-attribute">max-height</span>:<span class="hljs-value"> <span class="hljs-number">30em</span></span></span>;
   <span class="hljs-rule">}</span></span>
 }
 
 <span class="hljs-at_rule">@<span class="hljs-keyword">media</span> print </span>{
-  <span class="hljs-tag">pre</span> <span class="hljs-rules">{
+  <span class="hljs-id">#content</span> <span class="hljs-tag">pre</span> <span class="hljs-rules">{
     <span class="hljs-rule"><span class="hljs-attribute">page-break-inside</span>:<span class="hljs-value"> avoid</span></span>;
   <span class="hljs-rule">}</span></span>
-  <span class="hljs-tag">pre</span> <span class="hljs-tag">code</span> <span class="hljs-rules">{
+  <span class="hljs-id">#content</span> <span class="hljs-tag">pre</span> <span class="hljs-tag">code</span> <span class="hljs-rules">{
     <span class="hljs-rule"><span class="hljs-attribute">overflow</span>:<span class="hljs-value"> visible</span></span>;
     <span class="hljs-rule"><span class="hljs-attribute">word-wrap</span>:<span class="hljs-value"> break-word</span></span>;
   <span class="hljs-rule">}</span></span>
@@ -652,41 +678,49 @@ have classes that identify their language.</p>
 </code></pre>
 <p>Each language uses a slightly different light background color.</p>
 <pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-at_rule">@<span class="hljs-keyword">media</span> screen </span>{
-  <span class="hljs-class">.lang-js</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">background-color</span>:<span class="hljs-value"> ivory</span></span>; <span class="hljs-rule">}</span></span>
-  <span class="hljs-class">.lang-md</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">background-color</span>:<span class="hljs-value"> lightyellow</span></span>; <span class="hljs-rule">}</span></span>
-  <span class="hljs-class">.lang-html</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">background-color</span>:<span class="hljs-value"> floralwhite</span></span>; <span class="hljs-rule">}</span></span>
-  <span class="hljs-class">.lang-json</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">background-color</span>:<span class="hljs-value"> honeydew</span></span>; <span class="hljs-rule">}</span></span>
-  <span class="hljs-class">.lang-css</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">background-color</span>:<span class="hljs-value"> cornsilk</span></span>; <span class="hljs-rule">}</span></span>
-  <span class="hljs-class">.lang-sh</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">background-color</span>:<span class="hljs-value"> lemonchiffon</span></span>; <span class="hljs-rule">}</span></span>
+  <span class="hljs-id">#content</span> <span class="hljs-class">.lang-js</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">background-color</span>:<span class="hljs-value"> ivory</span></span>; <span class="hljs-rule">}</span></span>
+  <span class="hljs-id">#content</span> <span class="hljs-class">.lang-md</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">background-color</span>:<span class="hljs-value"> lightyellow</span></span>; <span class="hljs-rule">}</span></span>
+  <span class="hljs-id">#content</span> <span class="hljs-class">.lang-html</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">background-color</span>:<span class="hljs-value"> floralwhite</span></span>; <span class="hljs-rule">}</span></span>
+  <span class="hljs-id">#content</span> <span class="hljs-class">.lang-json</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">background-color</span>:<span class="hljs-value"> honeydew</span></span>; <span class="hljs-rule">}</span></span>
+  <span class="hljs-id">#content</span> <span class="hljs-class">.lang-css</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">background-color</span>:<span class="hljs-value"> cornsilk</span></span>; <span class="hljs-rule">}</span></span>
+  <span class="hljs-id">#content</span> <span class="hljs-class">.lang-sh</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">background-color</span>:<span class="hljs-value"> lemonchiffon</span></span>; <span class="hljs-rule">}</span></span>
 }
 </code></pre>
 <p>The header font sizes are set.</p>
-<pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-tag">h1</span>, <span class="hljs-tag">h2</span>, <span class="hljs-tag">h3</span>, <span class="hljs-tag">h4</span>, <span class="hljs-tag">h5</span>, <span class="hljs-tag">h6</span> <span class="hljs-rules">{
+<pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-id">#content</span> <span class="hljs-tag">h1</span>,
+<span class="hljs-id">#content</span> <span class="hljs-tag">h2</span>,
+<span class="hljs-id">#content</span> <span class="hljs-tag">h3</span>,
+<span class="hljs-id">#content</span> <span class="hljs-tag">h4</span>,
+<span class="hljs-id">#content</span> <span class="hljs-tag">h5</span>,
+<span class="hljs-id">#content</span> <span class="hljs-tag">h6</span> <span class="hljs-rules">{
   <span class="hljs-rule"><span class="hljs-attribute">margin</span>:<span class="hljs-value"> <span class="hljs-number">0.5em</span> <span class="hljs-number">0em</span></span></span>;
   <span class="hljs-rule"><span class="hljs-attribute">page-break-after</span>:<span class="hljs-value"> avoid
 </span></span></span>}
 
-<span class="hljs-tag">h1</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">140%</span></span></span>; <span class="hljs-rule">}</span></span>
-<span class="hljs-tag">h2</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">130%</span></span></span>; <span class="hljs-rule">}</span></span>
-<span class="hljs-tag">h3</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">120%</span></span></span>; <span class="hljs-rule">}</span></span>
-<span class="hljs-tag">h4</span>, <span class="hljs-tag">h5</span>, <span class="hljs-tag">h6</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">110%</span></span></span>; <span class="hljs-rule">}</span></span>
+<span class="hljs-id">#content</span> <span class="hljs-tag">h1</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">140%</span></span></span>; <span class="hljs-rule">}</span></span>
+<span class="hljs-id">#content</span> <span class="hljs-tag">h2</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">130%</span></span></span>; <span class="hljs-rule">}</span></span>
+<span class="hljs-id">#content</span> <span class="hljs-tag">h3</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">120%</span></span></span>; <span class="hljs-rule">}</span></span>
+<span class="hljs-id">#content</span> <span class="hljs-tag">h4</span>,
+<span class="hljs-id">#content</span> <span class="hljs-tag">h5</span>,
+<span class="hljs-id">#content</span> <span class="hljs-tag">h6</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">110%</span></span></span>; <span class="hljs-rule">}</span></span>
 </code></pre>
 <p>More styling</p>
-<pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-tag">a</span><span class="hljs-pseudo">:hover</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#aaa</span></span></span>; <span class="hljs-rule">}</span></span>
+<pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-id">#content</span> <span class="hljs-tag">a</span><span class="hljs-pseudo">:hover</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#aaa</span></span></span>; <span class="hljs-rule">}</span></span>
 
-<span class="hljs-tag">a</span><span class="hljs-pseudo">:visited</span>, <span class="hljs-tag">a</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#000</span></span></span>;<span class="hljs-rule">}</span></span>
+<span class="hljs-id">#content</span> <span class="hljs-tag">a</span><span class="hljs-pseudo">:visited</span>,
+<span class="hljs-id">#content</span> <span class="hljs-tag">a</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#000</span></span></span>;<span class="hljs-rule">}</span></span>
 
 <span class="hljs-at_rule">@<span class="hljs-keyword">media</span> screen </span>{
-  <span class="hljs-tag">a</span> <span class="hljs-rules">{
+  <span class="hljs-id">#content</span> <span class="hljs-tag">a</span> <span class="hljs-rules">{
     <span class="hljs-rule"><span class="hljs-attribute">text-decoration</span>:<span class="hljs-value"> underline</span></span>;
   <span class="hljs-rule">}</span></span>
 }
 
 <span class="hljs-at_rule">@<span class="hljs-keyword">media</span> print </span>{
-  <span class="hljs-tag">a</span> <span class="hljs-rules">{
+  <span class="hljs-id">#content</span> <span class="hljs-tag">a</span> <span class="hljs-rules">{
     <span class="hljs-rule"><span class="hljs-attribute">text-decoration</span>:<span class="hljs-value"> none</span></span>;
   <span class="hljs-rule">}</span></span>
-  <span class="hljs-id">#doc</span> <span class="hljs-tag">a</span><span class="hljs-attr_selector">[href]</span><span class="hljs-pseudo">:after</span> <span class="hljs-rules">{
+  <span class="hljs-id">#content</span> <span class="hljs-id">#doc</span> <span class="hljs-tag">a</span><span class="hljs-attr_selector">[href]</span><span class="hljs-pseudo">:after</span> <span class="hljs-rules">{
     <span class="hljs-rule"><span class="hljs-attribute">content</span>:<span class="hljs-value"> <span class="hljs-string">" ("</span> <span class="hljs-function">attr</span>(href) <span class="hljs-string">")"</span></span></span>;
     <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">90%</span></span></span>;
   <span class="hljs-rule">}</span></span>
@@ -1296,28 +1330,32 @@ This returns the parser and the renderer.</p>
 <p>This function formats the final <code>HTML</code> document
 using <code>marked</code>.</p>
 <pre><div class="field">weaveJSON</div><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(str, options)</span> </span>{
+  options = options || {}
   <span class="hljs-keyword">var</span> m = <span class="hljs-keyword">this</span>.weaveMarked()
   <span class="hljs-keyword">var</span> marked = m[<span class="hljs-number">0</span>]
   <span class="hljs-keyword">var</span> p = m[<span class="hljs-number">1</span>]
   <span class="hljs-keyword">var</span> doc = marked.call(<span class="hljs-keyword">this</span>, str)
 </code></pre>
-<p>Create some short cuts for setting up the document.</p>
-<pre><div class="field">weaveJSON</div><code class="lang-js">  <span class="hljs-keyword">var</span> un = <span class="hljs-keyword">this</span>.unescape
-  <span class="hljs-keyword">var</span> f = p.field
+<p>Utility function</p>
+<pre><div class="field">weaveJSON</div><code class="lang-js">  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span><span class="hljs-params">(l,d)</span> </span>{ <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.unescape(p.field[l] || d) }
 </code></pre>
 <p>Format the basic elements of the document.
 Use reasonable default values where applicable.</p>
-<pre><div class="field">weaveJSON</div><code class="lang-js">  <span class="hljs-keyword">var</span> title = un(f[<span class="hljs-string">"title"</span>] || <span class="hljs-string">"Weave Output"</span>)
-  <span class="hljs-keyword">var</span> tag = un(f[<span class="hljs-string">"tag"</span>] || <span class="hljs-string">"from weaving"</span>)
-  <span class="hljs-keyword">var</span> stylesheet = un(f[<span class="hljs-string">"stylesheet"</span>] || <span class="hljs-string">""</span>)
+<pre><div class="field">weaveJSON</div><code class="lang-js">  <span class="hljs-keyword">var</span> title = f(<span class="hljs-string">"title"</span>, <span class="hljs-string">"Weave Output"</span>)
+  <span class="hljs-keyword">var</span> tag = f(<span class="hljs-string">"tag"</span>, <span class="hljs-string">"from weaving"</span>)
+  <span class="hljs-keyword">var</span> headstylesheet = f(<span class="hljs-string">"headstylesheet"</span>, <span class="hljs-string">""</span>)
+  <span class="hljs-keyword">var</span> stylesheet = f(<span class="hljs-string">"stylesheet"</span>, <span class="hljs-string">""</span>)
 
-  <span class="hljs-keyword">var</span> headline = un(f[<span class="hljs-string">"head"</span>] || <span class="hljs-string">"&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;"</span>)
+  <span class="hljs-keyword">var</span> headline = f(<span class="hljs-string">"head"</span>, <span class="hljs-string">"&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;"</span>)
+  <span class="hljs-keyword">var</span> transitionline = f(<span class="hljs-string">"transition"</span>, <span class="hljs-string">"&lt;/head&gt;&lt;body&gt;"</span>)
+  <span class="hljs-keyword">var</span> tailline = f(<span class="hljs-string">"tail"</span>, <span class="hljs-string">"&lt;/body&gt;&lt;/html&gt;"</span>) + <span class="hljs-string">'\n'</span>
+
   <span class="hljs-keyword">var</span> headtitle = <span class="hljs-string">'&lt;title&gt;'</span> + title + <span class="hljs-string">' - '</span> + tag + <span class="hljs-string">'&lt;/title&gt;\n'</span>
-  <span class="hljs-keyword">var</span> transitionline = un(f[<span class="hljs-string">"transition"</span>] || <span class="hljs-string">"&lt;/head&gt;&lt;body&gt;"</span>)
   <span class="hljs-keyword">var</span> titleline = <span class="hljs-string">'&lt;div id="title"&gt;'</span> + title + <span class="hljs-string">'&lt;/div&gt;'</span>
   <span class="hljs-keyword">var</span> tagline = <span class="hljs-string">'&lt;div id="tag"&gt;'</span> + tag + <span class="hljs-string">'&lt;/div&gt;'</span>
+
+  <span class="hljs-keyword">var</span> headstyleline = headstylesheet == <span class="hljs-string">''</span> ? <span class="hljs-string">''</span> : <span class="hljs-string">'&lt;style&gt;'</span> + headstylesheet + <span class="hljs-string">'&lt;/style&gt;'</span>
   <span class="hljs-keyword">var</span> styleline = stylesheet == <span class="hljs-string">''</span> ? <span class="hljs-string">''</span> : <span class="hljs-string">'&lt;style&gt;'</span> + stylesheet + <span class="hljs-string">'&lt;/style&gt;'</span>
-  <span class="hljs-keyword">var</span> tailline = un(f[<span class="hljs-string">"tail"</span>] || <span class="hljs-string">"&lt;/body&gt;&lt;/html&gt;"</span>) + <span class="hljs-string">'\n'</span>
 </code></pre>
 <p>Create and mark up the table of contents.
 Open or close ordered list elements whenever there is a change
@@ -1354,11 +1392,19 @@ in the heading level.</p>
 </code></pre>
 <p>Return the assembled document.
 The bulk of the document is in the <code>doc</code> variable.</p>
-<pre><div class="field">weaveJSON</div><code class="lang-js">  <span class="hljs-keyword">return</span> (headline + headtitle + styleline + transitionline +
+<pre><div class="field">weaveJSON</div><code class="lang-js">  <span class="hljs-keyword">var</span> heading = <span class="hljs-string">''</span>
+  <span class="hljs-keyword">var</span> tailing = <span class="hljs-string">''</span>
+  <span class="hljs-keyword">if</span> (options.contentonly != <span class="hljs-literal">true</span>) {
+    heading = headline + headtitle + headstyleline + styleline + transitionline
+    tailing = tailline
+  } <span class="hljs-keyword">else</span>
+    heading = styleline
+
+  <span class="hljs-keyword">return</span> (heading +
           <span class="hljs-string">'&lt;div id="content"&gt;'</span> +
              titleline + tagline + toc +
           <span class="hljs-string">'&lt;div id="doc"&gt;'</span> + doc + <span class="hljs-string">'&lt;/div&gt;'</span> +
-          <span class="hljs-string">'&lt;/div&gt;'</span> + tailline)
+          <span class="hljs-string">'&lt;/div&gt;'</span> + tailing)
 }
 </code></pre>
 <h3 id="weavestream">4.3.6 weaveStream</h3>
@@ -1407,11 +1453,11 @@ Basically it has a fence prefix and suffix.</p>
 }
 </code></pre>
 <h1 id="unix-build-instructions">5. Unix build instructions</h1>
-<p>You can rebuild <code>markover</code> from this document (assuming it is called README.md) by running the following in a Unix shell:</p>
-<pre><code class="lang-sh">node <span class="hljs-operator">-e</span> <span class="hljs-string">"require('./markover').tangleStream()"</span> &lt; README.md &gt; markover.js
-</code></pre>
 <p>To bootstrap try:</p>
 <pre><code class="lang-sh">node <span class="hljs-operator">-e</span> <span class="hljs-string">"require('./markover').tangleStream()"</span> &lt; README.md &gt; markover1.js &amp;&amp; node <span class="hljs-operator">-e</span> <span class="hljs-string">"require('./markover1').tangleStream()"</span> &lt; README.md &gt; markover2.js &amp;&amp; diff markover2.js markover1.js &amp;&amp; mv markover1.js markover.js
+</code></pre>
+<p>You can rebuild <code>markover</code> from this document (assuming it is called README.md) by running the following in a Unix shell:</p>
+<pre><code class="lang-sh">node <span class="hljs-operator">-e</span> <span class="hljs-string">"require('./markover').tangleStream()"</span> &lt; README.md &gt; markover.js
 </code></pre>
 <p>To weave:</p>
 <pre><code class="lang-sh">node <span class="hljs-operator">-e</span> <span class="hljs-string">"require('./markover').weaveStream()"</span> &lt; README.md &gt; index.html
