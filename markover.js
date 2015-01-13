@@ -198,6 +198,17 @@ var markover = {
     delete fields["last"]
   }
 
+  if (options.sourcetarget) {
+    fields[options.sourcetarget] = 
+        ('"' +
+          str
+          .replace(/\\/gm, '\\\\')
+          .replace(/\"/gm /*"*/, '\\"')
+          .replace(/\n/gm , '\\n')
+          .replace(/%/gm , '%p')
+        + '"')
+  }
+
   return this.tangleFormat(ff, fields, lf)
 },
 

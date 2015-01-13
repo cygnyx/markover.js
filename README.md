@@ -990,6 +990,8 @@ from being concatenated without a newline character.
 
 Once all the fields are prepared, the special first and last
 field names are located and the results are formatted for output.
+If the `sourcetarget` options is given, then the quoted source document
+is stored at the location.
 
 ```js#tangleJSON
   if (fields["first"] != undefined) {
@@ -1002,6 +1004,17 @@ field names are located and the results are formatted for output.
     delete fields["last"]
   }
 
+  if (options.sourcetarget) {
+    fields[options.sourcetarget] = 
+        ('"' +
+          str
+          .replace(/\\/gm, '\\\\')
+          .replace(/\"/gm /*"*/, '\\"')
+          .replace(/\n/gm , '\\n')
+          .replace(/%/gm , '%p')
+        + '"')
+  }
+   
   return this.tangleFormat(ff, fields, lf)
 }
 ```
