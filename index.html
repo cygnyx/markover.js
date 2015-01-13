@@ -1125,7 +1125,9 @@ from being concatenated without a newline character.</p>
   })
 </code></pre>
 <p>Once all the fields are prepared, the special first and last
-field names are located and the results are formatted for output.</p>
+field names are located and the results are formatted for output.
+If the <code>sourcetarget</code> options is given, then the quoted source document
+is stored at the location.</p>
 <pre><div class="field">tangleJSON</div><code class="lang-js">  <span class="hljs-keyword">if</span> (fields[<span class="hljs-string">"first"</span>] != <span class="hljs-literal">undefined</span>) {
     ff = fields[<span class="hljs-string">"first"</span>]
     <span class="hljs-keyword">delete</span> fields[<span class="hljs-string">"first"</span>]
@@ -1134,6 +1136,17 @@ field names are located and the results are formatted for output.</p>
   <span class="hljs-keyword">if</span> (fields[<span class="hljs-string">"last"</span>] != <span class="hljs-literal">undefined</span>) {
     lf = fields[<span class="hljs-string">"last"</span>]
     <span class="hljs-keyword">delete</span> fields[<span class="hljs-string">"last"</span>]
+  }
+
+  <span class="hljs-keyword">if</span> (options.sourcetarget) {
+    fields[options.sourcetarget] = 
+        (<span class="hljs-string">'"'</span> +
+          str
+          .replace(<span class="hljs-regexp">/\\/gm</span>, <span class="hljs-string">'\\\\'</span>)
+          .replace(<span class="hljs-regexp">/\"/gm</span> <span class="hljs-comment">/*"*/</span>, <span class="hljs-string">'\\"'</span>)
+          .replace(<span class="hljs-regexp">/\n/gm</span> , <span class="hljs-string">'\\n'</span>)
+          .replace(<span class="hljs-regexp">/%/gm</span> , <span class="hljs-string">'%p'</span>)
+        + <span class="hljs-string">'"'</span>)
   }
 
   <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.tangleFormat(ff, fields, lf)
