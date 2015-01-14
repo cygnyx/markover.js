@@ -97,6 +97,7 @@ var markover = {
    return res.join('')
      .replace(/%q/gm, '\"')
      .replace(/%n/gm, '\n')
+     .replace(/%t/gm, '\t')
      .replace(/%s/gm, '\\')
      .replace(/%p/gm , '%')
 },
@@ -135,6 +136,7 @@ var markover = {
           .replace(/\\/gm, '\\\\')
           .replace(/\"/gm /*"*/, '\\"')
           .replace(/\n/gm , '\\n')
+          .replace(/\t/gm , '\\t')
         + '"')
     }
 
@@ -142,6 +144,7 @@ var markover = {
       .replace(/%/gm , '%p')
       .replace(/"/gm /*"*/, '%q')
       .replace(/\n/gm, '%n')
+      .replace(/\t/gm, '%t')
       .replace(/\\/gm, '%s')
 
     return ',["' + field + '", "' + (quote == '+')  + '", "' + esccode + '"]'
@@ -205,6 +208,7 @@ var markover = {
           .replace(/\\/gm, '\\\\')
           .replace(/\"/gm /*"*/, '\\"')
           .replace(/\n/gm , '\\n')
+          .replace(/\t/gm , '\\t')
           .replace(/%/gm , '%p')
         + '"')
   }

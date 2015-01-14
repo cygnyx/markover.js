@@ -844,6 +844,7 @@ function(ff, fields, lf) {
    return res.join('')
      .replace(/%q/gm, '\"')
      .replace(/%n/gm, '\n')
+     .replace(/%t/gm, '\t')
      .replace(/%s/gm, '\\')
      .replace(/%p/gm , '%')
 }
@@ -908,6 +909,7 @@ Each code is stored as a triple of _strings_: field, quote, & text.
           .replace(/\\/gm, '\\\\')
           .replace(/\"/gm /*"*/, '\\"')
           .replace(/\n/gm , '\\n')
+          .replace(/\t/gm , '\\t')
         + '"')
     }
 
@@ -915,6 +917,7 @@ Each code is stored as a triple of _strings_: field, quote, & text.
       .replace(/%/gm , '%p')
       .replace(/"/gm /*"*/, '%q')
       .replace(/\n/gm, '%n')
+      .replace(/\t/gm, '%t')
       .replace(/\\/gm, '%s')
 
     return ',["' + field + '", "' + (quote == '+')  + '", "' + esccode + '"]'
@@ -1011,6 +1014,7 @@ is stored at the location.
           .replace(/\\/gm, '\\\\')
           .replace(/\"/gm /*"*/, '\\"')
           .replace(/\n/gm , '\\n')
+          .replace(/\t/gm , '\\t')
           .replace(/%/gm , '%p')
         + '"')
   }
