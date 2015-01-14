@@ -1002,6 +1002,7 @@ to their original representation.</p>
    <span class="hljs-keyword">return</span> res.join(<span class="hljs-string">''</span>)
      .replace(<span class="hljs-regexp">/%q/gm</span>, <span class="hljs-string">'\"'</span>)
      .replace(<span class="hljs-regexp">/%n/gm</span>, <span class="hljs-string">'\n'</span>)
+     .replace(<span class="hljs-regexp">/%t/gm</span>, <span class="hljs-string">'\t'</span>)
      .replace(<span class="hljs-regexp">/%s/gm</span>, <span class="hljs-string">'\\'</span>)
      .replace(<span class="hljs-regexp">/%p/gm</span> , <span class="hljs-string">'%'</span>)
 }
@@ -1056,6 +1057,7 @@ Each code is stored as a triple of <em>strings</em>: field, quote, &amp; text.</
           .replace(<span class="hljs-regexp">/\\/gm</span>, <span class="hljs-string">'\\\\'</span>)
           .replace(<span class="hljs-regexp">/\"/gm</span> <span class="hljs-comment">/*"*/</span>, <span class="hljs-string">'\\"'</span>)
           .replace(<span class="hljs-regexp">/\n/gm</span> , <span class="hljs-string">'\\n'</span>)
+          .replace(<span class="hljs-regexp">/\t/gm</span> , <span class="hljs-string">'\\t'</span>)
         + <span class="hljs-string">'"'</span>)
     }
 
@@ -1063,6 +1065,7 @@ Each code is stored as a triple of <em>strings</em>: field, quote, &amp; text.</
       .replace(<span class="hljs-regexp">/%/gm</span> , <span class="hljs-string">'%p'</span>)
       .replace(<span class="hljs-regexp">/"/gm</span> <span class="hljs-comment">/*"*/</span>, <span class="hljs-string">'%q'</span>)
       .replace(<span class="hljs-regexp">/\n/gm</span>, <span class="hljs-string">'%n'</span>)
+      .replace(<span class="hljs-regexp">/\t/gm</span>, <span class="hljs-string">'%t'</span>)
       .replace(<span class="hljs-regexp">/\\/gm</span>, <span class="hljs-string">'%s'</span>)
 
     <span class="hljs-keyword">return</span> <span class="hljs-string">',["'</span> + field + <span class="hljs-string">'", "'</span> + (quote == <span class="hljs-string">'+'</span>)  + <span class="hljs-string">'", "'</span> + esccode + <span class="hljs-string">'"]'</span>
@@ -1145,6 +1148,7 @@ is stored at the location.</p>
           .replace(<span class="hljs-regexp">/\\/gm</span>, <span class="hljs-string">'\\\\'</span>)
           .replace(<span class="hljs-regexp">/\"/gm</span> <span class="hljs-comment">/*"*/</span>, <span class="hljs-string">'\\"'</span>)
           .replace(<span class="hljs-regexp">/\n/gm</span> , <span class="hljs-string">'\\n'</span>)
+          .replace(<span class="hljs-regexp">/\t/gm</span> , <span class="hljs-string">'\\t'</span>)
           .replace(<span class="hljs-regexp">/%/gm</span> , <span class="hljs-string">'%p'</span>)
         + <span class="hljs-string">'"'</span>)
   }
@@ -1470,7 +1474,7 @@ Basically it has a fence prefix and suffix.</p>
 <pre><code class="lang-sh">node <span class="hljs-operator">-e</span> <span class="hljs-string">"require('./markover').tangleStream()"</span> &lt; README.md &gt; markover1.js &amp;&amp; node <span class="hljs-operator">-e</span> <span class="hljs-string">"require('./markover1').tangleStream()"</span> &lt; README.md &gt; markover2.js &amp;&amp; diff markover2.js markover1.js &amp;&amp; mv markover1.js markover.js
 </code></pre>
 <p>You can rebuild <code>markover</code> from this document (assuming it is called README.md) by running the following in a Unix shell:</p>
-<pre><code class="lang-sh">node <span class="hljs-operator">-e</span> <span class="hljs-string">"require('./markover').tangleStream()"</span> &lt; README.md &gt; markover.js
+<pre><code class="lang-sh">node <span class="hljs-operator">-e</span> <span class="hljs-string">"require('./markover').tangleStream()"</span> &lt; README.md &gt; markover1.js &amp;&amp; mv markover1.js markover.js
 </code></pre>
 <p>To weave:</p>
 <pre><code class="lang-sh">node <span class="hljs-operator">-e</span> <span class="hljs-string">"require('./markover').weaveStream()"</span> &lt; README.md &gt; index.html

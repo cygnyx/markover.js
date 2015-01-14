@@ -1422,7 +1422,7 @@ node -e "require('./markover').tangleStream()" < README.md > markover1.js && nod
 You can rebuild `markover` from this document (assuming it is called README.md) by running the following in a Unix shell:
 
 ```sh
-node -e "require('./markover').tangleStream()" < README.md > markover.js
+node -e "require('./markover').tangleStream()" < README.md > markover1.js && mv markover1.js markover.js
 ```
 
 To weave:
