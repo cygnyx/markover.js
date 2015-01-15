@@ -811,7 +811,7 @@ from `markover` documents.
 ": 
 ```
 
-### tangle Formating
+### tangle Formatting
 
 Once a `markover` document has been tangled,
 there are 3 results: the starting material,
