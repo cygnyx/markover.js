@@ -161,7 +161,6 @@ a, code, span, b, i, em { display: inline; }</style><style>#content {
     text-decoration: underline;
   }
 }
-
 @media print {
   #content a {
     text-decoration: none;
@@ -215,6 +214,7 @@ a, code, span, b, i, em { display: inline; }</style><style>#content {
 .hljs-built_in {
     color: #0086b3;
 }
+
 .hljs-symbol, .ruby .hljs-symbol .hljs-string, .lisp .hljs-keyword,
 .clojure .hljs-keyword, .scheme .hljs-keyword, .tex .hljs-special,
 .hljs-prompt {
@@ -347,7 +347,7 @@ although <code>JSON</code> fields can appear in any order.</p>
 developed, such as <a href="http://en.wikipedia.org/wiki/Markdown">markdown</a>.
 The purpose of the languages was to facilitate
 the generation of <code>HTML</code> documents.
-There are many other authoring that have been used
+There are many other authoring languages that have been used
 in the past, such as <a href="http://en.wikipedia.org/wiki/TeX">TeX</a> and
 <a href="http://en.wikipedia.org/wiki/Troff">troff</a>.
 Although <code>TeX</code> pre-dates the Web, <a href="http://www.mathjax.org/">MathJax</a> can be used
@@ -361,7 +361,7 @@ on a Web browser front-end and a <code>couchdb</code> back-end.
 A feature of this framework is that all the configuration can be written using Web
 standards: <code>CSS</code>, <code>HTML</code>, and <code>javascript</code>. Since <code>couchdb</code> uses 
 <a href="http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol">HTTP</a> and
-<a href="http://en.wikipedia.org/wiki/HTTP_Secure">HTTPS</a> to communicate
+<a href="http://en.wikipedia.org/wiki/HTTP_Secure">HTTPS</a> communicating
 with Web browsers is relatively straight forward.</p>
 <p>This seems an appropriate time to revisit the &#39;Literate Programming&#39; idea of 
 <a href="http://en.wikipedia.org/wiki/Donald_Knuth">Knuth</a>, published in 1984,
@@ -369,7 +369,7 @@ in the context of Web standards.</p>
 <p><a href="https://cygnyx.github.io/markover">markover</a> is a <code>javascript</code> library implemented as a
 <a href="http://wiki.commonjs.org/wiki/CommonJS">CommonJS</a> module.</p>
 <h1 id="literate-programming">2. Literate Programming</h1>
-<p>This document is a literate program that can be used to make the <code>markover</code> system.
+<p>This document is a literate program that can be used to make the <code>markover</code> application.
 It describes the source code used in <code>markover</code> and can generate the source code.
 That is, the same authoring document (the <code>markover</code> document)
 is used <code>tangle</code> itself into a program (the source code) and to <code>weave</code>
@@ -436,7 +436,7 @@ to <code>json</code>.</p>
 <p>By convention <code>markover</code> documents have a few common fields.
 A <code>title</code> which names the document and a <code>tag</code> which is a one-line
 description of the document. You may include a <code>version</code> field as well.</p>
-<p>That all there is to know about the structure of <code>markover</code>
+<p>That&#39;s all there is to know about the structure of <code>markover</code>
 documents.
 There are no specific dependencies on the target language.</p>
 <h2 id="file-structure">3.1 File structure</h2>
@@ -485,7 +485,8 @@ environment it is operating in.</p>
 <span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
 </code></pre>
 <h3 id="additional-header-material">3.2.2 Additional Header Material</h3>
-<p>These meta provide additional information about the display document encoding.</p>
+<p>These meta provide additional information about the display document encoding.
+Setting the viewport scale helps display the document on small screens.</p>
 <pre><div class="field">head</div><code class="lang-html">  <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">"utf-8"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">http-equiv</span>=<span class="hljs-value">"Content-Language"</span> <span class="hljs-attribute">content</span>=<span class="hljs-value">"en"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"viewport"</span> <span class="hljs-attribute">content</span>=<span class="hljs-value">"initial-scale=1"</span>&gt;</span>
@@ -541,7 +542,9 @@ The following <code>stylesheet</code> details how the rest of the document is di
 in the header section. Or, parts of the the style can be included in the header.
 For example, there are standard <code>highlight.js</code> style sheets available on <code>CDNs</code> that
 can be included for the language syntax highlighting. In this case, I wanted a little more
-control over the presentation on screen and in print. I&#39;ve included the entire style sheet here.</p>
+control over the presentation on screen and in print.</p>
+<p>I&#39;ve created a complete style sheet here.
+This style sheet will display well on a variety of screen sizes and in print.</p>
 <h4 id="vanilla-style">3.2.5.1 Vanilla style</h4>
 <p>This first section resets all <code>HTML</code> elements to reasonable default values.
 This is used in the heading of the page and has selectors that effect elements
@@ -571,7 +574,7 @@ throughout the document.</p>
 to the source document.
 <code>markover</code> marks up 3 areas before the main document body:
 title, tag, and a table of contents.</p>
-<p>Title and tag are each in a single id and only appear once in the display document.</p>
+<p>Title and tag are each in a single element and only appear once in the display document.</p>
 <pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-id">#content</span> <span class="hljs-rules">{
   <span class="hljs-rule"><span class="hljs-attribute">font-family</span>:<span class="hljs-value"> <span class="hljs-string">"HelveticaNeue-Light"</span>, <span class="hljs-string">"Helvetica Neue Light"</span>, <span class="hljs-string">"Helvetica Neue"</span>, Helvetica, Arial, <span class="hljs-string">"Lucida Grande"</span>, sans-serif</span></span>; 
 <span class="hljs-rule">}</span></span>
@@ -591,7 +594,8 @@ title, tag, and a table of contents.</p>
   <span class="hljs-rule"><span class="hljs-attribute">margin</span>:<span class="hljs-value"> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">1em</span> <span class="hljs-number">0</span></span></span>;
 <span class="hljs-rule">}</span></span>
 </code></pre>
-<p>The table of contents, in a single <code>toc</code> id, is slightly more complex.</p>
+<p>The table of contents, in a single <code>toc</code> id, is slightly more complex.
+The table is on the left for wide windows only.</p>
 <pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-id">#content</span> <span class="hljs-id">#toc</span> <span class="hljs-rules">{
   <span class="hljs-rule"><span class="hljs-attribute">padding</span>:<span class="hljs-value"> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">1em</span></span></span>;
   <span class="hljs-rule"><span class="hljs-attribute">max-width</span>:<span class="hljs-value"> <span class="hljs-number">96%</span></span></span>;
@@ -619,6 +623,8 @@ title, tag, and a table of contents.</p>
 <h4 id="main-body">3.2.5.3 Main body</h4>
 <p>The main document is in a single <code>doc</code> id.
 Make the toc and doc with the same margins.</p>
+<p>The &#39;overflow: hidden&#39; prevents the main text from flowing around
+the float content.</p>
 <pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-id">#content</span> <span class="hljs-id">#doc</span>,
 <span class="hljs-id">#content</span> <span class="hljs-id">#toc</span> <span class="hljs-rules">{
   <span class="hljs-rule"><span class="hljs-attribute">margin</span>:<span class="hljs-value"> <span class="hljs-number">0</span> <span class="hljs-number">1em</span> <span class="hljs-number">0</span> <span class="hljs-number">1em</span></span></span>;
@@ -704,7 +710,7 @@ have classes that identify their language.</p>
 <span class="hljs-id">#content</span> <span class="hljs-tag">h5</span>,
 <span class="hljs-id">#content</span> <span class="hljs-tag">h6</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">110%</span></span></span>; <span class="hljs-rule">}</span></span>
 </code></pre>
-<p>More styling</p>
+<p>These styles handle user interactions.</p>
 <pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-id">#content</span> <span class="hljs-tag">a</span><span class="hljs-pseudo">:hover</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#aaa</span></span></span>; <span class="hljs-rule">}</span></span>
 
 <span class="hljs-id">#content</span> <span class="hljs-tag">a</span><span class="hljs-pseudo">:visited</span>,
@@ -715,8 +721,9 @@ have classes that identify their language.</p>
     <span class="hljs-rule"><span class="hljs-attribute">text-decoration</span>:<span class="hljs-value"> underline</span></span>;
   <span class="hljs-rule">}</span></span>
 }
-
-<span class="hljs-at_rule">@<span class="hljs-keyword">media</span> print </span>{
+</code></pre>
+<p>Links are displayed in the print document.</p>
+<pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-at_rule">@<span class="hljs-keyword">media</span> print </span>{
   <span class="hljs-id">#content</span> <span class="hljs-tag">a</span> <span class="hljs-rules">{
     <span class="hljs-rule"><span class="hljs-attribute">text-decoration</span>:<span class="hljs-value"> none</span></span>;
   <span class="hljs-rule">}</span></span>
@@ -760,7 +767,9 @@ Basic type markup:</p>
     <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#458</span></span></span>;
     <span class="hljs-rule"><span class="hljs-attribute">font-weight</span>:<span class="hljs-value"> bold</span></span>;
 <span class="hljs-rule">}</span></span>
-<span class="hljs-class">.hljs-tag</span>, <span class="hljs-class">.hljs-tag</span> <span class="hljs-class">.hljs-title</span>, <span class="hljs-class">.hljs-rules</span> <span class="hljs-class">.hljs-property</span>, <span class="hljs-class">.django</span> <span class="hljs-class">.hljs-tag</span> <span class="hljs-class">.hljs-keyword</span> <span class="hljs-rules">{
+</code></pre>
+<p>Additional markup</p>
+<pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-class">.hljs-tag</span>, <span class="hljs-class">.hljs-tag</span> <span class="hljs-class">.hljs-title</span>, <span class="hljs-class">.hljs-rules</span> <span class="hljs-class">.hljs-property</span>, <span class="hljs-class">.django</span> <span class="hljs-class">.hljs-tag</span> <span class="hljs-class">.hljs-keyword</span> <span class="hljs-rules">{
     <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#000080</span></span></span>;
     <span class="hljs-rule"><span class="hljs-attribute">font-weight</span>:<span class="hljs-value"> normal</span></span>;
 <span class="hljs-rule">}</span></span>
@@ -773,9 +782,8 @@ Basic type markup:</p>
 <span class="hljs-class">.hljs-built_in</span> <span class="hljs-rules">{
     <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#0086b3</span></span></span>;
 <span class="hljs-rule">}</span></span>
-</code></pre>
-<p>Language specific markup</p>
-<pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-class">.hljs-symbol</span>, <span class="hljs-class">.ruby</span> <span class="hljs-class">.hljs-symbol</span> <span class="hljs-class">.hljs-string</span>, <span class="hljs-class">.lisp</span> <span class="hljs-class">.hljs-keyword</span>,
+
+<span class="hljs-class">.hljs-symbol</span>, <span class="hljs-class">.ruby</span> <span class="hljs-class">.hljs-symbol</span> <span class="hljs-class">.hljs-string</span>, <span class="hljs-class">.lisp</span> <span class="hljs-class">.hljs-keyword</span>,
 <span class="hljs-class">.clojure</span> <span class="hljs-class">.hljs-keyword</span>, <span class="hljs-class">.scheme</span> <span class="hljs-class">.hljs-keyword</span>, <span class="hljs-class">.tex</span> <span class="hljs-class">.hljs-special</span>,
 <span class="hljs-class">.hljs-prompt</span> <span class="hljs-rules">{
     <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#990073</span></span></span>;
@@ -860,7 +868,7 @@ and write out to an output stream.</p>
 Instead of processing the input buffer piece by piece, I collect
 the entire stream into a <code>pool</code>. At the end, the entire <code>pool</code>
 is flushed to the output pipe. It takes a single argument which
-is a set of options which must include a <code>convert</code> function that
+is a set of options which should include a <code>convert</code> function that
 converts a string into the transformed string.
 The default <code>convert</code> function does not transform the string.
 The options are passed to the <code>convert</code> function.
@@ -1238,7 +1246,7 @@ and added to the <code>toc</code> element.</p>
 }
 </code></pre>
 <h3 id="weave-code-highlighting">4.3.2 weave code highlighting</h3>
-<p>Highlighting code handled by <code>highlight.js</code>.
+<p>Highlighting code is handled by <code>highlight.js</code>.
 This utility function returns a code block that
 is highlighted according to the identified language.</p>
 <pre><div class="field">weaveHighlight</div><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(lang, code)</span> </span>{
@@ -1485,12 +1493,12 @@ display system.
 The field names that are embedded in the code block fence are not interpreted by GitHub.
 The <code>MathJax</code> processing is not rendered either.
 And, of course, there is no table of contents.
-Nevertheless the displayed <code>markover</code> document is somewhat readable.</p>
+Nevertheless the displayed <code>markover</code> document is readable.</p>
 <p>The raw text of the <code>markover</code> documents are more readable.
 The raw text of the <code>HTML</code> display document is not very readable:
 the <code>markdown</code> text isn&#39;t too bad, but the
-code blocks are extremely difficult to read.</p>
-<p>Fortunately, the output <code>CommonJS</code> module is very readable. It is included in
+code blocks are extremely difficult to read.
+The output <code>CommonJS</code> module is very readable. It is included in
 the source since it is needed to bootstrap <code>markover</code>.</p>
 <p>Downloading the package and viewing the <code>HTML</code> document is the best way to
 see <code>markover</code> in action.</p>
@@ -1507,7 +1515,7 @@ There was no extra effort to embed notes into &#39;structure comments&#39;.
 While reviewing the <code>markover</code> document or the <code>HTML</code> document,
 I naturally revisited the notes to revise them or implement the ideas.
 Including references to related work is straight forward and will be
-help to reader&#39;s with greater interest.
+help reader&#39;s interested in more detailed information.
 In short, writing <code>markover</code> in this style improved the implementation.</p>
 <p>Is it possible to write documents for every program?
 Yes, to varying degrees.
@@ -1555,7 +1563,7 @@ using libraries like <code>marked</code> and <code>highlight.js</code>.
 <a href="http://en.wikipedia.org/wiki/Content_delivery_network">CDN</a>
 providers improve user experience by downloading libraries
 quickly to their systems.
-The downside is the need to update to program as these resources change.</p>
+The downside is the need to update programs as these resources change.</p>
 </div></div></body>
 </html>
 <script type="text/javascript">

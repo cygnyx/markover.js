@@ -36,7 +36,7 @@ Given the complexity of `HTML` documents a number of authoring languages were
 developed, such as [markdown](http://en.wikipedia.org/wiki/Markdown).
 The purpose of the languages was to facilitate
 the generation of `HTML` documents.
-There are many other authoring that have been used
+There are many other authoring languages that have been used
 in the past, such as [TeX](http://en.wikipedia.org/wiki/TeX) and
 [troff](http://en.wikipedia.org/wiki/Troff).
 Although `TeX` pre-dates the Web, [MathJax](http://www.mathjax.org/) can be used
@@ -51,7 +51,7 @@ on a Web browser front-end and a `couchdb` back-end.
 A feature of this framework is that all the configuration can be written using Web
 standards: `CSS`, `HTML`, and `javascript`. Since `couchdb` uses 
 [HTTP](http://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol) and
-[HTTPS](http://en.wikipedia.org/wiki/HTTP_Secure) to communicate
+[HTTPS](http://en.wikipedia.org/wiki/HTTP_Secure) communicating
 with Web browsers is relatively straight forward.
 
 This seems an appropriate time to revisit the 'Literate Programming' idea of 
@@ -63,7 +63,7 @@ in the context of Web standards.
 
 # Literate Programming
 
-This document is a literate program that can be used to make the `markover` system.
+This document is a literate program that can be used to make the `markover` application.
 It describes the source code used in `markover` and can generate the source code.
 That is, the same authoring document (the `markover` document)
 is used `tangle` itself into a program (the source code) and to `weave`
@@ -162,7 +162,7 @@ Web Literate Programming
 0.0.1
 ```
 
-That all there is to know about the structure of `markover`
+That's all there is to know about the structure of `markover`
 documents.
 There are no specific dependencies on the target language.
 
@@ -232,6 +232,7 @@ And some ending material.
 ### Additional Header Material
 
 These meta provide additional information about the display document encoding.
+Setting the viewport scale helps display the document on small screens.
 
 ```html#+head
   <meta charset="utf-8">
@@ -305,7 +306,10 @@ Is this necessary? No. Instead of including the stylesheet here, you can link to
 in the header section. Or, parts of the the style can be included in the header.
 For example, there are standard `highlight.js` style sheets available on `CDNs` that
 can be included for the language syntax highlighting. In this case, I wanted a little more
-control over the presentation on screen and in print. I've included the entire style sheet here.
+control over the presentation on screen and in print.
+
+I've created a complete style sheet here.
+This style sheet will display well on a variety of screen sizes and in print.
 
 #### Vanilla style
 
@@ -342,7 +346,7 @@ to the source document.
 `markover` marks up 3 areas before the main document body:
 title, tag, and a table of contents.
 
-Title and tag are each in a single id and only appear once in the display document.
+Title and tag are each in a single element and only appear once in the display document.
 
 ```css#+stylesheet
 #content {
@@ -366,6 +370,7 @@ Title and tag are each in a single id and only appear once in the display docume
 ```
 
 The table of contents, in a single `toc` id, is slightly more complex.
+The table is on the left for wide windows only.
 
 ```css#+stylesheet
 #content #toc {
@@ -397,6 +402,9 @@ The table of contents, in a single `toc` id, is slightly more complex.
 
 The main document is in a single `doc` id.
 Make the toc and doc with the same margins.
+
+The 'overflow: hidden' prevents the main text from flowing around
+the float content.
 
 ```css#+stylesheet
 #content #doc,
@@ -497,7 +505,7 @@ The header font sizes are set.
 #content h6 { font-size: 110%; }
 ```
 
-More styling
+These styles handle user interactions.
 
 ```css#+stylesheet
 #content a:hover { color: #aaa; }
@@ -510,7 +518,11 @@ More styling
     text-decoration: underline;
   }
 }
+```
 
+Links are displayed in the print document.
+
+```css#+stylesheet
 @media print {
   #content a {
     text-decoration: none;
@@ -559,6 +571,11 @@ Basic type markup:
     color: #458;
     font-weight: bold;
 }
+```
+
+Additional markup
+
+```css#+stylesheet
 .hljs-tag, .hljs-tag .hljs-title, .hljs-rules .hljs-property, .django .hljs-tag .hljs-keyword {
     color: #000080;
     font-weight: normal;
@@ -572,11 +589,7 @@ Basic type markup:
 .hljs-built_in {
     color: #0086b3;
 }
-```
 
-Language specific markup
-
-```css#+stylesheet
 .hljs-symbol, .ruby .hljs-symbol .hljs-string, .lisp .hljs-keyword,
 .clojure .hljs-keyword, .scheme .hljs-keyword, .tex .hljs-special,
 .hljs-prompt {
@@ -673,7 +686,7 @@ I'm using a lazy implementation of the `nodejs` stream transform.
 Instead of processing the input buffer piece by piece, I collect
 the entire stream into a `pool`. At the end, the entire `pool`
 is flushed to the output pipe. It takes a single argument which
-is a set of options which must include a `convert` function that
+is a set of options which should include a `convert` function that
 converts a string into the transformed string.
 The default `convert` function does not transform the string.
 The options are passed to the `convert` function.
@@ -1129,7 +1142,7 @@ And the `HTML` rendering of the heading is returned, lightly formatted.
 
 ### weave code highlighting
 
-Highlighting code handled by `highlight.js`.
+Highlighting code is handled by `highlight.js`.
 This utility function returns a code block that
 is highlighted according to the identified language.
 
@@ -1438,14 +1451,13 @@ display system.
 The field names that are embedded in the code block fence are not interpreted by GitHub.
 The `MathJax` processing is not rendered either.
 And, of course, there is no table of contents.
-Nevertheless the displayed `markover` document is somewhat readable.
+Nevertheless the displayed `markover` document is readable.
 
 The raw text of the `markover` documents are more readable.
 The raw text of the `HTML` display document is not very readable:
 the `markdown` text isn't too bad, but the
 code blocks are extremely difficult to read.
-
-Fortunately, the output `CommonJS` module is very readable. It is included in
+The output `CommonJS` module is very readable. It is included in
 the source since it is needed to bootstrap `markover`.
 
 Downloading the package and viewing the `HTML` document is the best way to
@@ -1466,7 +1478,7 @@ There was no extra effort to embed notes into 'structure comments'.
 While reviewing the `markover` document or the `HTML` document,
 I naturally revisited the notes to revise them or implement the ideas.
 Including references to related work is straight forward and will be
-help to reader's with greater interest.
+help reader's interested in more detailed information.
 In short, writing `markover` in this style improved the implementation.
 
 Is it possible to write documents for every program?
@@ -1524,4 +1536,4 @@ using libraries like `marked` and `highlight.js`.
 [CDN](http://en.wikipedia.org/wiki/Content_delivery_network)
 providers improve user experience by downloading libraries
 quickly to their systems.
-The downside is the need to update to program as these resources change.
+The downside is the need to update programs as these resources change.
