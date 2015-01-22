@@ -1150,7 +1150,6 @@ is highlighted according to the identified language.
 function (lang, code) {
   var hljs = require('highlight.js')
   code = hljs.highlight(lang, this.unescape(code), true)
-  code.value = this.escape(code.value)
   return code
 }
 ```

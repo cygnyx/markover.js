@@ -393,7 +393,7 @@ language. However, it is designed to work with a single <code>javascript</code> 
 <p><code>markdown</code> has had a number of extensions added to it.
 One set, called GFM (GitHub Flavored Markdown), is used by <code>markover</code>.
 In GFM <code>markdown</code> a section of code is marked off, like this:</p>
-<pre><code class="lang-js">&lt;span class=&quot;hljs-built_in&quot;&gt;console&lt;/span&gt;.log(&lt;span class=&quot;hljs-string&quot;&gt;&#39;Hello, World!&#39;&lt;/span&gt;)
+<pre><code class="lang-js"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">'Hello, World!'</span>)
 </code></pre>
 <p>which is produced by:</p>
 <pre><code>```js
@@ -445,9 +445,9 @@ beginning and ending material that is needed.
 For this module, the object is written
 within an anonymous function so that the name
 space won&#39;t be polluted.</p>
-<pre><div class="field">first</div><code class="lang-js">!(&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;hljs-params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;{
+<pre><div class="field">first</div><code class="lang-js">!(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{
 
-&lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; markover =
+<span class="hljs-keyword">var</span> markover =
 </code></pre>
 <p>The trailing material allows the object to be
 used in several environments.
@@ -455,16 +455,16 @@ This is attached to the anonymous function
 after the literate object is declared.
 It does several checks to determine which
 environment it is operating in.</p>
-<pre><div class="field">last</div><code class="lang-js">&lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (&lt;span class=&quot;hljs-keyword&quot;&gt;typeof&lt;/span&gt; &lt;span class=&quot;hljs-built_in&quot;&gt;module&lt;/span&gt; !== &lt;span class=&quot;hljs-string&quot;&gt;&#39;undefined&#39;&lt;/span&gt; &amp;&amp; &lt;span class=&quot;hljs-keyword&quot;&gt;typeof&lt;/span&gt; exports === &lt;span class=&quot;hljs-string&quot;&gt;&#39;object&#39;&lt;/span&gt;) {
-    &lt;span class=&quot;hljs-built_in&quot;&gt;module&lt;/span&gt;.exports = markover
-} &lt;span class=&quot;hljs-keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (&lt;span class=&quot;hljs-keyword&quot;&gt;typeof&lt;/span&gt; define === &lt;span class=&quot;hljs-string&quot;&gt;&#39;function&#39;&lt;/span&gt; &amp;&amp; define.amd) {
-    define(&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;hljs-params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;{ &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; markover })
-} &lt;span class=&quot;hljs-keyword&quot;&gt;else&lt;/span&gt; {
-    &lt;span class=&quot;hljs-keyword&quot;&gt;this&lt;/span&gt;.markover = markover
+<pre><div class="field">last</div><code class="lang-js"><span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> <span class="hljs-built_in">module</span> !== <span class="hljs-string">'undefined'</span> &amp;&amp; <span class="hljs-keyword">typeof</span> exports === <span class="hljs-string">'object'</span>) {
+    <span class="hljs-built_in">module</span>.exports = markover
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> define === <span class="hljs-string">'function'</span> &amp;&amp; define.amd) {
+    define(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> markover })
+} <span class="hljs-keyword">else</span> {
+    <span class="hljs-keyword">this</span>.markover = markover
 }
 
-}).call(&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;hljs-params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;{
-        &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;this&lt;/span&gt; || (&lt;span class=&quot;hljs-keyword&quot;&gt;typeof&lt;/span&gt; &lt;span class=&quot;hljs-built_in&quot;&gt;window&lt;/span&gt; !== &lt;span class=&quot;hljs-string&quot;&gt;&#39;undefined&#39;&lt;/span&gt; ? &lt;span class=&quot;hljs-built_in&quot;&gt;window&lt;/span&gt; : global)
+}).call(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span> || (<span class="hljs-keyword">typeof</span> <span class="hljs-built_in">window</span> !== <span class="hljs-string">'undefined'</span> ? <span class="hljs-built_in">window</span> : global)
 })
 </code></pre>
 <h2 id="display-document">3.2 Display Document</h2>
@@ -472,40 +472,40 @@ environment it is operating in.</p>
 <code>HTML</code> documents has quite a bit.</p>
 <h3 id="basic-structure">3.2.1 Basic structure</h3>
 <p>Here is the typical start of an HTML document, which comes before the actual header.</p>
-<pre><div class="field">head</div><code class="lang-html">&lt;span class=&quot;hljs-doctype&quot;&gt;&lt;!DOCTYPE html&gt;&lt;/span&gt;
-&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;html&lt;/span&gt; &lt;span class=&quot;hljs-attribute&quot;&gt;lang&lt;/span&gt;=&lt;span class=&quot;hljs-value&quot;&gt;&quot;en&quot;&lt;/span&gt; &lt;span class=&quot;hljs-attribute&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;hljs-value&quot;&gt;&quot;&quot;&lt;/span&gt;&gt;&lt;/span&gt;
-&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;head&lt;/span&gt;&gt;&lt;/span&gt;
+<pre><div class="field">head</div><code class="lang-html"><span class="hljs-doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">html</span> <span class="hljs-attribute">lang</span>=<span class="hljs-value">"en"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">""</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">head</span>&gt;</span>
 </code></pre>
 <p>The <code>HTML</code> has a section the separates the header from the body of the document.</p>
-<pre><div class="field">transition</div><code class="lang-html">&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;head&lt;/span&gt;&gt;&lt;/span&gt;
-&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;body&lt;/span&gt;&gt;&lt;/span&gt;
+<pre><div class="field">transition</div><code class="lang-html"><span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
 </code></pre>
 <p>And some ending material.</p>
-<pre><div class="field">tail</div><code class="lang-html">&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;body&lt;/span&gt;&gt;&lt;/span&gt;
-&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;html&lt;/span&gt;&gt;&lt;/span&gt;
+<pre><div class="field">tail</div><code class="lang-html"><span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
 </code></pre>
 <h3 id="additional-header-material">3.2.2 Additional Header Material</h3>
 <p>These meta provide additional information about the display document encoding.
 Setting the viewport scale helps display the document on small screens.</p>
-<pre><div class="field">head</div><code class="lang-html">  &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;hljs-attribute&quot;&gt;charset&lt;/span&gt;=&lt;span class=&quot;hljs-value&quot;&gt;&quot;utf-8&quot;&lt;/span&gt;&gt;&lt;/span&gt;
-  &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;hljs-attribute&quot;&gt;http-equiv&lt;/span&gt;=&lt;span class=&quot;hljs-value&quot;&gt;&quot;Content-Language&quot;&lt;/span&gt; &lt;span class=&quot;hljs-attribute&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;hljs-value&quot;&gt;&quot;en&quot;&lt;/span&gt;&gt;&lt;/span&gt;
-  &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;meta&lt;/span&gt; &lt;span class=&quot;hljs-attribute&quot;&gt;name&lt;/span&gt;=&lt;span class=&quot;hljs-value&quot;&gt;&quot;viewport&quot;&lt;/span&gt; &lt;span class=&quot;hljs-attribute&quot;&gt;content&lt;/span&gt;=&lt;span class=&quot;hljs-value&quot;&gt;&quot;initial-scale=1&quot;&lt;/span&gt;&gt;&lt;/span&gt;
+<pre><div class="field">head</div><code class="lang-html">  <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">charset</span>=<span class="hljs-value">"utf-8"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">http-equiv</span>=<span class="hljs-value">"Content-Language"</span> <span class="hljs-attribute">content</span>=<span class="hljs-value">"en"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">meta</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"viewport"</span> <span class="hljs-attribute">content</span>=<span class="hljs-value">"initial-scale=1"</span>&gt;</span>
 </code></pre>
 <h3 id="mathjax-configuration">3.2.3 MathJax configuration</h3>
 <p>The following code enables <code>MathJax</code> on the Web.
 It requires a configuration block before the MathJax code can be included.
 In order to avoid confusion with other uses of symbols, <code>markover</code> only
 uses <code>\\(</code> and <code>\\)</code> to delimit inline math equations.</p>
-<pre><div class="field">head</div><code class="lang-html">  &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;hljs-attribute&quot;&gt;type&lt;/span&gt;=&lt;span class=&quot;hljs-value&quot;&gt;&quot;text/x-mathjax-config&quot;&lt;/span&gt;&gt;&lt;/span&gt;&lt;span class=&quot;javascript&quot;&gt;
+<pre><div class="field">head</div><code class="lang-html">  <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text/x-mathjax-config"</span>&gt;</span><span class="javascript">
     MathJax.Hub.Config({
-      showProcessingMessages: &lt;span class=&quot;hljs-literal&quot;&gt;false&lt;/span&gt;,
-      tex2jax: { inlineMath: [[&lt;span class=&quot;hljs-string&quot;&gt;&#39;\\(&#39;&lt;/span&gt;,&lt;span class=&quot;hljs-string&quot;&gt;&#39;\\)&#39;&lt;/span&gt;]] },
-      TeX: { equationNumbers: {autoNumber: &lt;span class=&quot;hljs-string&quot;&gt;&quot;AMS&quot;&lt;/span&gt;} }
+      showProcessingMessages: <span class="hljs-literal">false</span>,
+      tex2jax: { inlineMath: [[<span class="hljs-string">'\\('</span>,<span class="hljs-string">'\\)'</span>]] },
+      TeX: { equationNumbers: {autoNumber: <span class="hljs-string">"AMS"</span>} }
     });
-  &lt;/span&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;script&lt;/span&gt;&gt;&lt;/span&gt;
-  &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;hljs-attribute&quot;&gt;type&lt;/span&gt;=&lt;span class=&quot;hljs-value&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt;
-    &lt;span class=&quot;hljs-attribute&quot;&gt;src&lt;/span&gt;=&lt;span class=&quot;hljs-value&quot;&gt;&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&lt;/span&gt;&gt;&lt;/span&gt;&lt;span class=&quot;javascript&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;script&lt;/span&gt;&gt;&lt;/span&gt;
+  </span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text/javascript"</span>
+    <span class="hljs-attribute">src</span>=<span class="hljs-value">"http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"</span>&gt;</span><span class="javascript">
+  </span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
 </code></pre>
 <p>For example, here is an equation that will be processed with <code>MathJax</code> and appear as in-line
 equations in the text: \( x \lt y \) or gamma \( \Gamma \). However if <code>MathJax</code> isn&#39;t properly
@@ -518,21 +518,21 @@ $$</p>
 <p>The display document makes some use of <a href="http://jquery.com">jquery</a>. This tools handles
 most of the inconsistentcies between Web browser and simplifies the manipulation of
 <code>HTML</code> documents.</p>
-<pre><div class="field">head</div><code class="lang-html">  &lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;hljs-attribute&quot;&gt;type&lt;/span&gt;=&lt;span class=&quot;hljs-value&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt;
-    &lt;span class=&quot;hljs-attribute&quot;&gt;src&lt;/span&gt;=&lt;span class=&quot;hljs-value&quot;&gt;&quot;http://code.jquery.com/jquery-2.1.3.min.js&quot;&lt;/span&gt;&gt;&lt;/span&gt;&lt;span class=&quot;javascript&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;script&lt;/span&gt;&gt;&lt;/span&gt;
+<pre><div class="field">head</div><code class="lang-html">  <span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text/javascript"</span>
+    <span class="hljs-attribute">src</span>=<span class="hljs-value">"http://code.jquery.com/jquery-2.1.3.min.js"</span>&gt;</span><span class="javascript">
+  </span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
 </code></pre>
 <p>JQuery is used to load <code>highlight.js</code> parsers for the languages used in this document.
 There isn&#39;t a one-to-one relationship between languages and parsers. For example,
 the <code>HTML</code> parser is located in <code>xml</code>.</p>
-<pre><div class="field">tail</div><code class="lang-html">&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;hljs-attribute&quot;&gt;type&lt;/span&gt;=&lt;span class=&quot;hljs-value&quot;&gt;&quot;text/javascript&quot;&lt;/span&gt;&gt;&lt;/span&gt;&lt;span class=&quot;javascript&quot;&gt;
-  [&lt;span class=&quot;hljs-string&quot;&gt;&quot;bash&quot;&lt;/span&gt;, &lt;span class=&quot;hljs-string&quot;&gt;&quot;xml&quot;&lt;/span&gt;, &lt;span class=&quot;hljs-string&quot;&gt;&quot;javascript&quot;&lt;/span&gt;, &lt;span class=&quot;hljs-string&quot;&gt;&quot;json&quot;&lt;/span&gt;, &lt;span class=&quot;hljs-string&quot;&gt;&quot;css&quot;&lt;/span&gt;, &lt;span class=&quot;hljs-string&quot;&gt;&quot;markdown&quot;&lt;/span&gt;].forEach(&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;hljs-params&quot;&gt;(e)&lt;/span&gt; &lt;/span&gt;{
-    &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; s = $(&lt;span class=&quot;hljs-string&quot;&gt;&#39;&lt;script&gt;&#39;&lt;/span&gt;)
-    s.type = &lt;span class=&quot;hljs-string&quot;&gt;&#39;text/javascript&#39;&lt;/span&gt;
-    s.src = &lt;span class=&quot;hljs-string&quot;&gt;&#39;http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/languages/&#39;&lt;/span&gt; + e + &lt;span class=&quot;hljs-string&quot;&gt;&#39;.min.js&#39;&lt;/span&gt;
-    $(&lt;span class=&quot;hljs-string&quot;&gt;&#39;head&#39;&lt;/span&gt;).append(s)
+<pre><div class="field">tail</div><code class="lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text/javascript"</span>&gt;</span><span class="javascript">
+  [<span class="hljs-string">"bash"</span>, <span class="hljs-string">"xml"</span>, <span class="hljs-string">"javascript"</span>, <span class="hljs-string">"json"</span>, <span class="hljs-string">"css"</span>, <span class="hljs-string">"markdown"</span>].forEach(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(e)</span> </span>{
+    <span class="hljs-keyword">var</span> s = $(<span class="hljs-string">'&lt;script&gt;'</span>)
+    s.type = <span class="hljs-string">'text/javascript'</span>
+    s.src = <span class="hljs-string">'http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/languages/'</span> + e + <span class="hljs-string">'.min.js'</span>
+    $(<span class="hljs-string">'head'</span>).append(s)
   })
-&lt;/span&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;script&lt;/span&gt;&gt;&lt;/span&gt;
+</span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
 </code></pre>
 <h3 id="html-stylesheet">3.2.5 HTML stylesheet</h3>
 <p>The format of the display document is largely controlled by the <code>CSS</code>.
@@ -549,25 +549,25 @@ This style sheet will display well on a variety of screen sizes and in print.</p
 <p>This first section resets all <code>HTML</code> elements to reasonable default values.
 This is used in the heading of the page and has selectors that effect elements
 throughout the document.</p>
-<pre><div class="field">headstylesheet</div><code class="lang-css">&lt;span class=&quot;hljs-tag&quot;&gt;html&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;body&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;div&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;span&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;object&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;iframe&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;h1&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;h2&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;h3&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;h4&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;h5&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;h6&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;p&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;blockquote&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;pre&lt;/span&gt;,
-&lt;span class=&quot;hljs-tag&quot;&gt;abbr&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;address&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;cite&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;code&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;del&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;dfn&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;em&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;img&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;ins&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;kbd&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;q&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;samp&lt;/span&gt;,
-&lt;span class=&quot;hljs-tag&quot;&gt;small&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;strong&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;sub&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;sup&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;var&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;b&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;i&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;dl&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;dt&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;dd&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;ol&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;ul&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;li&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;a&lt;/span&gt;,
-&lt;span class=&quot;hljs-tag&quot;&gt;fieldset&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;form&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;label&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;legend&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;table&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;caption&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;tbody&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;tfoot&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;thead&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;tr&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;th&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;td&lt;/span&gt;,
-&lt;span class=&quot;hljs-tag&quot;&gt;article&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;aside&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;canvas&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;details&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;figcaption&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;figure&lt;/span&gt;,
-&lt;span class=&quot;hljs-tag&quot;&gt;footer&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;header&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;hgroup&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;menu&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;nav&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;section&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;summary&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;time&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;mark&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;audio&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;video&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-  &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;display&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; block&lt;/span&gt;&lt;/span&gt;;
-  &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;margin&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt;&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-  &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;padding&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt;&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-  &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;border&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt;&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-  &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;outline&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt;&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-  &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;line-height&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-number&quot;&gt;140%&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-  &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;font-size&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-number&quot;&gt;100%&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-  &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;vertical-align&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt;baseline&lt;/span&gt;&lt;/span&gt;;
-  &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;text-decoration&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; none&lt;/span&gt;&lt;/span&gt;;
-  &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;background&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt;transparent&lt;/span&gt;&lt;/span&gt;;
-&lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
+<pre><div class="field">headstylesheet</div><code class="lang-css"><span class="hljs-tag">html</span>, <span class="hljs-tag">body</span>, <span class="hljs-tag">div</span>, <span class="hljs-tag">span</span>, <span class="hljs-tag">object</span>, <span class="hljs-tag">iframe</span>, <span class="hljs-tag">h1</span>, <span class="hljs-tag">h2</span>, <span class="hljs-tag">h3</span>, <span class="hljs-tag">h4</span>, <span class="hljs-tag">h5</span>, <span class="hljs-tag">h6</span>, <span class="hljs-tag">p</span>, <span class="hljs-tag">blockquote</span>, <span class="hljs-tag">pre</span>,
+<span class="hljs-tag">abbr</span>, <span class="hljs-tag">address</span>, <span class="hljs-tag">cite</span>, <span class="hljs-tag">code</span>, <span class="hljs-tag">del</span>, <span class="hljs-tag">dfn</span>, <span class="hljs-tag">em</span>, <span class="hljs-tag">img</span>, <span class="hljs-tag">ins</span>, <span class="hljs-tag">kbd</span>, <span class="hljs-tag">q</span>, <span class="hljs-tag">samp</span>,
+<span class="hljs-tag">small</span>, <span class="hljs-tag">strong</span>, <span class="hljs-tag">sub</span>, <span class="hljs-tag">sup</span>, <span class="hljs-tag">var</span>, <span class="hljs-tag">b</span>, <span class="hljs-tag">i</span>, <span class="hljs-tag">dl</span>, <span class="hljs-tag">dt</span>, <span class="hljs-tag">dd</span>, <span class="hljs-tag">ol</span>, <span class="hljs-tag">ul</span>, <span class="hljs-tag">li</span>, <span class="hljs-tag">a</span>,
+<span class="hljs-tag">fieldset</span>, <span class="hljs-tag">form</span>, <span class="hljs-tag">label</span>, <span class="hljs-tag">legend</span>, <span class="hljs-tag">table</span>, <span class="hljs-tag">caption</span>, <span class="hljs-tag">tbody</span>, <span class="hljs-tag">tfoot</span>, <span class="hljs-tag">thead</span>, <span class="hljs-tag">tr</span>, <span class="hljs-tag">th</span>, <span class="hljs-tag">td</span>,
+<span class="hljs-tag">article</span>, <span class="hljs-tag">aside</span>, <span class="hljs-tag">canvas</span>, <span class="hljs-tag">details</span>, <span class="hljs-tag">figcaption</span>, <span class="hljs-tag">figure</span>,
+<span class="hljs-tag">footer</span>, <span class="hljs-tag">header</span>, <span class="hljs-tag">hgroup</span>, <span class="hljs-tag">menu</span>, <span class="hljs-tag">nav</span>, <span class="hljs-tag">section</span>, <span class="hljs-tag">summary</span>, <span class="hljs-tag">time</span>, <span class="hljs-tag">mark</span>, <span class="hljs-tag">audio</span>, <span class="hljs-tag">video</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">display</span>:<span class="hljs-value"> block</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">margin</span>:<span class="hljs-value"><span class="hljs-number">0</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">padding</span>:<span class="hljs-value"><span class="hljs-number">0</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">border</span>:<span class="hljs-value"><span class="hljs-number">0</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">outline</span>:<span class="hljs-value"><span class="hljs-number">0</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">line-height</span>:<span class="hljs-value"> <span class="hljs-number">140%</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">100%</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">vertical-align</span>:<span class="hljs-value">baseline</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">text-decoration</span>:<span class="hljs-value"> none</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">background</span>:<span class="hljs-value">transparent</span></span>;
+<span class="hljs-rule">}</span></span>
 
-&lt;span class=&quot;hljs-tag&quot;&gt;a&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;code&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;span&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;b&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;i&lt;/span&gt;, &lt;span class=&quot;hljs-tag&quot;&gt;em&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{ &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;display&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; inline&lt;/span&gt;&lt;/span&gt;; &lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
+<span class="hljs-tag">a</span>, <span class="hljs-tag">code</span>, <span class="hljs-tag">span</span>, <span class="hljs-tag">b</span>, <span class="hljs-tag">i</span>, <span class="hljs-tag">em</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">display</span>:<span class="hljs-value"> inline</span></span>; <span class="hljs-rule">}</span></span>
 </code></pre>
 <h4 id="preliminary-material">3.2.5.2 Preliminary Material</h4>
 <p>The following stylesheet operates within the content generated by applying <code>weave</code>
@@ -575,285 +575,285 @@ to the source document.
 <code>markover</code> marks up 3 areas before the main document body:
 title, tag, and a table of contents.</p>
 <p>Title and tag are each in a single element and only appear once in the display document.</p>
-<pre><div class="field">stylesheet</div><code class="lang-css">&lt;span class=&quot;hljs-id&quot;&gt;#content&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-  &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;font-family&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-string&quot;&gt;&quot;HelveticaNeue-Light&quot;&lt;/span&gt;, &lt;span class=&quot;hljs-string&quot;&gt;&quot;Helvetica Neue Light&quot;&lt;/span&gt;, &lt;span class=&quot;hljs-string&quot;&gt;&quot;Helvetica Neue&quot;&lt;/span&gt;, Helvetica, Arial, &lt;span class=&quot;hljs-string&quot;&gt;&quot;Lucida Grande&quot;&lt;/span&gt;, sans-serif&lt;/span&gt;&lt;/span&gt;; 
-&lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
+<pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-id">#content</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">font-family</span>:<span class="hljs-value"> <span class="hljs-string">"HelveticaNeue-Light"</span>, <span class="hljs-string">"Helvetica Neue Light"</span>, <span class="hljs-string">"Helvetica Neue"</span>, Helvetica, Arial, <span class="hljs-string">"Lucida Grande"</span>, sans-serif</span></span>; 
+<span class="hljs-rule">}</span></span>
 
-&lt;span class=&quot;hljs-id&quot;&gt;#content&lt;/span&gt; &lt;span class=&quot;hljs-id&quot;&gt;#title&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-  &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;clear&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; both&lt;/span&gt;&lt;/span&gt;;
-  &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;text-align&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; center&lt;/span&gt;&lt;/span&gt;;
-  &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;font-size&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-number&quot;&gt;140%&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-  &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;font-weight&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; bold&lt;/span&gt;&lt;/span&gt;;
-  &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;margin&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-number&quot;&gt;2em&lt;/span&gt; &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-&lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
+<span class="hljs-id">#content</span> <span class="hljs-id">#title</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">clear</span>:<span class="hljs-value"> both</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">text-align</span>:<span class="hljs-value"> center</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">140%</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">font-weight</span>:<span class="hljs-value"> bold</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">margin</span>:<span class="hljs-value"> <span class="hljs-number">2em</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span></span></span>;
+<span class="hljs-rule">}</span></span>
 
-&lt;span class=&quot;hljs-id&quot;&gt;#content&lt;/span&gt; &lt;span class=&quot;hljs-id&quot;&gt;#tag&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-  &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;clear&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; both&lt;/span&gt;&lt;/span&gt;;
-  &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;text-align&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; center&lt;/span&gt;&lt;/span&gt;;
-  &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;font-size&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-number&quot;&gt;110%&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-  &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;margin&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;hljs-number&quot;&gt;1em&lt;/span&gt; &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-&lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
+<span class="hljs-id">#content</span> <span class="hljs-id">#tag</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">clear</span>:<span class="hljs-value"> both</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">text-align</span>:<span class="hljs-value"> center</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">110%</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">margin</span>:<span class="hljs-value"> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">1em</span> <span class="hljs-number">0</span></span></span>;
+<span class="hljs-rule">}</span></span>
 </code></pre>
 <p>The table of contents, in a single <code>toc</code> id, is slightly more complex.
 The table is on the left for wide windows only.</p>
-<pre><div class="field">stylesheet</div><code class="lang-css">&lt;span class=&quot;hljs-id&quot;&gt;#content&lt;/span&gt; &lt;span class=&quot;hljs-id&quot;&gt;#toc&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-  &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;padding&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;hljs-number&quot;&gt;1em&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-  &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;max-width&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-number&quot;&gt;96%&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-  &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;page-break-after&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; always&lt;/span&gt;&lt;/span&gt;;
-&lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
+<pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-id">#content</span> <span class="hljs-id">#toc</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">padding</span>:<span class="hljs-value"> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">1em</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">max-width</span>:<span class="hljs-value"> <span class="hljs-number">96%</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">page-break-after</span>:<span class="hljs-value"> always</span></span>;
+<span class="hljs-rule">}</span></span>
 
-&lt;span class=&quot;hljs-at_rule&quot;&gt;@&lt;span class=&quot;hljs-keyword&quot;&gt;media&lt;/span&gt; screen and (min-width: &lt;span class=&quot;hljs-number&quot;&gt;641px&lt;/span&gt;) &lt;/span&gt;{
-  &lt;span class=&quot;hljs-id&quot;&gt;#content&lt;/span&gt; &lt;span class=&quot;hljs-id&quot;&gt;#toc&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;float&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; left&lt;/span&gt;&lt;/span&gt;;
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;max-width&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-number&quot;&gt;26%&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-  &lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
+<span class="hljs-at_rule">@<span class="hljs-keyword">media</span> screen and (min-width: <span class="hljs-number">641px</span>) </span>{
+  <span class="hljs-id">#content</span> <span class="hljs-id">#toc</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">float</span>:<span class="hljs-value"> left</span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">max-width</span>:<span class="hljs-value"> <span class="hljs-number">26%</span></span></span>;
+  <span class="hljs-rule">}</span></span>
 }
 
-&lt;span class=&quot;hljs-id&quot;&gt;#content&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.tocsn&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{ &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;float&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; left&lt;/span&gt;&lt;/span&gt;; &lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span class=&quot;hljs-id&quot;&gt;#content&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.tocsr&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{ &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;overflow&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; hidden&lt;/span&gt;&lt;/span&gt;; &lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
+<span class="hljs-id">#content</span> <span class="hljs-class">.tocsn</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">float</span>:<span class="hljs-value"> left</span></span>; <span class="hljs-rule">}</span></span>
+<span class="hljs-id">#content</span> <span class="hljs-class">.tocsr</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">overflow</span>:<span class="hljs-value"> hidden</span></span>; <span class="hljs-rule">}</span></span>
 
-&lt;span class=&quot;hljs-id&quot;&gt;#content&lt;/span&gt; &lt;span class=&quot;hljs-id&quot;&gt;#toc&lt;/span&gt; &lt;span class=&quot;hljs-tag&quot;&gt;ol&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-  &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;list-style-type&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; none&lt;/span&gt;&lt;/span&gt;;
-&lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
+<span class="hljs-id">#content</span> <span class="hljs-id">#toc</span> <span class="hljs-tag">ol</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">list-style-type</span>:<span class="hljs-value"> none</span></span>;
+<span class="hljs-rule">}</span></span>
 
-&lt;span class=&quot;hljs-id&quot;&gt;#content&lt;/span&gt; &lt;span class=&quot;hljs-id&quot;&gt;#toc&lt;/span&gt; &lt;span class=&quot;hljs-tag&quot;&gt;ol&lt;/span&gt; &lt;span class=&quot;hljs-tag&quot;&gt;ol&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-  &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;margin&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;hljs-number&quot;&gt;1em&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-&lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
+<span class="hljs-id">#content</span> <span class="hljs-id">#toc</span> <span class="hljs-tag">ol</span> <span class="hljs-tag">ol</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">margin</span>:<span class="hljs-value"> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">1em</span></span></span>;
+<span class="hljs-rule">}</span></span>
 </code></pre>
 <h4 id="main-body">3.2.5.3 Main body</h4>
 <p>The main document is in a single <code>doc</code> id.
 Make the toc and doc with the same margins.</p>
 <p>The &#39;overflow: hidden&#39; prevents the main text from flowing around
 the float content.</p>
-<pre><div class="field">stylesheet</div><code class="lang-css">&lt;span class=&quot;hljs-id&quot;&gt;#content&lt;/span&gt; &lt;span class=&quot;hljs-id&quot;&gt;#doc&lt;/span&gt;,
-&lt;span class=&quot;hljs-id&quot;&gt;#content&lt;/span&gt; &lt;span class=&quot;hljs-id&quot;&gt;#toc&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-  &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;margin&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;hljs-number&quot;&gt;1em&lt;/span&gt; &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt; &lt;span class=&quot;hljs-number&quot;&gt;1em&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-&lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
+<pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-id">#content</span> <span class="hljs-id">#doc</span>,
+<span class="hljs-id">#content</span> <span class="hljs-id">#toc</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">margin</span>:<span class="hljs-value"> <span class="hljs-number">0</span> <span class="hljs-number">1em</span> <span class="hljs-number">0</span> <span class="hljs-number">1em</span></span></span>;
+<span class="hljs-rule">}</span></span>
 
-&lt;span class=&quot;hljs-id&quot;&gt;#content&lt;/span&gt; &lt;span class=&quot;hljs-tag&quot;&gt;p&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{ &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;text-indent&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-number&quot;&gt;1em&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;; &lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
+<span class="hljs-id">#content</span> <span class="hljs-tag">p</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">text-indent</span>:<span class="hljs-value"> <span class="hljs-number">1em</span></span></span>; <span class="hljs-rule">}</span></span>
 
-&lt;span class=&quot;hljs-id&quot;&gt;#content&lt;/span&gt; &lt;span class=&quot;hljs-tag&quot;&gt;code&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{ &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;font-size&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-number&quot;&gt;120%&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;; &lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
+<span class="hljs-id">#content</span> <span class="hljs-tag">code</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">120%</span></span></span>; <span class="hljs-rule">}</span></span>
 
-&lt;span class=&quot;hljs-id&quot;&gt;#content&lt;/span&gt; &lt;span class=&quot;hljs-tag&quot;&gt;pre&lt;/span&gt; &lt;span class=&quot;hljs-tag&quot;&gt;code&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-  &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;font-family&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-string&quot;&gt;&quot;Courier New&quot;&lt;/span&gt;, Courier, monospace&lt;/span&gt;&lt;/span&gt;;
-  &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;font-size&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-number&quot;&gt;100%&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-&lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
+<span class="hljs-id">#content</span> <span class="hljs-tag">pre</span> <span class="hljs-tag">code</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">font-family</span>:<span class="hljs-value"> <span class="hljs-string">"Courier New"</span>, Courier, monospace</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">100%</span></span></span>;
+<span class="hljs-rule">}</span></span>
 
-&lt;span class=&quot;hljs-at_rule&quot;&gt;@&lt;span class=&quot;hljs-keyword&quot;&gt;media&lt;/span&gt; screen and (min-width: &lt;span class=&quot;hljs-number&quot;&gt;641px&lt;/span&gt;) &lt;/span&gt;{
-  &lt;span class=&quot;hljs-id&quot;&gt;#content&lt;/span&gt; &lt;span class=&quot;hljs-id&quot;&gt;#doc&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;overflow&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; hidden&lt;/span&gt;&lt;/span&gt;;
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;max-width&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-number&quot;&gt;70%&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-  &lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
+<span class="hljs-at_rule">@<span class="hljs-keyword">media</span> screen and (min-width: <span class="hljs-number">641px</span>) </span>{
+  <span class="hljs-id">#content</span> <span class="hljs-id">#doc</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">overflow</span>:<span class="hljs-value"> hidden</span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">max-width</span>:<span class="hljs-value"> <span class="hljs-number">70%</span></span></span>;
+  <span class="hljs-rule">}</span></span>
 }
 </code></pre>
 <p>Field names are in a <code>field</code> class.</p>
-<pre><div class="field">stylesheet</div><code class="lang-css">&lt;span class=&quot;hljs-id&quot;&gt;#content&lt;/span&gt; &lt;span class=&quot;hljs-tag&quot;&gt;pre&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.field&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-  &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;display&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt;block&lt;/span&gt;&lt;/span&gt;;
-  &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;margin&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-number&quot;&gt;1em&lt;/span&gt; &lt;span class=&quot;hljs-number&quot;&gt;1em&lt;/span&gt; &lt;span class=&quot;hljs-number&quot;&gt;0em&lt;/span&gt; &lt;span class=&quot;hljs-number&quot;&gt;0em&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-&lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
+<pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-id">#content</span> <span class="hljs-tag">pre</span> <span class="hljs-class">.field</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">display</span>:<span class="hljs-value">block</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">margin</span>:<span class="hljs-value"> <span class="hljs-number">1em</span> <span class="hljs-number">1em</span> <span class="hljs-number">0em</span> <span class="hljs-number">0em</span></span></span>;
+<span class="hljs-rule">}</span></span>
 
-&lt;span class=&quot;hljs-id&quot;&gt;#content&lt;/span&gt; &lt;span class=&quot;hljs-tag&quot;&gt;pre&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.field&lt;/span&gt;&lt;span class=&quot;hljs-pseudo&quot;&gt;::after&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-  &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;content&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-string&quot;&gt;&quot; :=&quot;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-&lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
+<span class="hljs-id">#content</span> <span class="hljs-tag">pre</span> <span class="hljs-class">.field</span><span class="hljs-pseudo">::after</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">content</span>:<span class="hljs-value"> <span class="hljs-string">" :="</span></span></span>;
+<span class="hljs-rule">}</span></span>
 </code></pre>
 <p>The code blocks are in the <code>code</code> tag and
 have classes that identify their language.</p>
-<pre><div class="field">stylesheet</div><code class="lang-css">&lt;span class=&quot;hljs-id&quot;&gt;#content&lt;/span&gt; &lt;span class=&quot;hljs-tag&quot;&gt;pre&lt;/span&gt; &lt;span class=&quot;hljs-tag&quot;&gt;code&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-  &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;display&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; block&lt;/span&gt;&lt;/span&gt;;
-  &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;margin&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-number&quot;&gt;1em&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-  &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;padding&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-number&quot;&gt;1em&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-  &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;border&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; solid &lt;span class=&quot;hljs-number&quot;&gt;1px&lt;/span&gt; &lt;span class=&quot;hljs-hexcolor&quot;&gt;#aaa&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-&lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
+<pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-id">#content</span> <span class="hljs-tag">pre</span> <span class="hljs-tag">code</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">display</span>:<span class="hljs-value"> block</span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">margin</span>:<span class="hljs-value"> <span class="hljs-number">1em</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">padding</span>:<span class="hljs-value"> <span class="hljs-number">1em</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">border</span>:<span class="hljs-value"> solid <span class="hljs-number">1px</span> <span class="hljs-hexcolor">#aaa</span></span></span>;
+<span class="hljs-rule">}</span></span>
 
-&lt;span class=&quot;hljs-at_rule&quot;&gt;@&lt;span class=&quot;hljs-keyword&quot;&gt;media&lt;/span&gt; screen &lt;/span&gt;{
-  &lt;span class=&quot;hljs-id&quot;&gt;#content&lt;/span&gt; &lt;span class=&quot;hljs-tag&quot;&gt;pre&lt;/span&gt; &lt;span class=&quot;hljs-tag&quot;&gt;code&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;overflow&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; auto&lt;/span&gt;&lt;/span&gt;;
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;max-height&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-number&quot;&gt;30em&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-  &lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
+<span class="hljs-at_rule">@<span class="hljs-keyword">media</span> screen </span>{
+  <span class="hljs-id">#content</span> <span class="hljs-tag">pre</span> <span class="hljs-tag">code</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">overflow</span>:<span class="hljs-value"> auto</span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">max-height</span>:<span class="hljs-value"> <span class="hljs-number">30em</span></span></span>;
+  <span class="hljs-rule">}</span></span>
 }
 
-&lt;span class=&quot;hljs-at_rule&quot;&gt;@&lt;span class=&quot;hljs-keyword&quot;&gt;media&lt;/span&gt; print &lt;/span&gt;{
-  &lt;span class=&quot;hljs-id&quot;&gt;#content&lt;/span&gt; &lt;span class=&quot;hljs-tag&quot;&gt;pre&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;page-break-inside&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; avoid&lt;/span&gt;&lt;/span&gt;;
-  &lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
-  &lt;span class=&quot;hljs-id&quot;&gt;#content&lt;/span&gt; &lt;span class=&quot;hljs-tag&quot;&gt;pre&lt;/span&gt; &lt;span class=&quot;hljs-tag&quot;&gt;code&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;overflow&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; visible&lt;/span&gt;&lt;/span&gt;;
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;word-wrap&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; break-word&lt;/span&gt;&lt;/span&gt;;
-  &lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
+<span class="hljs-at_rule">@<span class="hljs-keyword">media</span> print </span>{
+  <span class="hljs-id">#content</span> <span class="hljs-tag">pre</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">page-break-inside</span>:<span class="hljs-value"> avoid</span></span>;
+  <span class="hljs-rule">}</span></span>
+  <span class="hljs-id">#content</span> <span class="hljs-tag">pre</span> <span class="hljs-tag">code</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">overflow</span>:<span class="hljs-value"> visible</span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">word-wrap</span>:<span class="hljs-value"> break-word</span></span>;
+  <span class="hljs-rule">}</span></span>
 }
 </code></pre>
 <p>Each language uses a slightly different light background color.</p>
-<pre><div class="field">stylesheet</div><code class="lang-css">&lt;span class=&quot;hljs-at_rule&quot;&gt;@&lt;span class=&quot;hljs-keyword&quot;&gt;media&lt;/span&gt; screen &lt;/span&gt;{
-  &lt;span class=&quot;hljs-id&quot;&gt;#content&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.lang-js&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{ &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;background-color&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; ivory&lt;/span&gt;&lt;/span&gt;; &lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
-  &lt;span class=&quot;hljs-id&quot;&gt;#content&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.lang-md&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{ &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;background-color&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; lightyellow&lt;/span&gt;&lt;/span&gt;; &lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
-  &lt;span class=&quot;hljs-id&quot;&gt;#content&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.lang-html&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{ &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;background-color&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; floralwhite&lt;/span&gt;&lt;/span&gt;; &lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
-  &lt;span class=&quot;hljs-id&quot;&gt;#content&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.lang-json&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{ &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;background-color&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; honeydew&lt;/span&gt;&lt;/span&gt;; &lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
-  &lt;span class=&quot;hljs-id&quot;&gt;#content&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.lang-css&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{ &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;background-color&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; cornsilk&lt;/span&gt;&lt;/span&gt;; &lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
-  &lt;span class=&quot;hljs-id&quot;&gt;#content&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.lang-sh&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{ &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;background-color&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; lemonchiffon&lt;/span&gt;&lt;/span&gt;; &lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
+<pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-at_rule">@<span class="hljs-keyword">media</span> screen </span>{
+  <span class="hljs-id">#content</span> <span class="hljs-class">.lang-js</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">background-color</span>:<span class="hljs-value"> ivory</span></span>; <span class="hljs-rule">}</span></span>
+  <span class="hljs-id">#content</span> <span class="hljs-class">.lang-md</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">background-color</span>:<span class="hljs-value"> lightyellow</span></span>; <span class="hljs-rule">}</span></span>
+  <span class="hljs-id">#content</span> <span class="hljs-class">.lang-html</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">background-color</span>:<span class="hljs-value"> floralwhite</span></span>; <span class="hljs-rule">}</span></span>
+  <span class="hljs-id">#content</span> <span class="hljs-class">.lang-json</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">background-color</span>:<span class="hljs-value"> honeydew</span></span>; <span class="hljs-rule">}</span></span>
+  <span class="hljs-id">#content</span> <span class="hljs-class">.lang-css</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">background-color</span>:<span class="hljs-value"> cornsilk</span></span>; <span class="hljs-rule">}</span></span>
+  <span class="hljs-id">#content</span> <span class="hljs-class">.lang-sh</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">background-color</span>:<span class="hljs-value"> lemonchiffon</span></span>; <span class="hljs-rule">}</span></span>
 }
 </code></pre>
 <p>The header font sizes are set.</p>
-<pre><div class="field">stylesheet</div><code class="lang-css">&lt;span class=&quot;hljs-id&quot;&gt;#content&lt;/span&gt; &lt;span class=&quot;hljs-tag&quot;&gt;h1&lt;/span&gt;,
-&lt;span class=&quot;hljs-id&quot;&gt;#content&lt;/span&gt; &lt;span class=&quot;hljs-tag&quot;&gt;h2&lt;/span&gt;,
-&lt;span class=&quot;hljs-id&quot;&gt;#content&lt;/span&gt; &lt;span class=&quot;hljs-tag&quot;&gt;h3&lt;/span&gt;,
-&lt;span class=&quot;hljs-id&quot;&gt;#content&lt;/span&gt; &lt;span class=&quot;hljs-tag&quot;&gt;h4&lt;/span&gt;,
-&lt;span class=&quot;hljs-id&quot;&gt;#content&lt;/span&gt; &lt;span class=&quot;hljs-tag&quot;&gt;h5&lt;/span&gt;,
-&lt;span class=&quot;hljs-id&quot;&gt;#content&lt;/span&gt; &lt;span class=&quot;hljs-tag&quot;&gt;h6&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-  &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;margin&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-number&quot;&gt;0.5em&lt;/span&gt; &lt;span class=&quot;hljs-number&quot;&gt;0em&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-  &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;page-break-after&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; avoid
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;}
+<pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-id">#content</span> <span class="hljs-tag">h1</span>,
+<span class="hljs-id">#content</span> <span class="hljs-tag">h2</span>,
+<span class="hljs-id">#content</span> <span class="hljs-tag">h3</span>,
+<span class="hljs-id">#content</span> <span class="hljs-tag">h4</span>,
+<span class="hljs-id">#content</span> <span class="hljs-tag">h5</span>,
+<span class="hljs-id">#content</span> <span class="hljs-tag">h6</span> <span class="hljs-rules">{
+  <span class="hljs-rule"><span class="hljs-attribute">margin</span>:<span class="hljs-value"> <span class="hljs-number">0.5em</span> <span class="hljs-number">0em</span></span></span>;
+  <span class="hljs-rule"><span class="hljs-attribute">page-break-after</span>:<span class="hljs-value"> avoid
+</span></span></span>}
 
-&lt;span class=&quot;hljs-id&quot;&gt;#content&lt;/span&gt; &lt;span class=&quot;hljs-tag&quot;&gt;h1&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{ &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;font-size&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-number&quot;&gt;140%&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;; &lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span class=&quot;hljs-id&quot;&gt;#content&lt;/span&gt; &lt;span class=&quot;hljs-tag&quot;&gt;h2&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{ &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;font-size&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-number&quot;&gt;130%&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;; &lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span class=&quot;hljs-id&quot;&gt;#content&lt;/span&gt; &lt;span class=&quot;hljs-tag&quot;&gt;h3&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{ &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;font-size&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-number&quot;&gt;120%&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;; &lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span class=&quot;hljs-id&quot;&gt;#content&lt;/span&gt; &lt;span class=&quot;hljs-tag&quot;&gt;h4&lt;/span&gt;,
-&lt;span class=&quot;hljs-id&quot;&gt;#content&lt;/span&gt; &lt;span class=&quot;hljs-tag&quot;&gt;h5&lt;/span&gt;,
-&lt;span class=&quot;hljs-id&quot;&gt;#content&lt;/span&gt; &lt;span class=&quot;hljs-tag&quot;&gt;h6&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{ &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;font-size&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-number&quot;&gt;110%&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;; &lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
+<span class="hljs-id">#content</span> <span class="hljs-tag">h1</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">140%</span></span></span>; <span class="hljs-rule">}</span></span>
+<span class="hljs-id">#content</span> <span class="hljs-tag">h2</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">130%</span></span></span>; <span class="hljs-rule">}</span></span>
+<span class="hljs-id">#content</span> <span class="hljs-tag">h3</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">120%</span></span></span>; <span class="hljs-rule">}</span></span>
+<span class="hljs-id">#content</span> <span class="hljs-tag">h4</span>,
+<span class="hljs-id">#content</span> <span class="hljs-tag">h5</span>,
+<span class="hljs-id">#content</span> <span class="hljs-tag">h6</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">110%</span></span></span>; <span class="hljs-rule">}</span></span>
 </code></pre>
 <p>These styles handle user interactions.</p>
-<pre><div class="field">stylesheet</div><code class="lang-css">&lt;span class=&quot;hljs-id&quot;&gt;#content&lt;/span&gt; &lt;span class=&quot;hljs-tag&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;hljs-pseudo&quot;&gt;:hover&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{ &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;color&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-hexcolor&quot;&gt;#aaa&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;; &lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
+<pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-id">#content</span> <span class="hljs-tag">a</span><span class="hljs-pseudo">:hover</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#aaa</span></span></span>; <span class="hljs-rule">}</span></span>
 
-&lt;span class=&quot;hljs-id&quot;&gt;#content&lt;/span&gt; &lt;span class=&quot;hljs-tag&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;hljs-pseudo&quot;&gt;:visited&lt;/span&gt;,
-&lt;span class=&quot;hljs-id&quot;&gt;#content&lt;/span&gt; &lt;span class=&quot;hljs-tag&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{ &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;color&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-hexcolor&quot;&gt;#000&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;&lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
+<span class="hljs-id">#content</span> <span class="hljs-tag">a</span><span class="hljs-pseudo">:visited</span>,
+<span class="hljs-id">#content</span> <span class="hljs-tag">a</span> <span class="hljs-rules">{ <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#000</span></span></span>;<span class="hljs-rule">}</span></span>
 
-&lt;span class=&quot;hljs-at_rule&quot;&gt;@&lt;span class=&quot;hljs-keyword&quot;&gt;media&lt;/span&gt; screen &lt;/span&gt;{
-  &lt;span class=&quot;hljs-id&quot;&gt;#content&lt;/span&gt; &lt;span class=&quot;hljs-tag&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;text-decoration&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; underline&lt;/span&gt;&lt;/span&gt;;
-  &lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
+<span class="hljs-at_rule">@<span class="hljs-keyword">media</span> screen </span>{
+  <span class="hljs-id">#content</span> <span class="hljs-tag">a</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">text-decoration</span>:<span class="hljs-value"> underline</span></span>;
+  <span class="hljs-rule">}</span></span>
 }
 </code></pre>
 <p>Links are displayed in the print document.</p>
-<pre><div class="field">stylesheet</div><code class="lang-css">&lt;span class=&quot;hljs-at_rule&quot;&gt;@&lt;span class=&quot;hljs-keyword&quot;&gt;media&lt;/span&gt; print &lt;/span&gt;{
-  &lt;span class=&quot;hljs-id&quot;&gt;#content&lt;/span&gt; &lt;span class=&quot;hljs-tag&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;text-decoration&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; none&lt;/span&gt;&lt;/span&gt;;
-  &lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
-  &lt;span class=&quot;hljs-id&quot;&gt;#content&lt;/span&gt; &lt;span class=&quot;hljs-id&quot;&gt;#doc&lt;/span&gt; &lt;span class=&quot;hljs-tag&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;hljs-attr_selector&quot;&gt;[href]&lt;/span&gt;&lt;span class=&quot;hljs-pseudo&quot;&gt;:after&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;content&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-string&quot;&gt;&quot; (&quot;&lt;/span&gt; &lt;span class=&quot;hljs-function&quot;&gt;attr&lt;/span&gt;(href) &lt;span class=&quot;hljs-string&quot;&gt;&quot;)&quot;&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;font-size&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-number&quot;&gt;90%&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-  &lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
+<pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-at_rule">@<span class="hljs-keyword">media</span> print </span>{
+  <span class="hljs-id">#content</span> <span class="hljs-tag">a</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">text-decoration</span>:<span class="hljs-value"> none</span></span>;
+  <span class="hljs-rule">}</span></span>
+  <span class="hljs-id">#content</span> <span class="hljs-id">#doc</span> <span class="hljs-tag">a</span><span class="hljs-attr_selector">[href]</span><span class="hljs-pseudo">:after</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">content</span>:<span class="hljs-value"> <span class="hljs-string">" ("</span> <span class="hljs-function">attr</span>(href) <span class="hljs-string">")"</span></span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">font-size</span>:<span class="hljs-value"> <span class="hljs-number">90%</span></span></span>;
+  <span class="hljs-rule">}</span></span>
 }
 </code></pre>
 <h4 id="highlight-markup">3.2.5.4 Highlight markup</h4>
 <p><code>highlight.js</code> specific styles for code blocks.
 Basic type markup:</p>
-<pre><div class="field">stylesheet</div><code class="lang-css">&lt;span class=&quot;hljs-class&quot;&gt;.hljs&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;overflow&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; auto&lt;/span&gt;&lt;/span&gt;;
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;padding&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-number&quot;&gt;0.5em&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;color&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-hexcolor&quot;&gt;#333&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-&lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span class=&quot;hljs-class&quot;&gt;.hljs-comment&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.diff&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.hljs-header&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.hljs-javadoc&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;color&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-hexcolor&quot;&gt;#999&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;font-style&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; italic&lt;/span&gt;&lt;/span&gt;;
-&lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span class=&quot;hljs-class&quot;&gt;.hljs-keyword&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.css&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.rule&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.hljs-keyword&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.hljs-winutils&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.nginx&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.hljs-title&lt;/span&gt;,
-&lt;span class=&quot;hljs-class&quot;&gt;.hljs-subst&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.hljs-request&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.hljs-status&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;color&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-hexcolor&quot;&gt;#333&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;font-weight&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; bold&lt;/span&gt;&lt;/span&gt;;
-&lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span class=&quot;hljs-class&quot;&gt;.hljs-number&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.hljs-hexcolor&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.ruby&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.hljs-constant&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;color&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-hexcolor&quot;&gt;#088&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-&lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span class=&quot;hljs-class&quot;&gt;.hljs-string&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.hljs-tag&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.hljs-value&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.hljs-phpdoc&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.hljs-dartdoc&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.tex&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.hljs-formula&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;color&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-hexcolor&quot;&gt;#d14&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-&lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span class=&quot;hljs-class&quot;&gt;.hljs-title&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.hljs-id&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.scss&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.hljs-preprocessor&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;color&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-hexcolor&quot;&gt;#900&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;font-weight&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; bold&lt;/span&gt;&lt;/span&gt;;
-&lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span class=&quot;hljs-class&quot;&gt;.hljs-list&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.hljs-keyword&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.hljs-subst&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;font-weight&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; normal&lt;/span&gt;&lt;/span&gt;;
-&lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span class=&quot;hljs-class&quot;&gt;.hljs-class&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.hljs-title&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.hljs-type&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.vhdl&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.hljs-literal&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.tex&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.hljs-command&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;color&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-hexcolor&quot;&gt;#458&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;font-weight&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; bold&lt;/span&gt;&lt;/span&gt;;
-&lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
+<pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-class">.hljs</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">overflow</span>:<span class="hljs-value"> auto</span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">padding</span>:<span class="hljs-value"> <span class="hljs-number">0.5em</span></span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#333</span></span></span>;
+<span class="hljs-rule">}</span></span>
+<span class="hljs-class">.hljs-comment</span>, <span class="hljs-class">.diff</span> <span class="hljs-class">.hljs-header</span>, <span class="hljs-class">.hljs-javadoc</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#999</span></span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">font-style</span>:<span class="hljs-value"> italic</span></span>;
+<span class="hljs-rule">}</span></span>
+<span class="hljs-class">.hljs-keyword</span>, <span class="hljs-class">.css</span> <span class="hljs-class">.rule</span> <span class="hljs-class">.hljs-keyword</span>, <span class="hljs-class">.hljs-winutils</span>, <span class="hljs-class">.nginx</span> <span class="hljs-class">.hljs-title</span>,
+<span class="hljs-class">.hljs-subst</span>, <span class="hljs-class">.hljs-request</span>, <span class="hljs-class">.hljs-status</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#333</span></span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">font-weight</span>:<span class="hljs-value"> bold</span></span>;
+<span class="hljs-rule">}</span></span>
+<span class="hljs-class">.hljs-number</span>, <span class="hljs-class">.hljs-hexcolor</span>, <span class="hljs-class">.ruby</span> <span class="hljs-class">.hljs-constant</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#088</span></span></span>;
+<span class="hljs-rule">}</span></span>
+<span class="hljs-class">.hljs-string</span>, <span class="hljs-class">.hljs-tag</span> <span class="hljs-class">.hljs-value</span>, <span class="hljs-class">.hljs-phpdoc</span>, <span class="hljs-class">.hljs-dartdoc</span>, <span class="hljs-class">.tex</span> <span class="hljs-class">.hljs-formula</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#d14</span></span></span>;
+<span class="hljs-rule">}</span></span>
+<span class="hljs-class">.hljs-title</span>, <span class="hljs-class">.hljs-id</span>, <span class="hljs-class">.scss</span> <span class="hljs-class">.hljs-preprocessor</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#900</span></span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">font-weight</span>:<span class="hljs-value"> bold</span></span>;
+<span class="hljs-rule">}</span></span>
+<span class="hljs-class">.hljs-list</span> <span class="hljs-class">.hljs-keyword</span>, <span class="hljs-class">.hljs-subst</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">font-weight</span>:<span class="hljs-value"> normal</span></span>;
+<span class="hljs-rule">}</span></span>
+<span class="hljs-class">.hljs-class</span> <span class="hljs-class">.hljs-title</span>, <span class="hljs-class">.hljs-type</span>, <span class="hljs-class">.vhdl</span> <span class="hljs-class">.hljs-literal</span>, <span class="hljs-class">.tex</span> <span class="hljs-class">.hljs-command</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#458</span></span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">font-weight</span>:<span class="hljs-value"> bold</span></span>;
+<span class="hljs-rule">}</span></span>
 </code></pre>
 <p>Additional markup</p>
-<pre><div class="field">stylesheet</div><code class="lang-css">&lt;span class=&quot;hljs-class&quot;&gt;.hljs-tag&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.hljs-tag&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.hljs-title&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.hljs-rules&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.hljs-property&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.django&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.hljs-tag&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.hljs-keyword&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;color&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-hexcolor&quot;&gt;#000080&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;font-weight&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; normal&lt;/span&gt;&lt;/span&gt;;
-&lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span class=&quot;hljs-class&quot;&gt;.hljs-attribute&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.hljs-variable&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.lisp&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.hljs-body&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;color&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-hexcolor&quot;&gt;#008080&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-&lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span class=&quot;hljs-class&quot;&gt;.hljs-regexp&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;color&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-hexcolor&quot;&gt;#009926&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-&lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span class=&quot;hljs-class&quot;&gt;.hljs-built_in&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;color&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-hexcolor&quot;&gt;#0086b3&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-&lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
+<pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-class">.hljs-tag</span>, <span class="hljs-class">.hljs-tag</span> <span class="hljs-class">.hljs-title</span>, <span class="hljs-class">.hljs-rules</span> <span class="hljs-class">.hljs-property</span>, <span class="hljs-class">.django</span> <span class="hljs-class">.hljs-tag</span> <span class="hljs-class">.hljs-keyword</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#000080</span></span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">font-weight</span>:<span class="hljs-value"> normal</span></span>;
+<span class="hljs-rule">}</span></span>
+<span class="hljs-class">.hljs-attribute</span>, <span class="hljs-class">.hljs-variable</span>, <span class="hljs-class">.lisp</span> <span class="hljs-class">.hljs-body</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#008080</span></span></span>;
+<span class="hljs-rule">}</span></span>
+<span class="hljs-class">.hljs-regexp</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#009926</span></span></span>;
+<span class="hljs-rule">}</span></span>
+<span class="hljs-class">.hljs-built_in</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#0086b3</span></span></span>;
+<span class="hljs-rule">}</span></span>
 
-&lt;span class=&quot;hljs-class&quot;&gt;.hljs-symbol&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.ruby&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.hljs-symbol&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.hljs-string&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.lisp&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.hljs-keyword&lt;/span&gt;,
-&lt;span class=&quot;hljs-class&quot;&gt;.clojure&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.hljs-keyword&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.scheme&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.hljs-keyword&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.tex&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.hljs-special&lt;/span&gt;,
-&lt;span class=&quot;hljs-class&quot;&gt;.hljs-prompt&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;color&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-hexcolor&quot;&gt;#990073&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-&lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
+<span class="hljs-class">.hljs-symbol</span>, <span class="hljs-class">.ruby</span> <span class="hljs-class">.hljs-symbol</span> <span class="hljs-class">.hljs-string</span>, <span class="hljs-class">.lisp</span> <span class="hljs-class">.hljs-keyword</span>,
+<span class="hljs-class">.clojure</span> <span class="hljs-class">.hljs-keyword</span>, <span class="hljs-class">.scheme</span> <span class="hljs-class">.hljs-keyword</span>, <span class="hljs-class">.tex</span> <span class="hljs-class">.hljs-special</span>,
+<span class="hljs-class">.hljs-prompt</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#990073</span></span></span>;
+<span class="hljs-rule">}</span></span>
 </code></pre>
 <p>Other uncommon specialize markup:</p>
-<pre><div class="field">stylesheet</div><code class="lang-css">&lt;span class=&quot;hljs-class&quot;&gt;.hljs-preprocessor&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.hljs-pragma&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.hljs-pi&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.hljs-doctype&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.hljs-shebang&lt;/span&gt;,
-&lt;span class=&quot;hljs-class&quot;&gt;.hljs-cdata&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;color&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-hexcolor&quot;&gt;#999&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;font-weight&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; bold&lt;/span&gt;&lt;/span&gt;;
-&lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span class=&quot;hljs-class&quot;&gt;.hljs-deletion&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;background&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-hexcolor&quot;&gt;#fdd&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-&lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span class=&quot;hljs-class&quot;&gt;.hljs-addition&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;background&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-hexcolor&quot;&gt;#dfd&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-&lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span class=&quot;hljs-class&quot;&gt;.diff&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.hljs-change&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;background&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-hexcolor&quot;&gt;#0086b3&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-&lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
-&lt;span class=&quot;hljs-class&quot;&gt;.hljs-chunk&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;color&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-hexcolor&quot;&gt;#aaa&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-&lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
+<pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-class">.hljs-preprocessor</span>, <span class="hljs-class">.hljs-pragma</span>, <span class="hljs-class">.hljs-pi</span>, <span class="hljs-class">.hljs-doctype</span>, <span class="hljs-class">.hljs-shebang</span>,
+<span class="hljs-class">.hljs-cdata</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#999</span></span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">font-weight</span>:<span class="hljs-value"> bold</span></span>;
+<span class="hljs-rule">}</span></span>
+<span class="hljs-class">.hljs-deletion</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">background</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#fdd</span></span></span>;
+<span class="hljs-rule">}</span></span>
+<span class="hljs-class">.hljs-addition</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">background</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#dfd</span></span></span>;
+<span class="hljs-rule">}</span></span>
+<span class="hljs-class">.diff</span> <span class="hljs-class">.hljs-change</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">background</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#0086b3</span></span></span>;
+<span class="hljs-rule">}</span></span>
+<span class="hljs-class">.hljs-chunk</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#aaa</span></span></span>;
+<span class="hljs-rule">}</span></span>
 </code></pre>
 <p>Using <code>CSS</code> it is possibly to have a separate
 layout for print media.
 <code>markover</code> overrides certain values for print media.</p>
-<pre><div class="field">stylesheet</div><code class="lang-css">&lt;span class=&quot;hljs-at_rule&quot;&gt;@&lt;span class=&quot;hljs-keyword&quot;&gt;media&lt;/span&gt; print &lt;/span&gt;{
-  &lt;span class=&quot;hljs-class&quot;&gt;.hljs&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;overflow&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; visible&lt;/span&gt;&lt;/span&gt;;
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;word-wrap&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; break-word&lt;/span&gt;&lt;/span&gt;;
-  &lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
-  &lt;span class=&quot;hljs-class&quot;&gt;.hljs-number&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.hljs-hexcolor&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.ruby&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.hljs-constant&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;color&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-hexcolor&quot;&gt;#888&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-  &lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
-  &lt;span class=&quot;hljs-class&quot;&gt;.hljs-string&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.hljs-tag&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.hljs-value&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.hljs-phpdoc&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.hljs-dartdoc&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.tex&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.hljs-formula&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;color&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-hexcolor&quot;&gt;#ddd&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-  &lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
-  &lt;span class=&quot;hljs-class&quot;&gt;.hljs-title&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.hljs-id&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.scss&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.hljs-preprocessor&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;color&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-hexcolor&quot;&gt;#999&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-  &lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
-  &lt;span class=&quot;hljs-class&quot;&gt;.hljs-class&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.hljs-title&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.hljs-type&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.vhdl&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.hljs-literal&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.tex&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.hljs-command&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;color&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-hexcolor&quot;&gt;#888&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-  &lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
-  &lt;span class=&quot;hljs-class&quot;&gt;.hljs-tag&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.hljs-tag&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.hljs-title&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.hljs-rules&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.hljs-property&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.django&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.hljs-tag&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.hljs-keyword&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;color&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-hexcolor&quot;&gt;#888&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-  &lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
-  &lt;span class=&quot;hljs-class&quot;&gt;.hljs-attribute&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.hljs-variable&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.lisp&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.hljs-body&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;color&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-hexcolor&quot;&gt;#888&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-  &lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
-  &lt;span class=&quot;hljs-class&quot;&gt;.hljs-regexp&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;color&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-hexcolor&quot;&gt;#999&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-  &lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
-  &lt;span class=&quot;hljs-class&quot;&gt;.hljs-symbol&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.ruby&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.hljs-symbol&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.hljs-string&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.lisp&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.hljs-keyword&lt;/span&gt;,
-  &lt;span class=&quot;hljs-class&quot;&gt;.clojure&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.hljs-keyword&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.scheme&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.hljs-keyword&lt;/span&gt;, &lt;span class=&quot;hljs-class&quot;&gt;.tex&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.hljs-special&lt;/span&gt;,
-  &lt;span class=&quot;hljs-class&quot;&gt;.hljs-prompt&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;color&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-hexcolor&quot;&gt;#999&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-  &lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
-  &lt;span class=&quot;hljs-class&quot;&gt;.hljs-built_in&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;color&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-hexcolor&quot;&gt;#888&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-  &lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
-  &lt;span class=&quot;hljs-class&quot;&gt;.hljs-deletion&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;background&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-hexcolor&quot;&gt;#ddd&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-  &lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
-  &lt;span class=&quot;hljs-class&quot;&gt;.hljs-addition&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;background&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-hexcolor&quot;&gt;#ddd&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-  &lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
-  &lt;span class=&quot;hljs-class&quot;&gt;.diff&lt;/span&gt; &lt;span class=&quot;hljs-class&quot;&gt;.hljs-change&lt;/span&gt; &lt;span class=&quot;hljs-rules&quot;&gt;{
-    &lt;span class=&quot;hljs-rule&quot;&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;background&lt;/span&gt;:&lt;span class=&quot;hljs-value&quot;&gt; &lt;span class=&quot;hljs-hexcolor&quot;&gt;#888&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;;
-  &lt;span class=&quot;hljs-rule&quot;&gt;}&lt;/span&gt;&lt;/span&gt;
+<pre><div class="field">stylesheet</div><code class="lang-css"><span class="hljs-at_rule">@<span class="hljs-keyword">media</span> print </span>{
+  <span class="hljs-class">.hljs</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">overflow</span>:<span class="hljs-value"> visible</span></span>;
+    <span class="hljs-rule"><span class="hljs-attribute">word-wrap</span>:<span class="hljs-value"> break-word</span></span>;
+  <span class="hljs-rule">}</span></span>
+  <span class="hljs-class">.hljs-number</span>, <span class="hljs-class">.hljs-hexcolor</span>, <span class="hljs-class">.ruby</span> <span class="hljs-class">.hljs-constant</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#888</span></span></span>;
+  <span class="hljs-rule">}</span></span>
+  <span class="hljs-class">.hljs-string</span>, <span class="hljs-class">.hljs-tag</span> <span class="hljs-class">.hljs-value</span>, <span class="hljs-class">.hljs-phpdoc</span>, <span class="hljs-class">.hljs-dartdoc</span>, <span class="hljs-class">.tex</span> <span class="hljs-class">.hljs-formula</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#ddd</span></span></span>;
+  <span class="hljs-rule">}</span></span>
+  <span class="hljs-class">.hljs-title</span>, <span class="hljs-class">.hljs-id</span>, <span class="hljs-class">.scss</span> <span class="hljs-class">.hljs-preprocessor</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#999</span></span></span>;
+  <span class="hljs-rule">}</span></span>
+  <span class="hljs-class">.hljs-class</span> <span class="hljs-class">.hljs-title</span>, <span class="hljs-class">.hljs-type</span>, <span class="hljs-class">.vhdl</span> <span class="hljs-class">.hljs-literal</span>, <span class="hljs-class">.tex</span> <span class="hljs-class">.hljs-command</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#888</span></span></span>;
+  <span class="hljs-rule">}</span></span>
+  <span class="hljs-class">.hljs-tag</span>, <span class="hljs-class">.hljs-tag</span> <span class="hljs-class">.hljs-title</span>, <span class="hljs-class">.hljs-rules</span> <span class="hljs-class">.hljs-property</span>, <span class="hljs-class">.django</span> <span class="hljs-class">.hljs-tag</span> <span class="hljs-class">.hljs-keyword</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#888</span></span></span>;
+  <span class="hljs-rule">}</span></span>
+  <span class="hljs-class">.hljs-attribute</span>, <span class="hljs-class">.hljs-variable</span>, <span class="hljs-class">.lisp</span> <span class="hljs-class">.hljs-body</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#888</span></span></span>;
+  <span class="hljs-rule">}</span></span>
+  <span class="hljs-class">.hljs-regexp</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#999</span></span></span>;
+  <span class="hljs-rule">}</span></span>
+  <span class="hljs-class">.hljs-symbol</span>, <span class="hljs-class">.ruby</span> <span class="hljs-class">.hljs-symbol</span> <span class="hljs-class">.hljs-string</span>, <span class="hljs-class">.lisp</span> <span class="hljs-class">.hljs-keyword</span>,
+  <span class="hljs-class">.clojure</span> <span class="hljs-class">.hljs-keyword</span>, <span class="hljs-class">.scheme</span> <span class="hljs-class">.hljs-keyword</span>, <span class="hljs-class">.tex</span> <span class="hljs-class">.hljs-special</span>,
+  <span class="hljs-class">.hljs-prompt</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#999</span></span></span>;
+  <span class="hljs-rule">}</span></span>
+  <span class="hljs-class">.hljs-built_in</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">color</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#888</span></span></span>;
+  <span class="hljs-rule">}</span></span>
+  <span class="hljs-class">.hljs-deletion</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">background</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#ddd</span></span></span>;
+  <span class="hljs-rule">}</span></span>
+  <span class="hljs-class">.hljs-addition</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">background</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#ddd</span></span></span>;
+  <span class="hljs-rule">}</span></span>
+  <span class="hljs-class">.diff</span> <span class="hljs-class">.hljs-change</span> <span class="hljs-rules">{
+    <span class="hljs-rule"><span class="hljs-attribute">background</span>:<span class="hljs-value"> <span class="hljs-hexcolor">#888</span></span></span>;
+  <span class="hljs-rule">}</span></span>
 }
 </code></pre>
 <h1 id="program-structure">4. Program structure</h1>
@@ -876,54 +876,54 @@ The options are passed to the <code>convert</code> function.
 optional <code>self</code> object.
 This gives the <code>convert</code> function access to all the facilities
 of the identified object (methods and members).</p>
-<pre><div class="field">pool</div><code class="lang-js">&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;hljs-params&quot;&gt;(options)&lt;/span&gt; &lt;/span&gt;{
+<pre><div class="field">pool</div><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(options)</span> </span>{
   options = options || {}
 
-  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; dam = &lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;hljs-built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&#39;stream&#39;&lt;/span&gt;).Transform()
+  <span class="hljs-keyword">var</span> dam = <span class="hljs-keyword">new</span> <span class="hljs-built_in">require</span>(<span class="hljs-string">'stream'</span>).Transform()
   dam.options = options
-  dam.options.convert = dam.options.convert || &lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;hljs-params&quot;&gt;(string, options)&lt;/span&gt; &lt;/span&gt;{ &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; string }
-  dam.options.self = dam.options.self || &lt;span class=&quot;hljs-keyword&quot;&gt;this&lt;/span&gt;
+  dam.options.convert = dam.options.convert || <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(string, options)</span> </span>{ <span class="hljs-keyword">return</span> string }
+  dam.options.self = dam.options.self || <span class="hljs-keyword">this</span>
 
   dam.lake = []
-  dam._transform = &lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;hljs-params&quot;&gt;(chunk, encoding, done)&lt;/span&gt; &lt;/span&gt;{
+  dam._transform = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(chunk, encoding, done)</span> </span>{
     dam.lake.push(chunk.toString())
     done()
   }
 
-  dam._flush = &lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;hljs-params&quot;&gt;(done)&lt;/span&gt; &lt;/span&gt;{
-    dam.push(dam.options.convert.call(dam.options.self, dam.lake.join(&lt;span class=&quot;hljs-string&quot;&gt;&#39;&#39;&lt;/span&gt;), dam.options))
-    dam.push(&lt;span class=&quot;hljs-string&quot;&gt;&#39;\n&#39;&lt;/span&gt;)
+  dam._flush = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(done)</span> </span>{
+    dam.push(dam.options.convert.call(dam.options.self, dam.lake.join(<span class="hljs-string">''</span>), dam.options))
+    dam.push(<span class="hljs-string">'\n'</span>)
     dam.lake = []
     done()
   }
 
-  &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; dam
+  <span class="hljs-keyword">return</span> dam
 }
 </code></pre>
 <p>For displaying a document in <code>HTML</code> there are certain character
 sequences that must be escaped and then unescaped.</p>
-<pre><div class="field">escape</div><code class="lang-js">&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;hljs-params&quot;&gt;(html, encode)&lt;/span&gt; &lt;/span&gt;{
-  &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; html
-    .replace(!encode ? &lt;span class=&quot;hljs-regexp&quot;&gt;/&amp;(?!#?\w+;)/g&lt;/span&gt; : &lt;span class=&quot;hljs-regexp&quot;&gt;/&amp;/g&lt;/span&gt;, &lt;span class=&quot;hljs-string&quot;&gt;&#39;&#39;&lt;/span&gt;)
-    .replace(&lt;span class=&quot;hljs-regexp&quot;&gt;/&lt;/g&lt;/span&gt;, &lt;span class=&quot;hljs-string&quot;&gt;&#39;&lt;&#39;&lt;/span&gt;)
-    .replace(&lt;span class=&quot;hljs-regexp&quot;&gt;/&gt;/g&lt;/span&gt;, &lt;span class=&quot;hljs-string&quot;&gt;&#39;&gt;&#39;&lt;/span&gt;)
-    .replace(&lt;span class=&quot;hljs-regexp&quot;&gt;/&quot;/g&lt;/span&gt;, &lt;span class=&quot;hljs-string&quot;&gt;&#39;&quot;&#39;&lt;/span&gt;)
-    .replace(&lt;span class=&quot;hljs-regexp&quot;&gt;/&#39;/g&lt;/span&gt;, &lt;span class=&quot;hljs-string&quot;&gt;&#39;&#39;&lt;/span&gt;&lt;span class=&quot;hljs-string&quot;&gt;&#39;);
-}&lt;/span&gt;
+<pre><div class="field">escape</div><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(html, encode)</span> </span>{
+  <span class="hljs-keyword">return</span> html
+    .replace(!encode ? <span class="hljs-regexp">/&amp;(?!#?\w+;)/g</span> : <span class="hljs-regexp">/&amp;/g</span>, <span class="hljs-string">''</span>)
+    .replace(<span class="hljs-regexp">/&lt;/g</span>, <span class="hljs-string">'&lt;'</span>)
+    .replace(<span class="hljs-regexp">/&gt;/g</span>, <span class="hljs-string">'&gt;'</span>)
+    .replace(<span class="hljs-regexp">/"/g</span>, <span class="hljs-string">'"'</span>)
+    .replace(<span class="hljs-regexp">/'/g</span>, <span class="hljs-string">''</span><span class="hljs-string">');
+}</span>
 </code></pre>
-<pre><div class="field">unescape</div><code class="lang-js">&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;hljs-params&quot;&gt;(html)&lt;/span&gt; &lt;/span&gt;{
-  &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; html.replace(&lt;span class=&quot;hljs-regexp&quot;&gt;/&amp;([#\w]+);/g&lt;/span&gt;, &lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;hljs-params&quot;&gt;(_, n)&lt;/span&gt; &lt;/span&gt;{
+<pre><div class="field">unescape</div><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(html)</span> </span>{
+  <span class="hljs-keyword">return</span> html.replace(<span class="hljs-regexp">/&amp;([#\w]+);/g</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(_, n)</span> </span>{
     n = n.toLowerCase();
-    &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (n === &lt;span class=&quot;hljs-string&quot;&gt;&#39;colon&#39;&lt;/span&gt;) &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&#39;:&#39;&lt;/span&gt;;
-    &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (n === &lt;span class=&quot;hljs-string&quot;&gt;&#39;lt&#39;&lt;/span&gt;) &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&#39;&lt;&#39;&lt;/span&gt;;
-    &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (n === &lt;span class=&quot;hljs-string&quot;&gt;&#39;gt&#39;&lt;/span&gt;) &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&#39;&gt;&#39;&lt;/span&gt;;
-    &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (n === &lt;span class=&quot;hljs-string&quot;&gt;&#39;quot&#39;&lt;/span&gt;) &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&#39;&quot;&#39;&lt;/span&gt;;
-    &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (n.charAt(&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;) === &lt;span class=&quot;hljs-string&quot;&gt;&#39;#&#39;&lt;/span&gt;) {
-      &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; n.charAt(&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;) === &lt;span class=&quot;hljs-string&quot;&gt;&#39;x&#39;&lt;/span&gt;
-        ? &lt;span class=&quot;hljs-built_in&quot;&gt;String&lt;/span&gt;.fromCharCode(&lt;span class=&quot;hljs-built_in&quot;&gt;parseInt&lt;/span&gt;(n.substring(&lt;span class=&quot;hljs-number&quot;&gt;2&lt;/span&gt;), &lt;span class=&quot;hljs-number&quot;&gt;16&lt;/span&gt;))
-        : &lt;span class=&quot;hljs-built_in&quot;&gt;String&lt;/span&gt;.fromCharCode(+n.substring(&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;));
+    <span class="hljs-keyword">if</span> (n === <span class="hljs-string">'colon'</span>) <span class="hljs-keyword">return</span> <span class="hljs-string">':'</span>;
+    <span class="hljs-keyword">if</span> (n === <span class="hljs-string">'lt'</span>) <span class="hljs-keyword">return</span> <span class="hljs-string">'&lt;'</span>;
+    <span class="hljs-keyword">if</span> (n === <span class="hljs-string">'gt'</span>) <span class="hljs-keyword">return</span> <span class="hljs-string">'&gt;'</span>;
+    <span class="hljs-keyword">if</span> (n === <span class="hljs-string">'quot'</span>) <span class="hljs-keyword">return</span> <span class="hljs-string">'"'</span>;
+    <span class="hljs-keyword">if</span> (n.charAt(<span class="hljs-number">0</span>) === <span class="hljs-string">'#'</span>) {
+      <span class="hljs-keyword">return</span> n.charAt(<span class="hljs-number">1</span>) === <span class="hljs-string">'x'</span>
+        ? <span class="hljs-built_in">String</span>.fromCharCode(<span class="hljs-built_in">parseInt</span>(n.substring(<span class="hljs-number">2</span>), <span class="hljs-number">16</span>))
+        : <span class="hljs-built_in">String</span>.fromCharCode(+n.substring(<span class="hljs-number">1</span>));
     }
-    &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&#39;&#39;&lt;/span&gt;;
+    <span class="hljs-keyword">return</span> <span class="hljs-string">''</span>;
   })
 }
 </code></pre>
@@ -965,9 +965,9 @@ from <code>markover</code> documents.</p>
 </code></pre>
 <pre><div class="field">tangleFormatDelimiter</div><code class="lang-js">,%n%n
 </code></pre>
-<pre><div class="field">tangleFormatFieldPrefix</div><code class="lang-js">&lt;span class=&quot;hljs-string&quot;&gt;&quot;&lt;/span&gt;
+<pre><div class="field">tangleFormatFieldPrefix</div><code class="lang-js"><span class="hljs-string">"</span>
 </code></pre>
-<pre><div class="field">tangleFormatFieldSuffix</div><code class="lang-js">&lt;span class=&quot;hljs-string&quot;&gt;&quot;:&lt;/span&gt;
+<pre><div class="field">tangleFormatFieldSuffix</div><code class="lang-js"><span class="hljs-string">":</span>
 </code></pre>
 <h3 id="tangle-formatting">4.2.1 tangle Formatting</h3>
 <p>Once a <code>markover</code> document has been tangled,
@@ -990,29 +990,29 @@ order.</p>
 <p>The final part of the processing is 
 to translate the % escape sequences back
 to their original representation.</p>
-<pre><div class="field">tangleFormat</div><code class="lang-js">&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;hljs-params&quot;&gt;(ff, fields, lf)&lt;/span&gt; &lt;/span&gt;{
-  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; res = [ff, &lt;span class=&quot;hljs-keyword&quot;&gt;this&lt;/span&gt;.tangleFormatPrefix]
-  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; firsttime = &lt;span class=&quot;hljs-literal&quot;&gt;true&lt;/span&gt;
-  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; v
-  &lt;span class=&quot;hljs-keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; e &lt;span class=&quot;hljs-keyword&quot;&gt;in&lt;/span&gt; fields) {
+<pre><div class="field">tangleFormat</div><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(ff, fields, lf)</span> </span>{
+  <span class="hljs-keyword">var</span> res = [ff, <span class="hljs-keyword">this</span>.tangleFormatPrefix]
+  <span class="hljs-keyword">var</span> firsttime = <span class="hljs-literal">true</span>
+  <span class="hljs-keyword">var</span> v
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> e <span class="hljs-keyword">in</span> fields) {
     v = fields[e]
-    &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (firsttime) {
-      firsttime = &lt;span class=&quot;hljs-literal&quot;&gt;false&lt;/span&gt;
-    } &lt;span class=&quot;hljs-keyword&quot;&gt;else&lt;/span&gt; {
-      res.push(&lt;span class=&quot;hljs-keyword&quot;&gt;this&lt;/span&gt;.tangleFormatDelimiter)
+    <span class="hljs-keyword">if</span> (firsttime) {
+      firsttime = <span class="hljs-literal">false</span>
+    } <span class="hljs-keyword">else</span> {
+      res.push(<span class="hljs-keyword">this</span>.tangleFormatDelimiter)
     }
-    res.push(&lt;span class=&quot;hljs-keyword&quot;&gt;this&lt;/span&gt;.tangleFormatFieldPrefix + e + &lt;span class=&quot;hljs-keyword&quot;&gt;this&lt;/span&gt;.tangleFormatFieldSuffix)
+    res.push(<span class="hljs-keyword">this</span>.tangleFormatFieldPrefix + e + <span class="hljs-keyword">this</span>.tangleFormatFieldSuffix)
     res.push(v)
   }
-   res.push(&lt;span class=&quot;hljs-keyword&quot;&gt;this&lt;/span&gt;.tangleFormatSuffix)
+   res.push(<span class="hljs-keyword">this</span>.tangleFormatSuffix)
    res.push(lf)
 
-   &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; res.join(&lt;span class=&quot;hljs-string&quot;&gt;&#39;&#39;&lt;/span&gt;)
-     .replace(&lt;span class=&quot;hljs-regexp&quot;&gt;/%q/gm&lt;/span&gt;, &lt;span class=&quot;hljs-string&quot;&gt;&#39;\&quot;&#39;&lt;/span&gt;)
-     .replace(&lt;span class=&quot;hljs-regexp&quot;&gt;/%n/gm&lt;/span&gt;, &lt;span class=&quot;hljs-string&quot;&gt;&#39;\n&#39;&lt;/span&gt;)
-     .replace(&lt;span class=&quot;hljs-regexp&quot;&gt;/%t/gm&lt;/span&gt;, &lt;span class=&quot;hljs-string&quot;&gt;&#39;\t&#39;&lt;/span&gt;)
-     .replace(&lt;span class=&quot;hljs-regexp&quot;&gt;/%s/gm&lt;/span&gt;, &lt;span class=&quot;hljs-string&quot;&gt;&#39;\\&#39;&lt;/span&gt;)
-     .replace(&lt;span class=&quot;hljs-regexp&quot;&gt;/%p/gm&lt;/span&gt; , &lt;span class=&quot;hljs-string&quot;&gt;&#39;%&#39;&lt;/span&gt;)
+   <span class="hljs-keyword">return</span> res.join(<span class="hljs-string">''</span>)
+     .replace(<span class="hljs-regexp">/%q/gm</span>, <span class="hljs-string">'\"'</span>)
+     .replace(<span class="hljs-regexp">/%n/gm</span>, <span class="hljs-string">'\n'</span>)
+     .replace(<span class="hljs-regexp">/%t/gm</span>, <span class="hljs-string">'\t'</span>)
+     .replace(<span class="hljs-regexp">/%s/gm</span>, <span class="hljs-string">'\\'</span>)
+     .replace(<span class="hljs-regexp">/%p/gm</span> , <span class="hljs-string">'%'</span>)
 }
 </code></pre>
 <h3 id="tanglejson">4.2.2 tangleJSON</h3>
@@ -1020,23 +1020,23 @@ to their original representation.</p>
 returns the converted source code using <code>marked</code>.
 Options can have an array of field names that
 should be excluded from the output.</p>
-<pre><div class="field">tangleJSON</div><code class="lang-js">&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;hljs-params&quot;&gt;(str, options)&lt;/span&gt; &lt;/span&gt;{
+<pre><div class="field">tangleJSON</div><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(str, options)</span> </span>{
   options = options || {}
   options.exclude = options.exclude || []
 </code></pre>
 <p>We get a reference to the Renderer object
 so that it can be modified as needed.</p>
-<pre><div class="field">tangleJSON</div><code class="lang-js">  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; marked = &lt;span class=&quot;hljs-built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&#39;marked&#39;&lt;/span&gt;)
-  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; p = &lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; marked.Renderer()
+<pre><div class="field">tangleJSON</div><code class="lang-js">  <span class="hljs-keyword">var</span> marked = <span class="hljs-built_in">require</span>(<span class="hljs-string">'marked'</span>)
+  <span class="hljs-keyword">var</span> p = <span class="hljs-keyword">new</span> marked.Renderer()
   marked.setOptions({
     renderer: p,
-    gfm: &lt;span class=&quot;hljs-literal&quot;&gt;true&lt;/span&gt;,
-    tables: &lt;span class=&quot;hljs-literal&quot;&gt;true&lt;/span&gt;,
-    breaks: &lt;span class=&quot;hljs-literal&quot;&gt;false&lt;/span&gt;,
-    pedantic: &lt;span class=&quot;hljs-literal&quot;&gt;false&lt;/span&gt;,
-    sanitize: &lt;span class=&quot;hljs-literal&quot;&gt;true&lt;/span&gt;,
-    smartLists: &lt;span class=&quot;hljs-literal&quot;&gt;true&lt;/span&gt;,
-    smartypants: &lt;span class=&quot;hljs-literal&quot;&gt;false&lt;/span&gt;
+    gfm: <span class="hljs-literal">true</span>,
+    tables: <span class="hljs-literal">true</span>,
+    breaks: <span class="hljs-literal">false</span>,
+    pedantic: <span class="hljs-literal">false</span>,
+    sanitize: <span class="hljs-literal">true</span>,
+    smartLists: <span class="hljs-literal">true</span>,
+    smartypants: <span class="hljs-literal">false</span>
   })
 </code></pre>
 <p>The main part of the rendered used in
@@ -1046,41 +1046,41 @@ Code blocks without field names are ignored.
 Quoted code blocks are encoded in strings.
 Then the entire string is % escaped.
 Each code is stored as a triple of <em>strings</em>: field, quote, &amp; text.</p>
-<pre><div class="field">tangleJSON</div><code class="lang-js">  p.code = &lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;hljs-params&quot;&gt;(code, lang, escaped)&lt;/span&gt; &lt;/span&gt;{
+<pre><div class="field">tangleJSON</div><code class="lang-js">  p.code = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(code, lang, escaped)</span> </span>{
 
-    &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (!lang)
-      &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&#39;&#39;&lt;/span&gt;
+    <span class="hljs-keyword">if</span> (!lang)
+      <span class="hljs-keyword">return</span> <span class="hljs-string">''</span>
 
-    &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; field = lang.replace(&lt;span class=&quot;hljs-regexp&quot;&gt;/\S*#[+]?(\S*)/&lt;/span&gt;, &lt;span class=&quot;hljs-string&quot;&gt;&quot;$1&quot;&lt;/span&gt;)
-    &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (lang == field)
-      &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&#39;&#39;&lt;/span&gt;
+    <span class="hljs-keyword">var</span> field = lang.replace(<span class="hljs-regexp">/\S*#[+]?(\S*)/</span>, <span class="hljs-string">"$1"</span>)
+    <span class="hljs-keyword">if</span> (lang == field)
+      <span class="hljs-keyword">return</span> <span class="hljs-string">''</span>
 
-    &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; quote = lang.replace(&lt;span class=&quot;hljs-regexp&quot;&gt;/\S*#([+]?)\S*/&lt;/span&gt;, &lt;span class=&quot;hljs-string&quot;&gt;&quot;$1&quot;&lt;/span&gt;)
-    lang = lang.replace(&lt;span class=&quot;hljs-regexp&quot;&gt;/(\S*)#[+]?\S*/&lt;/span&gt;, &lt;span class=&quot;hljs-string&quot;&gt;&quot;$1&quot;&lt;/span&gt;)
-    &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (lang == &lt;span class=&quot;hljs-string&quot;&gt;&#39;&#39;&lt;/span&gt;) lang = &lt;span class=&quot;hljs-string&quot;&gt;&#39;json&#39;&lt;/span&gt;
+    <span class="hljs-keyword">var</span> quote = lang.replace(<span class="hljs-regexp">/\S*#([+]?)\S*/</span>, <span class="hljs-string">"$1"</span>)
+    lang = lang.replace(<span class="hljs-regexp">/(\S*)#[+]?\S*/</span>, <span class="hljs-string">"$1"</span>)
+    <span class="hljs-keyword">if</span> (lang == <span class="hljs-string">''</span>) lang = <span class="hljs-string">'json'</span>
 
-    &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (quote == &lt;span class=&quot;hljs-string&quot;&gt;&#39;+&#39;&lt;/span&gt;) {
-      code = (&lt;span class=&quot;hljs-string&quot;&gt;&#39;&quot;&#39;&lt;/span&gt; +
+    <span class="hljs-keyword">if</span> (quote == <span class="hljs-string">'+'</span>) {
+      code = (<span class="hljs-string">'"'</span> +
         code
-          .replace(&lt;span class=&quot;hljs-regexp&quot;&gt;/\\/gm&lt;/span&gt;, &lt;span class=&quot;hljs-string&quot;&gt;&#39;\\\\&#39;&lt;/span&gt;)
-          .replace(&lt;span class=&quot;hljs-regexp&quot;&gt;/\&quot;/gm&lt;/span&gt; &lt;span class=&quot;hljs-comment&quot;&gt;/*&quot;*/&lt;/span&gt;, &lt;span class=&quot;hljs-string&quot;&gt;&#39;\\&quot;&#39;&lt;/span&gt;)
-          .replace(&lt;span class=&quot;hljs-regexp&quot;&gt;/\n/gm&lt;/span&gt; , &lt;span class=&quot;hljs-string&quot;&gt;&#39;\\n&#39;&lt;/span&gt;)
-          .replace(&lt;span class=&quot;hljs-regexp&quot;&gt;/\t/gm&lt;/span&gt; , &lt;span class=&quot;hljs-string&quot;&gt;&#39;\\t&#39;&lt;/span&gt;)
-        + &lt;span class=&quot;hljs-string&quot;&gt;&#39;&quot;&#39;&lt;/span&gt;)
+          .replace(<span class="hljs-regexp">/\\/gm</span>, <span class="hljs-string">'\\\\'</span>)
+          .replace(<span class="hljs-regexp">/\"/gm</span> <span class="hljs-comment">/*"*/</span>, <span class="hljs-string">'\\"'</span>)
+          .replace(<span class="hljs-regexp">/\n/gm</span> , <span class="hljs-string">'\\n'</span>)
+          .replace(<span class="hljs-regexp">/\t/gm</span> , <span class="hljs-string">'\\t'</span>)
+        + <span class="hljs-string">'"'</span>)
     }
 
-    &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; esccode = code
-      .replace(&lt;span class=&quot;hljs-regexp&quot;&gt;/%/gm&lt;/span&gt; , &lt;span class=&quot;hljs-string&quot;&gt;&#39;%p&#39;&lt;/span&gt;)
-      .replace(&lt;span class=&quot;hljs-regexp&quot;&gt;/&quot;/gm&lt;/span&gt; &lt;span class=&quot;hljs-comment&quot;&gt;/*&quot;*/&lt;/span&gt;, &lt;span class=&quot;hljs-string&quot;&gt;&#39;%q&#39;&lt;/span&gt;)
-      .replace(&lt;span class=&quot;hljs-regexp&quot;&gt;/\n/gm&lt;/span&gt;, &lt;span class=&quot;hljs-string&quot;&gt;&#39;%n&#39;&lt;/span&gt;)
-      .replace(&lt;span class=&quot;hljs-regexp&quot;&gt;/\t/gm&lt;/span&gt;, &lt;span class=&quot;hljs-string&quot;&gt;&#39;%t&#39;&lt;/span&gt;)
-      .replace(&lt;span class=&quot;hljs-regexp&quot;&gt;/\\/gm&lt;/span&gt;, &lt;span class=&quot;hljs-string&quot;&gt;&#39;%s&#39;&lt;/span&gt;)
+    <span class="hljs-keyword">var</span> esccode = code
+      .replace(<span class="hljs-regexp">/%/gm</span> , <span class="hljs-string">'%p'</span>)
+      .replace(<span class="hljs-regexp">/"/gm</span> <span class="hljs-comment">/*"*/</span>, <span class="hljs-string">'%q'</span>)
+      .replace(<span class="hljs-regexp">/\n/gm</span>, <span class="hljs-string">'%n'</span>)
+      .replace(<span class="hljs-regexp">/\t/gm</span>, <span class="hljs-string">'%t'</span>)
+      .replace(<span class="hljs-regexp">/\\/gm</span>, <span class="hljs-string">'%s'</span>)
 
-    &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&#39;,[&quot;&#39;&lt;/span&gt; + field + &lt;span class=&quot;hljs-string&quot;&gt;&#39;&quot;, &quot;&#39;&lt;/span&gt; + (quote == &lt;span class=&quot;hljs-string&quot;&gt;&#39;+&#39;&lt;/span&gt;)  + &lt;span class=&quot;hljs-string&quot;&gt;&#39;&quot;, &quot;&#39;&lt;/span&gt; + esccode + &lt;span class=&quot;hljs-string&quot;&gt;&#39;&quot;]&#39;&lt;/span&gt;
+    <span class="hljs-keyword">return</span> <span class="hljs-string">',["'</span> + field + <span class="hljs-string">'", "'</span> + (quote == <span class="hljs-string">'+'</span>)  + <span class="hljs-string">'", "'</span> + esccode + <span class="hljs-string">'"]'</span>
   }
 </code></pre>
 <p>All other rendering blocks are stopped.</p>
-<pre><div class="field">tangleJSON</div><code class="lang-js">  &lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;noop&lt;/span&gt;&lt;span class=&quot;hljs-params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;{ &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&#39;&#39;&lt;/span&gt;}
+<pre><div class="field">tangleJSON</div><code class="lang-js">  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">noop</span><span class="hljs-params">()</span> </span>{ <span class="hljs-keyword">return</span> <span class="hljs-string">''</span>}
 
   p.blockquote = noop
   p.html = noop
@@ -1103,11 +1103,11 @@ Each code is stored as a triple of <em>strings</em>: field, quote, &amp; text.</
 <p><code>marked</code> does all the parsing at this point.
 The resulting set of triples is converted into
 an array of objects.</p>
-<pre><div class="field">tangleJSON</div><code class="lang-js">  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; doc = &lt;span class=&quot;hljs-string&quot;&gt;&#39;[&#39;&lt;/span&gt; + marked(str).substring(&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;) + &lt;span class=&quot;hljs-string&quot;&gt;&#39;]&#39;&lt;/span&gt;
-  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; obj = &lt;span class=&quot;hljs-built_in&quot;&gt;JSON&lt;/span&gt;.parse(doc)
-  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; fields = {}
-  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; ff = &lt;span class=&quot;hljs-string&quot;&gt;&#39;&#39;&lt;/span&gt;
-  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; lf = &lt;span class=&quot;hljs-string&quot;&gt;&#39;&#39;&lt;/span&gt;
+<pre><div class="field">tangleJSON</div><code class="lang-js">  <span class="hljs-keyword">var</span> doc = <span class="hljs-string">'['</span> + marked(str).substring(<span class="hljs-number">1</span>) + <span class="hljs-string">']'</span>
+  <span class="hljs-keyword">var</span> obj = <span class="hljs-built_in">JSON</span>.parse(doc)
+  <span class="hljs-keyword">var</span> fields = {}
+  <span class="hljs-keyword">var</span> ff = <span class="hljs-string">''</span>
+  <span class="hljs-keyword">var</span> lf = <span class="hljs-string">''</span>
 </code></pre>
 <p>Each triple is decoded and appended to any existing text.
 There is a subtle difference in the quoted versus non-quoted
@@ -1116,19 +1116,19 @@ while the non-quoted inserts a % escaped newline (which is
 converted into an actual newline in the output.
 Note that inserting these newlines prevents quote fields
 from being concatenated without a newline character.</p>
-<pre><div class="field">tangleJSON</div><code class="lang-js">  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; res = obj.forEach(&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;hljs-params&quot;&gt;(e)&lt;/span&gt; &lt;/span&gt;{
-    &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; k = e[&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;]
-    &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; q = (e[&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;] == &lt;span class=&quot;hljs-string&quot;&gt;&quot;true&quot;&lt;/span&gt;)
-    &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; v = e[&lt;span class=&quot;hljs-number&quot;&gt;2&lt;/span&gt;]
-    &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; doit = &lt;span class=&quot;hljs-literal&quot;&gt;true&lt;/span&gt;
-    &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (options.exclude.indexOf(k) != -&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;)
-      doit = &lt;span class=&quot;hljs-literal&quot;&gt;false&lt;/span&gt;
-    &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (doit) {
-      &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (fields[k] != &lt;span class=&quot;hljs-literal&quot;&gt;undefined&lt;/span&gt;) {
-        &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (q) {
-          v = fields[k].substring(&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;,fields[k].length-&lt;span class=&quot;hljs-number&quot;&gt;2&lt;/span&gt;) + &lt;span class=&quot;hljs-string&quot;&gt;&#39;\\n&#39;&lt;/span&gt; + v.substring(&lt;span class=&quot;hljs-number&quot;&gt;2&lt;/span&gt;)
-        } &lt;span class=&quot;hljs-keyword&quot;&gt;else&lt;/span&gt; {
-          v = fields[k] + &lt;span class=&quot;hljs-string&quot;&gt;&#39;%n&#39;&lt;/span&gt; + v
+<pre><div class="field">tangleJSON</div><code class="lang-js">  <span class="hljs-keyword">var</span> res = obj.forEach(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(e)</span> </span>{
+    <span class="hljs-keyword">var</span> k = e[<span class="hljs-number">0</span>]
+    <span class="hljs-keyword">var</span> q = (e[<span class="hljs-number">1</span>] == <span class="hljs-string">"true"</span>)
+    <span class="hljs-keyword">var</span> v = e[<span class="hljs-number">2</span>]
+    <span class="hljs-keyword">var</span> doit = <span class="hljs-literal">true</span>
+    <span class="hljs-keyword">if</span> (options.exclude.indexOf(k) != -<span class="hljs-number">1</span>)
+      doit = <span class="hljs-literal">false</span>
+    <span class="hljs-keyword">if</span> (doit) {
+      <span class="hljs-keyword">if</span> (fields[k] != <span class="hljs-literal">undefined</span>) {
+        <span class="hljs-keyword">if</span> (q) {
+          v = fields[k].substring(<span class="hljs-number">0</span>,fields[k].length-<span class="hljs-number">2</span>) + <span class="hljs-string">'\\n'</span> + v.substring(<span class="hljs-number">2</span>)
+        } <span class="hljs-keyword">else</span> {
+          v = fields[k] + <span class="hljs-string">'%n'</span> + v
         }
       }
       fields[k] = v
@@ -1139,47 +1139,47 @@ from being concatenated without a newline character.</p>
 field names are located and the results are formatted for output.
 If the <code>sourcetarget</code> options is given, then the quoted source document
 is stored at the location.</p>
-<pre><div class="field">tangleJSON</div><code class="lang-js">  &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (fields[&lt;span class=&quot;hljs-string&quot;&gt;&quot;first&quot;&lt;/span&gt;] != &lt;span class=&quot;hljs-literal&quot;&gt;undefined&lt;/span&gt;) {
-    ff = fields[&lt;span class=&quot;hljs-string&quot;&gt;&quot;first&quot;&lt;/span&gt;]
-    &lt;span class=&quot;hljs-keyword&quot;&gt;delete&lt;/span&gt; fields[&lt;span class=&quot;hljs-string&quot;&gt;&quot;first&quot;&lt;/span&gt;]
+<pre><div class="field">tangleJSON</div><code class="lang-js">  <span class="hljs-keyword">if</span> (fields[<span class="hljs-string">"first"</span>] != <span class="hljs-literal">undefined</span>) {
+    ff = fields[<span class="hljs-string">"first"</span>]
+    <span class="hljs-keyword">delete</span> fields[<span class="hljs-string">"first"</span>]
   }
 
-  &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (fields[&lt;span class=&quot;hljs-string&quot;&gt;&quot;last&quot;&lt;/span&gt;] != &lt;span class=&quot;hljs-literal&quot;&gt;undefined&lt;/span&gt;) {
-    lf = fields[&lt;span class=&quot;hljs-string&quot;&gt;&quot;last&quot;&lt;/span&gt;]
-    &lt;span class=&quot;hljs-keyword&quot;&gt;delete&lt;/span&gt; fields[&lt;span class=&quot;hljs-string&quot;&gt;&quot;last&quot;&lt;/span&gt;]
+  <span class="hljs-keyword">if</span> (fields[<span class="hljs-string">"last"</span>] != <span class="hljs-literal">undefined</span>) {
+    lf = fields[<span class="hljs-string">"last"</span>]
+    <span class="hljs-keyword">delete</span> fields[<span class="hljs-string">"last"</span>]
   }
 
-  &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (options.sourcetarget) {
+  <span class="hljs-keyword">if</span> (options.sourcetarget) {
     fields[options.sourcetarget] = 
-        (&lt;span class=&quot;hljs-string&quot;&gt;&#39;&quot;&#39;&lt;/span&gt; +
+        (<span class="hljs-string">'"'</span> +
           str
-          .replace(&lt;span class=&quot;hljs-regexp&quot;&gt;/\\/gm&lt;/span&gt;, &lt;span class=&quot;hljs-string&quot;&gt;&#39;\\\\&#39;&lt;/span&gt;)
-          .replace(&lt;span class=&quot;hljs-regexp&quot;&gt;/\&quot;/gm&lt;/span&gt; &lt;span class=&quot;hljs-comment&quot;&gt;/*&quot;*/&lt;/span&gt;, &lt;span class=&quot;hljs-string&quot;&gt;&#39;\\&quot;&#39;&lt;/span&gt;)
-          .replace(&lt;span class=&quot;hljs-regexp&quot;&gt;/\n/gm&lt;/span&gt; , &lt;span class=&quot;hljs-string&quot;&gt;&#39;\\n&#39;&lt;/span&gt;)
-          .replace(&lt;span class=&quot;hljs-regexp&quot;&gt;/\t/gm&lt;/span&gt; , &lt;span class=&quot;hljs-string&quot;&gt;&#39;\\t&#39;&lt;/span&gt;)
-          .replace(&lt;span class=&quot;hljs-regexp&quot;&gt;/%/gm&lt;/span&gt; , &lt;span class=&quot;hljs-string&quot;&gt;&#39;%p&#39;&lt;/span&gt;)
-        + &lt;span class=&quot;hljs-string&quot;&gt;&#39;&quot;&#39;&lt;/span&gt;)
+          .replace(<span class="hljs-regexp">/\\/gm</span>, <span class="hljs-string">'\\\\'</span>)
+          .replace(<span class="hljs-regexp">/\"/gm</span> <span class="hljs-comment">/*"*/</span>, <span class="hljs-string">'\\"'</span>)
+          .replace(<span class="hljs-regexp">/\n/gm</span> , <span class="hljs-string">'\\n'</span>)
+          .replace(<span class="hljs-regexp">/\t/gm</span> , <span class="hljs-string">'\\t'</span>)
+          .replace(<span class="hljs-regexp">/%/gm</span> , <span class="hljs-string">'%p'</span>)
+        + <span class="hljs-string">'"'</span>)
   }
 
-  &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;this&lt;/span&gt;.tangleFormat(ff, fields, lf)
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.tangleFormat(ff, fields, lf)
 }
 </code></pre>
 <h3 id="tanglestream">4.2.3 tangleStream</h3>
 <p><code>tangleStream</code> can produce a transform object or
 apply it to stdin and stdout. The input stream is
 pooled, then tangled and pushed to the output stream.</p>
-<pre><div class="field">tangleStream</div><code class="lang-js">&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;hljs-params&quot;&gt;(opts)&lt;/span&gt; &lt;/span&gt;{
-  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; options = {convert: &lt;span class=&quot;hljs-keyword&quot;&gt;this&lt;/span&gt;.tangleJSON, self:&lt;span class=&quot;hljs-keyword&quot;&gt;this&lt;/span&gt;}
-  &lt;span class=&quot;hljs-keyword&quot;&gt;for&lt;/span&gt;(&lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; i &lt;span class=&quot;hljs-keyword&quot;&gt;in&lt;/span&gt; opts)
+<pre><div class="field">tangleStream</div><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(opts)</span> </span>{
+  <span class="hljs-keyword">var</span> options = {convert: <span class="hljs-keyword">this</span>.tangleJSON, self:<span class="hljs-keyword">this</span>}
+  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i <span class="hljs-keyword">in</span> opts)
     options[i] = opts[i]
-  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; p = &lt;span class=&quot;hljs-keyword&quot;&gt;this&lt;/span&gt;.pool(options)
+  <span class="hljs-keyword">var</span> p = <span class="hljs-keyword">this</span>.pool(options)
 
-  &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (!p.options.notstdio) {
+  <span class="hljs-keyword">if</span> (!p.options.notstdio) {
     process.stdin.pipe(p).pipe(process.stdout)
-    &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;hljs-literal&quot;&gt;true&lt;/span&gt;
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
   }
 
-  &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; p
+  <span class="hljs-keyword">return</span> p
 }
 </code></pre>
 <h2 id="weave">4.3 weave</h2>
@@ -1207,53 +1207,52 @@ As headings are rendered into <code>HTML</code>, they are appended
 to a <code>toc</code>. Each <code>toc</code> element starts as a triple: text,
 level, id.
 An array <code>n</code> is maintained to enumerate the headings.</p>
-<pre><div class="field">heading</div><code class="lang-js">&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;hljs-params&quot;&gt;(text, level, raw, toc, prefix)&lt;/span&gt; &lt;/span&gt;{
-  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; i = raw.toLowerCase().replace(&lt;span class=&quot;hljs-regexp&quot;&gt;/[^\w]+/g&lt;/span&gt;, &lt;span class=&quot;hljs-string&quot;&gt;&#39;-&#39;&lt;/span&gt;)
-  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; n = [&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;, &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;]
+<pre><div class="field">heading</div><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(text, level, raw, toc, prefix)</span> </span>{
+  <span class="hljs-keyword">var</span> i = raw.toLowerCase().replace(<span class="hljs-regexp">/[^\w]+/g</span>, <span class="hljs-string">'-'</span>)
+  <span class="hljs-keyword">var</span> n = [<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>]
 </code></pre>
 <p><code>HTML</code> defines 6 levels of headings.
 This seems more than sufficient.</p>
-<pre><div class="field">heading</div><code class="lang-js">  &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (level &gt; &lt;span class=&quot;hljs-number&quot;&gt;6&lt;/span&gt;) level = &lt;span class=&quot;hljs-number&quot;&gt;6&lt;/span&gt;
-  &lt;span class=&quot;hljs-keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (level &lt; &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;) level = &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;
+<pre><div class="field">heading</div><code class="lang-js">  <span class="hljs-keyword">if</span> (level &gt; <span class="hljs-number">6</span>) level = <span class="hljs-number">6</span>
+  <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (level &lt; <span class="hljs-number">1</span>) level = <span class="hljs-number">1</span>
   toc.push([text, level, i])
 </code></pre>
 <p>The <code>n</code> array is regenerated to reflect the
 current heading count.</p>
-<pre><div class="field">heading</div><code class="lang-js">  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; l
-  &lt;span class=&quot;hljs-keyword&quot;&gt;for&lt;/span&gt; (&lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; x = &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;; x &lt; toc.length; x++) {
-    l = toc[x][&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;]
-    n[l] = n[l] + &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;
-    &lt;span class=&quot;hljs-keyword&quot;&gt;while&lt;/span&gt; (++l &lt; toc.length)
-      n[l] = &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;
+<pre><div class="field">heading</div><code class="lang-js">  <span class="hljs-keyword">var</span> l
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> x = <span class="hljs-number">0</span>; x &lt; toc.length; x++) {
+    l = toc[x][<span class="hljs-number">1</span>]
+    n[l] = n[l] + <span class="hljs-number">1</span>
+    <span class="hljs-keyword">while</span> (++l &lt; toc.length)
+      n[l] = <span class="hljs-number">0</span>
   }
 </code></pre>
 <p>A section number is calculated from the <code>n</code> array
 and added to the <code>toc</code> element.</p>
-<pre><div class="field">heading</div><code class="lang-js">  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; sn = n.slice(&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;, level+&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;).join(&lt;span class=&quot;hljs-string&quot;&gt;&#39;.&#39;&lt;/span&gt;) + (level == &lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt; ? &lt;span class=&quot;hljs-string&quot;&gt;&#39;.&#39;&lt;/span&gt; : &lt;span class=&quot;hljs-string&quot;&gt;&#39;&#39;&lt;/span&gt;)
-  toc[toc.length-&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;].push(sn)
+<pre><div class="field">heading</div><code class="lang-js">  <span class="hljs-keyword">var</span> sn = n.slice(<span class="hljs-number">1</span>, level+<span class="hljs-number">1</span>).join(<span class="hljs-string">'.'</span>) + (level == <span class="hljs-number">1</span> ? <span class="hljs-string">'.'</span> : <span class="hljs-string">''</span>)
+  toc[toc.length-<span class="hljs-number">1</span>].push(sn)
 </code></pre>
 <p>And the <code>HTML</code> rendering of the heading is returned, lightly formatted.</p>
-<pre><div class="field">heading</div><code class="lang-js">  &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&#39;&lt;h&#39;&lt;/span&gt;
+<pre><div class="field">heading</div><code class="lang-js">  <span class="hljs-keyword">return</span> <span class="hljs-string">'&lt;h'</span>
     + level
-    + &lt;span class=&quot;hljs-string&quot;&gt;&#39; id=&quot;&#39;&lt;/span&gt;
+    + <span class="hljs-string">' id="'</span>
     + prefix
     + i
-    + &lt;span class=&quot;hljs-string&quot;&gt;&#39;&quot;&gt;&#39;&lt;/span&gt;
-    + sn + &lt;span class=&quot;hljs-string&quot;&gt;&#39; &#39;&lt;/span&gt; + text
-    + &lt;span class=&quot;hljs-string&quot;&gt;&#39;&lt;/h&#39;&lt;/span&gt;
+    + <span class="hljs-string">'"&gt;'</span>
+    + sn + <span class="hljs-string">' '</span> + text
+    + <span class="hljs-string">'&lt;/h'</span>
     + level
-    + &lt;span class=&quot;hljs-string&quot;&gt;&#39;&gt;\n&#39;&lt;/span&gt;
+    + <span class="hljs-string">'&gt;\n'</span>
 }
 </code></pre>
 <h3 id="weave-code-highlighting">4.3.2 weave code highlighting</h3>
 <p>Highlighting code is handled by <code>highlight.js</code>.
 This utility function returns a code block that
 is highlighted according to the identified language.</p>
-<pre><div class="field">weaveHighlight</div><code class="lang-js">&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;hljs-params&quot;&gt;(lang, code)&lt;/span&gt; &lt;/span&gt;{
-  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; hljs = &lt;span class=&quot;hljs-built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&#39;highlight.js&#39;&lt;/span&gt;)
-  code = hljs.highlight(lang, &lt;span class=&quot;hljs-keyword&quot;&gt;this&lt;/span&gt;.unescape(code), &lt;span class=&quot;hljs-literal&quot;&gt;true&lt;/span&gt;)
-  code.value = &lt;span class=&quot;hljs-keyword&quot;&gt;this&lt;/span&gt;.escape(code.value)
-  &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; code
+<pre><div class="field">weaveHighlight</div><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(lang, code)</span> </span>{
+  <span class="hljs-keyword">var</span> hljs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'highlight.js'</span>)
+  code = hljs.highlight(lang, <span class="hljs-keyword">this</span>.unescape(code), <span class="hljs-literal">true</span>)
+  <span class="hljs-keyword">return</span> code
 }
 </code></pre>
 <h3 id="weavecode">4.3.3 weaveCode</h3>
@@ -1261,25 +1260,25 @@ is highlighted according to the identified language.</p>
 The formatting consists of labelling parts of the code with
 <code>HTML</code> tags with suitable classes. Code blocks that don&#39;t
 have an identified language are not highlighted.</p>
-<pre><div class="field">weaveCode</div><code class="lang-js">&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;hljs-params&quot;&gt;(code, lang, escaped, fields, prefix)&lt;/span&gt; &lt;/span&gt;{
-  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; c = code
-  &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (!lang) {
-    &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&#39;&lt;pre&gt;&lt;code&gt;&#39;&lt;/span&gt;
-      + &lt;span class=&quot;hljs-keyword&quot;&gt;this&lt;/span&gt;.escape(c)
-      + &lt;span class=&quot;hljs-string&quot;&gt;&#39;\n&lt;/code&gt;&lt;/pre&gt;&#39;&lt;/span&gt;
+<pre><div class="field">weaveCode</div><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(code, lang, escaped, fields, prefix)</span> </span>{
+  <span class="hljs-keyword">var</span> c = code
+  <span class="hljs-keyword">if</span> (!lang) {
+    <span class="hljs-keyword">return</span> <span class="hljs-string">'&lt;pre&gt;&lt;code&gt;'</span>
+      + <span class="hljs-keyword">this</span>.escape(c)
+      + <span class="hljs-string">'\n&lt;/code&gt;&lt;/pre&gt;'</span>
   }
 </code></pre>
 <p>Code blocks that have a language, but don&#39;t have
 a field name are highlighted.</p>
-<pre><div class="field">weaveCode</div><code class="lang-js">  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; i = lang.indexOf(&lt;span class=&quot;hljs-string&quot;&gt;&#39;#&#39;&lt;/span&gt;)
-  &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (i == -&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;) {
-    &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (lang == &lt;span class=&quot;hljs-string&quot;&gt;&quot;noweave&quot;&lt;/span&gt;) &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&#39;&#39;&lt;/span&gt;
-    &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&#39;&lt;pre&gt;&lt;code class=&quot;&#39;&lt;/span&gt;
+<pre><div class="field">weaveCode</div><code class="lang-js">  <span class="hljs-keyword">var</span> i = lang.indexOf(<span class="hljs-string">'#'</span>)
+  <span class="hljs-keyword">if</span> (i == -<span class="hljs-number">1</span>) {
+    <span class="hljs-keyword">if</span> (lang == <span class="hljs-string">"noweave"</span>) <span class="hljs-keyword">return</span> <span class="hljs-string">''</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-string">'&lt;pre&gt;&lt;code class="'</span>
       + prefix
-      + &lt;span class=&quot;hljs-keyword&quot;&gt;this&lt;/span&gt;.escape(lang, &lt;span class=&quot;hljs-literal&quot;&gt;true&lt;/span&gt;)
-      + &lt;span class=&quot;hljs-string&quot;&gt;&#39;&quot;&gt;&#39;&lt;/span&gt;
-      + &lt;span class=&quot;hljs-keyword&quot;&gt;this&lt;/span&gt;.weaveHighlight(lang, c).value
-      + &lt;span class=&quot;hljs-string&quot;&gt;&#39;\n&lt;/code&gt;&lt;/pre&gt;\n&#39;&lt;/span&gt;
+      + <span class="hljs-keyword">this</span>.escape(lang, <span class="hljs-literal">true</span>)
+      + <span class="hljs-string">'"&gt;'</span>
+      + <span class="hljs-keyword">this</span>.weaveHighlight(lang, c).value
+      + <span class="hljs-string">'\n&lt;/code&gt;&lt;/pre&gt;\n'</span>
   }
 </code></pre>
 <p>Code blocks that have a field name are highlighted
@@ -1289,206 +1288,206 @@ weaving too. These field names can be used in the
 output of the <code>HTML</code> document.
 This is useful for the defining the structure
 of the <code>HTML</code> document.</p>
-<pre><div class="field">weaveCode</div><code class="lang-js">  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; field = lang.substring(i+&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;)
-  lang = lang.substring(&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;, i)
-  &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (lang == &lt;span class=&quot;hljs-string&quot;&gt;&quot;&quot;&lt;/span&gt;) lang = &lt;span class=&quot;hljs-string&quot;&gt;&quot;json&quot;&lt;/span&gt;
+<pre><div class="field">weaveCode</div><code class="lang-js">  <span class="hljs-keyword">var</span> field = lang.substring(i+<span class="hljs-number">1</span>)
+  lang = lang.substring(<span class="hljs-number">0</span>, i)
+  <span class="hljs-keyword">if</span> (lang == <span class="hljs-string">""</span>) lang = <span class="hljs-string">"json"</span>
 
-  &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (field.substring(&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;,&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;) == &lt;span class=&quot;hljs-string&quot;&gt;&#39;+&#39;&lt;/span&gt;) {
-    field = field.substring(&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;)
+  <span class="hljs-keyword">if</span> (field.substring(<span class="hljs-number">0</span>,<span class="hljs-number">1</span>) == <span class="hljs-string">'+'</span>) {
+    field = field.substring(<span class="hljs-number">1</span>)
   }
 
-  &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (fields[field] == &lt;span class=&quot;hljs-literal&quot;&gt;undefined&lt;/span&gt;) {
+  <span class="hljs-keyword">if</span> (fields[field] == <span class="hljs-literal">undefined</span>) {
     fields[field] = c
-  } &lt;span class=&quot;hljs-keyword&quot;&gt;else&lt;/span&gt; {
-    fields[field] = fields[field] + &lt;span class=&quot;hljs-string&quot;&gt;&#39;\n&#39;&lt;/span&gt; + c
+  } <span class="hljs-keyword">else</span> {
+    fields[field] = fields[field] + <span class="hljs-string">'\n'</span> + c
   }
 
-  &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (lang == &lt;span class=&quot;hljs-string&quot;&gt;&quot;noweave&quot;&lt;/span&gt;) &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&#39;&#39;&lt;/span&gt;
+  <span class="hljs-keyword">if</span> (lang == <span class="hljs-string">"noweave"</span>) <span class="hljs-keyword">return</span> <span class="hljs-string">''</span>
 
-  &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&#39;&lt;pre&gt;&lt;div class=&quot;field&quot;&gt;&#39;&lt;/span&gt;
-    + field + &lt;span class=&quot;hljs-string&quot;&gt;&#39;&lt;/div&gt;&#39;&lt;/span&gt;
-    + &lt;span class=&quot;hljs-string&quot;&gt;&#39;&lt;code class=&quot;&#39;&lt;/span&gt;
+  <span class="hljs-keyword">return</span> <span class="hljs-string">'&lt;pre&gt;&lt;div class="field"&gt;'</span>
+    + field + <span class="hljs-string">'&lt;/div&gt;'</span>
+    + <span class="hljs-string">'&lt;code class="'</span>
     + prefix
-    + &lt;span class=&quot;hljs-keyword&quot;&gt;this&lt;/span&gt;.escape(lang, &lt;span class=&quot;hljs-literal&quot;&gt;true&lt;/span&gt;)
-    + &lt;span class=&quot;hljs-string&quot;&gt;&#39;&quot;&gt;&#39;&lt;/span&gt;
-    + &lt;span class=&quot;hljs-keyword&quot;&gt;this&lt;/span&gt;.weaveHighlight((lang != &lt;span class=&quot;hljs-string&quot;&gt;&quot;&quot;&lt;/span&gt; ? lang : &lt;span class=&quot;hljs-string&quot;&gt;&quot;json&quot;&lt;/span&gt;), c).value
-    + &lt;span class=&quot;hljs-string&quot;&gt;&#39;\n&lt;/code&gt;&lt;/pre&gt;\n&#39;&lt;/span&gt;
+    + <span class="hljs-keyword">this</span>.escape(lang, <span class="hljs-literal">true</span>)
+    + <span class="hljs-string">'"&gt;'</span>
+    + <span class="hljs-keyword">this</span>.weaveHighlight((lang != <span class="hljs-string">""</span> ? lang : <span class="hljs-string">"json"</span>), c).value
+    + <span class="hljs-string">'\n&lt;/code&gt;&lt;/pre&gt;\n'</span>
 }
 </code></pre>
 <h3 id="weave-parsing">4.3.4 weave parsing</h3>
 <p>The <code>markover</code> parsing for weaving is done by <code>marked</code>.
 We start with the standard <code>marked</code> rendered and then
 modify routines to prepare the <code>HTML</code> generation.</p>
-<pre><div class="field">weaveMarked</div><code class="lang-js">&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;hljs-params&quot;&gt;()&lt;/span&gt; &lt;/span&gt;{
-  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; marked = &lt;span class=&quot;hljs-built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&#39;marked&#39;&lt;/span&gt;)
-  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; p = &lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; marked.Renderer()
+<pre><div class="field">weaveMarked</div><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span> </span>{
+  <span class="hljs-keyword">var</span> marked = <span class="hljs-built_in">require</span>(<span class="hljs-string">'marked'</span>)
+  <span class="hljs-keyword">var</span> p = <span class="hljs-keyword">new</span> marked.Renderer()
 
   marked.setOptions({
     renderer: p,
-    gfm: &lt;span class=&quot;hljs-literal&quot;&gt;true&lt;/span&gt;,
-    tables: &lt;span class=&quot;hljs-literal&quot;&gt;true&lt;/span&gt;,
-    breaks: &lt;span class=&quot;hljs-literal&quot;&gt;false&lt;/span&gt;,
-    pedantic: &lt;span class=&quot;hljs-literal&quot;&gt;false&lt;/span&gt;,
-    sanitize: &lt;span class=&quot;hljs-literal&quot;&gt;true&lt;/span&gt;,
-    smartLists: &lt;span class=&quot;hljs-literal&quot;&gt;true&lt;/span&gt;,
-    smartypants: &lt;span class=&quot;hljs-literal&quot;&gt;false&lt;/span&gt;
+    gfm: <span class="hljs-literal">true</span>,
+    tables: <span class="hljs-literal">true</span>,
+    breaks: <span class="hljs-literal">false</span>,
+    pedantic: <span class="hljs-literal">false</span>,
+    sanitize: <span class="hljs-literal">true</span>,
+    smartLists: <span class="hljs-literal">true</span>,
+    smartypants: <span class="hljs-literal">false</span>
   })
 </code></pre>
 <p>Create the <code>toc</code>, <code>field</code>, and    <code>self</code> members to keep
 the needed state during parsing.</p>
 <pre><div class="field">weaveMarked</div><code class="lang-js">  p.field = []
   p.toc = []
-  p.self = &lt;span class=&quot;hljs-keyword&quot;&gt;this&lt;/span&gt;
+  p.self = <span class="hljs-keyword">this</span>
 </code></pre>
 <p>Process the heading with this object so that heading
 can access the utility functions.
 Do the same for code blocks.
 This returns the parser and the renderer.</p>
-<pre><div class="field">weaveMarked</div><code class="lang-js">  p.heading = &lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;hljs-params&quot;&gt;(text, level, raw)&lt;/span&gt; &lt;/span&gt;{
-    &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;this&lt;/span&gt;.self.heading.call(&lt;span class=&quot;hljs-keyword&quot;&gt;this&lt;/span&gt;.self, text, level, raw, p.toc, &lt;span class=&quot;hljs-keyword&quot;&gt;this&lt;/span&gt;.options.headerPrefix)
+<pre><div class="field">weaveMarked</div><code class="lang-js">  p.heading = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(text, level, raw)</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.self.heading.call(<span class="hljs-keyword">this</span>.self, text, level, raw, p.toc, <span class="hljs-keyword">this</span>.options.headerPrefix)
   }
-  p.code = &lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;hljs-params&quot;&gt;(code, lang, escaped)&lt;/span&gt; &lt;/span&gt;{
-    &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;this&lt;/span&gt;.self.weaveCode.call(&lt;span class=&quot;hljs-keyword&quot;&gt;this&lt;/span&gt;.self, code, lang, escaped, p.field, &lt;span class=&quot;hljs-keyword&quot;&gt;this&lt;/span&gt;.options.langPrefix)
+  p.code = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(code, lang, escaped)</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.self.weaveCode.call(<span class="hljs-keyword">this</span>.self, code, lang, escaped, p.field, <span class="hljs-keyword">this</span>.options.langPrefix)
   }
 
-  &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; [marked, p]
+  <span class="hljs-keyword">return</span> [marked, p]
 }
 </code></pre>
 <h3 id="weave-document">4.3.5 weave document</h3>
 <p>This function formats the final <code>HTML</code> document
 using <code>marked</code>.</p>
-<pre><div class="field">weaveJSON</div><code class="lang-js">&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;hljs-params&quot;&gt;(str, options)&lt;/span&gt; &lt;/span&gt;{
+<pre><div class="field">weaveJSON</div><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(str, options)</span> </span>{
   options = options || {}
-  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; m = &lt;span class=&quot;hljs-keyword&quot;&gt;this&lt;/span&gt;.weaveMarked()
-  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; marked = m[&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;]
-  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; p = m[&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;]
-  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; doc = marked.call(&lt;span class=&quot;hljs-keyword&quot;&gt;this&lt;/span&gt;, str)
+  <span class="hljs-keyword">var</span> m = <span class="hljs-keyword">this</span>.weaveMarked()
+  <span class="hljs-keyword">var</span> marked = m[<span class="hljs-number">0</span>]
+  <span class="hljs-keyword">var</span> p = m[<span class="hljs-number">1</span>]
+  <span class="hljs-keyword">var</span> doc = marked.call(<span class="hljs-keyword">this</span>, str)
 </code></pre>
 <p>Utility function</p>
-<pre><div class="field">weaveJSON</div><code class="lang-js">  &lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;hljs-params&quot;&gt;(l,d)&lt;/span&gt; &lt;/span&gt;{ &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;this&lt;/span&gt;.unescape(p.field[l] || d) }
+<pre><div class="field">weaveJSON</div><code class="lang-js">  <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">f</span><span class="hljs-params">(l,d)</span> </span>{ <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.unescape(p.field[l] || d) }
 </code></pre>
 <p>Format the basic elements of the document.
 Use reasonable default values where applicable.</p>
-<pre><div class="field">weaveJSON</div><code class="lang-js">  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; title = f(&lt;span class=&quot;hljs-string&quot;&gt;&quot;title&quot;&lt;/span&gt;, &lt;span class=&quot;hljs-string&quot;&gt;&quot;Weave Output&quot;&lt;/span&gt;)
-  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; tag = f(&lt;span class=&quot;hljs-string&quot;&gt;&quot;tag&quot;&lt;/span&gt;, &lt;span class=&quot;hljs-string&quot;&gt;&quot;from weaving&quot;&lt;/span&gt;)
-  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; headstylesheet = f(&lt;span class=&quot;hljs-string&quot;&gt;&quot;headstylesheet&quot;&lt;/span&gt;, &lt;span class=&quot;hljs-string&quot;&gt;&quot;&quot;&lt;/span&gt;)
-  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; stylesheet = f(&lt;span class=&quot;hljs-string&quot;&gt;&quot;stylesheet&quot;&lt;/span&gt;, &lt;span class=&quot;hljs-string&quot;&gt;&quot;&quot;&lt;/span&gt;)
+<pre><div class="field">weaveJSON</div><code class="lang-js">  <span class="hljs-keyword">var</span> title = f(<span class="hljs-string">"title"</span>, <span class="hljs-string">"Weave Output"</span>)
+  <span class="hljs-keyword">var</span> tag = f(<span class="hljs-string">"tag"</span>, <span class="hljs-string">"from weaving"</span>)
+  <span class="hljs-keyword">var</span> headstylesheet = f(<span class="hljs-string">"headstylesheet"</span>, <span class="hljs-string">""</span>)
+  <span class="hljs-keyword">var</span> stylesheet = f(<span class="hljs-string">"stylesheet"</span>, <span class="hljs-string">""</span>)
 
-  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; headline = f(&lt;span class=&quot;hljs-string&quot;&gt;&quot;head&quot;&lt;/span&gt;, &lt;span class=&quot;hljs-string&quot;&gt;&quot;&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;&quot;&lt;/span&gt;)
-  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; transitionline = f(&lt;span class=&quot;hljs-string&quot;&gt;&quot;transition&quot;&lt;/span&gt;, &lt;span class=&quot;hljs-string&quot;&gt;&quot;&lt;/head&gt;&lt;body&gt;&quot;&lt;/span&gt;)
-  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; tailline = f(&lt;span class=&quot;hljs-string&quot;&gt;&quot;tail&quot;&lt;/span&gt;, &lt;span class=&quot;hljs-string&quot;&gt;&quot;&lt;/body&gt;&lt;/html&gt;&quot;&lt;/span&gt;) + &lt;span class=&quot;hljs-string&quot;&gt;&#39;\n&#39;&lt;/span&gt;
+  <span class="hljs-keyword">var</span> headline = f(<span class="hljs-string">"head"</span>, <span class="hljs-string">"&lt;!DOCTYPE html&gt;&lt;html&gt;&lt;head&gt;"</span>)
+  <span class="hljs-keyword">var</span> transitionline = f(<span class="hljs-string">"transition"</span>, <span class="hljs-string">"&lt;/head&gt;&lt;body&gt;"</span>)
+  <span class="hljs-keyword">var</span> tailline = f(<span class="hljs-string">"tail"</span>, <span class="hljs-string">"&lt;/body&gt;&lt;/html&gt;"</span>) + <span class="hljs-string">'\n'</span>
 
-  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; headtitle = &lt;span class=&quot;hljs-string&quot;&gt;&#39;&lt;title&gt;&#39;&lt;/span&gt; + title + &lt;span class=&quot;hljs-string&quot;&gt;&#39; - &#39;&lt;/span&gt; + tag + &lt;span class=&quot;hljs-string&quot;&gt;&#39;&lt;/title&gt;\n&#39;&lt;/span&gt;
-  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; titleline = &lt;span class=&quot;hljs-string&quot;&gt;&#39;&lt;div id=&quot;title&quot;&gt;&#39;&lt;/span&gt; + title + &lt;span class=&quot;hljs-string&quot;&gt;&#39;&lt;/div&gt;&#39;&lt;/span&gt;
-  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; tagline = &lt;span class=&quot;hljs-string&quot;&gt;&#39;&lt;div id=&quot;tag&quot;&gt;&#39;&lt;/span&gt; + tag + &lt;span class=&quot;hljs-string&quot;&gt;&#39;&lt;/div&gt;&#39;&lt;/span&gt;
+  <span class="hljs-keyword">var</span> headtitle = <span class="hljs-string">'&lt;title&gt;'</span> + title + <span class="hljs-string">' - '</span> + tag + <span class="hljs-string">'&lt;/title&gt;\n'</span>
+  <span class="hljs-keyword">var</span> titleline = <span class="hljs-string">'&lt;div id="title"&gt;'</span> + title + <span class="hljs-string">'&lt;/div&gt;'</span>
+  <span class="hljs-keyword">var</span> tagline = <span class="hljs-string">'&lt;div id="tag"&gt;'</span> + tag + <span class="hljs-string">'&lt;/div&gt;'</span>
 
-  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; headstyleline = headstylesheet == &lt;span class=&quot;hljs-string&quot;&gt;&#39;&#39;&lt;/span&gt; ? &lt;span class=&quot;hljs-string&quot;&gt;&#39;&#39;&lt;/span&gt; : &lt;span class=&quot;hljs-string&quot;&gt;&#39;&lt;style&gt;&#39;&lt;/span&gt; + headstylesheet + &lt;span class=&quot;hljs-string&quot;&gt;&#39;&lt;/style&gt;&#39;&lt;/span&gt;
-  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; styleline = stylesheet == &lt;span class=&quot;hljs-string&quot;&gt;&#39;&#39;&lt;/span&gt; ? &lt;span class=&quot;hljs-string&quot;&gt;&#39;&#39;&lt;/span&gt; : &lt;span class=&quot;hljs-string&quot;&gt;&#39;&lt;style&gt;&#39;&lt;/span&gt; + stylesheet + &lt;span class=&quot;hljs-string&quot;&gt;&#39;&lt;/style&gt;&#39;&lt;/span&gt;
+  <span class="hljs-keyword">var</span> headstyleline = headstylesheet == <span class="hljs-string">''</span> ? <span class="hljs-string">''</span> : <span class="hljs-string">'&lt;style&gt;'</span> + headstylesheet + <span class="hljs-string">'&lt;/style&gt;'</span>
+  <span class="hljs-keyword">var</span> styleline = stylesheet == <span class="hljs-string">''</span> ? <span class="hljs-string">''</span> : <span class="hljs-string">'&lt;style&gt;'</span> + stylesheet + <span class="hljs-string">'&lt;/style&gt;'</span>
 </code></pre>
 <p>Create and mark up the table of contents.
 Open or close ordered list elements whenever there is a change
 in the heading level.</p>
-<pre><div class="field">weaveJSON</div><code class="lang-js">  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; tocitems = p.toc.map(&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;hljs-params&quot;&gt;(e, i, a)&lt;/span&gt; &lt;/span&gt;{
-    &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; ll = &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;
-    &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; o = &lt;span class=&quot;hljs-string&quot;&gt;&#39;&#39;&lt;/span&gt;
-    &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (i &gt; &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;) ll = a[i-&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;][&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;]
-    &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (ll &lt; e[&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;]) {
-      &lt;span class=&quot;hljs-keyword&quot;&gt;while&lt;/span&gt; (ll++ &lt;span class=&quot;xml&quot;&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt; &lt;span class=&quot;hljs-attribute&quot;&gt;e&lt;/span&gt;[&lt;span class=&quot;hljs-attribute&quot;&gt;1&lt;/span&gt;])
-        &lt;span class=&quot;hljs-attribute&quot;&gt;o&lt;/span&gt; = &lt;span class=&quot;hljs-attribute&quot;&gt;o&lt;/span&gt; + &#39;&lt;&lt;span class=&quot;hljs-attribute&quot;&gt;ol&lt;/span&gt;&gt;&lt;/span&gt;&#39;
+<pre><div class="field">weaveJSON</div><code class="lang-js">  <span class="hljs-keyword">var</span> tocitems = p.toc.map(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(e, i, a)</span> </span>{
+    <span class="hljs-keyword">var</span> ll = <span class="hljs-number">0</span>
+    <span class="hljs-keyword">var</span> o = <span class="hljs-string">''</span>
+    <span class="hljs-keyword">if</span> (i &gt; <span class="hljs-number">0</span>) ll = a[i-<span class="hljs-number">1</span>][<span class="hljs-number">1</span>]
+    <span class="hljs-keyword">if</span> (ll &lt; e[<span class="hljs-number">1</span>]) {
+      <span class="hljs-keyword">while</span> (ll++ <span class="xml"><span class="hljs-tag">&lt; <span class="hljs-attribute">e</span>[<span class="hljs-attribute">1</span>])
+        <span class="hljs-attribute">o</span> = <span class="hljs-attribute">o</span> + '&lt;<span class="hljs-attribute">ol</span>&gt;</span>'
     } else if (ll &gt; e[1]) {
       while (ll-- &gt; e[1])
-        o = o + &#39;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;ol&lt;/span&gt;&gt;&lt;/span&gt;&#39;
+        o = o + '<span class="hljs-tag">&lt;/<span class="hljs-title">ol</span>&gt;</span>'
     }
     return (
-            o + &#39;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;li&lt;/span&gt;&gt;&lt;/span&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;hljs-attribute&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;hljs-value&quot;&gt;&quot;tocsn&quot;&lt;/span&gt;&gt;&lt;/span&gt;&#39; + e[3] + &#39;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;div&lt;/span&gt;&gt;&lt;/span&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;hljs-attribute&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;hljs-value&quot;&gt;&quot;tocsr&quot;&lt;/span&gt;&gt;&lt;/span&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;&lt;span class=&quot;hljs-title&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;hljs-attribute&quot;&gt;href&lt;/span&gt;=&lt;span class=&quot;hljs-value&quot;&gt;&quot;#&#39; + e[2] + &#39;&quot;&lt;/span&gt;&gt;&lt;/span&gt;&#39;
-          + e[0] + &#39;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;a&lt;/span&gt;&gt;&lt;/span&gt;&lt;span class=&quot;hljs-tag&quot;&gt;&lt;/&lt;span class=&quot;hljs-title&quot;&gt;div&lt;/span&gt;&gt;&lt;/span&gt;&#39;
+            o + '<span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"tocsn"</span>&gt;</span>' + e[3] + '<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"tocsr"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"#' + e[2] + '"</span>&gt;</span>'
+          + e[0] + '<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>'
            )
-  })&lt;/span&gt;
+  })</span>
 </code></pre>
 <p>Append enough ordered list ending tags and put the results in <code>toc</code></p>
-<pre><div class="field">weaveJSON</div><code class="lang-js">  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; toc = &lt;span class=&quot;hljs-string&quot;&gt;&#39;&#39;&lt;/span&gt;
-  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; ll
-  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; o
+<pre><div class="field">weaveJSON</div><code class="lang-js">  <span class="hljs-keyword">var</span> toc = <span class="hljs-string">''</span>
+  <span class="hljs-keyword">var</span> ll
+  <span class="hljs-keyword">var</span> o
 
-  &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (p.toc.length &gt; &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;) {
-    ll = p.toc[p.toc.length-&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;][&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;]
-    o = &lt;span class=&quot;hljs-string&quot;&gt;&#39;&#39;&lt;/span&gt;
-    &lt;span class=&quot;hljs-keyword&quot;&gt;while&lt;/span&gt; (ll-- &gt; &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;)
-      o = o + &lt;span class=&quot;hljs-string&quot;&gt;&#39;&lt;/ol&gt;&#39;&lt;/span&gt;
-    toc = &lt;span class=&quot;hljs-string&quot;&gt;&#39;&lt;div id=&quot;toc&quot;&gt;&lt;h1&gt;Contents&lt;/h1&gt;\n&#39;&lt;/span&gt; + tocitems.join(&lt;span class=&quot;hljs-string&quot;&gt;&#39;\n&#39;&lt;/span&gt;) + o + &lt;span class=&quot;hljs-string&quot;&gt;&#39;&lt;/div&gt;\n&#39;&lt;/span&gt;
+  <span class="hljs-keyword">if</span> (p.toc.length &gt; <span class="hljs-number">0</span>) {
+    ll = p.toc[p.toc.length-<span class="hljs-number">1</span>][<span class="hljs-number">1</span>]
+    o = <span class="hljs-string">''</span>
+    <span class="hljs-keyword">while</span> (ll-- &gt; <span class="hljs-number">0</span>)
+      o = o + <span class="hljs-string">'&lt;/ol&gt;'</span>
+    toc = <span class="hljs-string">'&lt;div id="toc"&gt;&lt;h1&gt;Contents&lt;/h1&gt;\n'</span> + tocitems.join(<span class="hljs-string">'\n'</span>) + o + <span class="hljs-string">'&lt;/div&gt;\n'</span>
   }
 </code></pre>
 <p>Return the assembled document.
 The bulk of the document is in the <code>doc</code> variable.</p>
-<pre><div class="field">weaveJSON</div><code class="lang-js">  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; heading = &lt;span class=&quot;hljs-string&quot;&gt;&#39;&#39;&lt;/span&gt;
-  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; tailing = &lt;span class=&quot;hljs-string&quot;&gt;&#39;&#39;&lt;/span&gt;
-  &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (options.contentonly != &lt;span class=&quot;hljs-literal&quot;&gt;true&lt;/span&gt;) {
+<pre><div class="field">weaveJSON</div><code class="lang-js">  <span class="hljs-keyword">var</span> heading = <span class="hljs-string">''</span>
+  <span class="hljs-keyword">var</span> tailing = <span class="hljs-string">''</span>
+  <span class="hljs-keyword">if</span> (options.contentonly != <span class="hljs-literal">true</span>) {
     heading = headline + headtitle + headstyleline + styleline + transitionline
     tailing = tailline
-  } &lt;span class=&quot;hljs-keyword&quot;&gt;else&lt;/span&gt;
+  } <span class="hljs-keyword">else</span>
     heading = styleline
 
-  &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; (heading +
-          &lt;span class=&quot;hljs-string&quot;&gt;&#39;&lt;div id=&quot;content&quot;&gt;&#39;&lt;/span&gt; +
+  <span class="hljs-keyword">return</span> (heading +
+          <span class="hljs-string">'&lt;div id="content"&gt;'</span> +
              titleline + tagline + toc +
-          &lt;span class=&quot;hljs-string&quot;&gt;&#39;&lt;div id=&quot;doc&quot;&gt;&#39;&lt;/span&gt; + doc + &lt;span class=&quot;hljs-string&quot;&gt;&#39;&lt;/div&gt;&#39;&lt;/span&gt; +
-          &lt;span class=&quot;hljs-string&quot;&gt;&#39;&lt;/div&gt;&#39;&lt;/span&gt; + tailing)
+          <span class="hljs-string">'&lt;div id="doc"&gt;'</span> + doc + <span class="hljs-string">'&lt;/div&gt;'</span> +
+          <span class="hljs-string">'&lt;/div&gt;'</span> + tailing)
 }
 </code></pre>
 <h3 id="weavestream">4.3.6 weaveStream</h3>
 <p><code>weaveStream</code> can produce a transform object or
 apply it to stdin and stdout. The input stream is
 pooled, then weaved and pushed to the output stream.</p>
-<pre><div class="field">weaveStream</div><code class="lang-js">&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;hljs-params&quot;&gt;(opts)&lt;/span&gt; &lt;/span&gt;{
-  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; options = {convert: &lt;span class=&quot;hljs-keyword&quot;&gt;this&lt;/span&gt;.weaveJSON, self:&lt;span class=&quot;hljs-keyword&quot;&gt;this&lt;/span&gt;}
-  &lt;span class=&quot;hljs-keyword&quot;&gt;for&lt;/span&gt;(&lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; i &lt;span class=&quot;hljs-keyword&quot;&gt;in&lt;/span&gt; opts)
+<pre><div class="field">weaveStream</div><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(opts)</span> </span>{
+  <span class="hljs-keyword">var</span> options = {convert: <span class="hljs-keyword">this</span>.weaveJSON, self:<span class="hljs-keyword">this</span>}
+  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i <span class="hljs-keyword">in</span> opts)
     options[i] = opts[i]
-  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; p = &lt;span class=&quot;hljs-keyword&quot;&gt;this&lt;/span&gt;.pool(options)
+  <span class="hljs-keyword">var</span> p = <span class="hljs-keyword">this</span>.pool(options)
 
-  &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (!p.options.notstdio) {
+  <span class="hljs-keyword">if</span> (!p.options.notstdio) {
     process.stdin.pipe(p).pipe(process.stdout)
-    &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;hljs-literal&quot;&gt;true&lt;/span&gt;
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
   }
 
-  &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; p
+  <span class="hljs-keyword">return</span> p
 }
 </code></pre>
 <h2 id="untangle">4.4 untangle</h2>
 <p>untangle is a utility that embeds a code block
 into a <code>markover</code> document.
 Basically it has a fence prefix and suffix.</p>
-<pre><div class="field">untangleStream</div><code class="lang-js">&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;hljs-params&quot;&gt;(opts)&lt;/span&gt; &lt;/span&gt;{
+<pre><div class="field">untangleStream</div><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(opts)</span> </span>{
   opts = opts || {}
-  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; options
+  <span class="hljs-keyword">var</span> options
   options = {
-    convert: &lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;hljs-params&quot;&gt;(str, options)&lt;/span&gt; &lt;/span&gt;{
-      &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&#39;```\n&#39;&lt;/span&gt; + str + &lt;span class=&quot;hljs-string&quot;&gt;&#39;```\n&#39;&lt;/span&gt;
+    convert: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(str, options)</span> </span>{
+      <span class="hljs-keyword">return</span> <span class="hljs-string">'```\n'</span> + str + <span class="hljs-string">'```\n'</span>
     },
-    self: &lt;span class=&quot;hljs-keyword&quot;&gt;this&lt;/span&gt;
+    self: <span class="hljs-keyword">this</span>
   }
 
-  &lt;span class=&quot;hljs-keyword&quot;&gt;for&lt;/span&gt;(&lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; i &lt;span class=&quot;hljs-keyword&quot;&gt;in&lt;/span&gt; opts)
+  <span class="hljs-keyword">for</span>(<span class="hljs-keyword">var</span> i <span class="hljs-keyword">in</span> opts)
     options[i] = opts[i]
 
-  &lt;span class=&quot;hljs-keyword&quot;&gt;var&lt;/span&gt; p = &lt;span class=&quot;hljs-keyword&quot;&gt;this&lt;/span&gt;.pool(options)
+  <span class="hljs-keyword">var</span> p = <span class="hljs-keyword">this</span>.pool(options)
 
-  &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (!options.notstdio) {
+  <span class="hljs-keyword">if</span> (!options.notstdio) {
     process.stdin.pipe(p).pipe(process.stdout)
-    &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;hljs-literal&quot;&gt;true&lt;/span&gt;
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>
   }
 
-  &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; p
+  <span class="hljs-keyword">return</span> p
 }
 </code></pre>
 <h1 id="unix-build-instructions">5. Unix build instructions</h1>
 <p>To bootstrap try:</p>
-<pre><code class="lang-sh">node &lt;span class=&quot;hljs-operator&quot;&gt;-e&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&quot;require(&#39;./markover&#39;).tangleStream()&quot;&lt;/span&gt; &lt; README.md &gt; markover1.js &amp;&amp; node &lt;span class=&quot;hljs-operator&quot;&gt;-e&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&quot;require(&#39;./markover1&#39;).tangleStream()&quot;&lt;/span&gt; &lt; README.md &gt; markover2.js &amp;&amp; diff markover2.js markover1.js &amp;&amp; mv markover1.js markover.js
+<pre><code class="lang-sh">node <span class="hljs-operator">-e</span> <span class="hljs-string">"require('./markover').tangleStream()"</span> &lt; README.md &gt; markover1.js &amp;&amp; node <span class="hljs-operator">-e</span> <span class="hljs-string">"require('./markover1').tangleStream()"</span> &lt; README.md &gt; markover2.js &amp;&amp; diff markover2.js markover1.js &amp;&amp; mv markover1.js markover.js
 </code></pre>
 <p>You can rebuild <code>markover</code> from this document (assuming it is called README.md) by running the following in a Unix shell:</p>
-<pre><code class="lang-sh">node &lt;span class=&quot;hljs-operator&quot;&gt;-e&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&quot;require(&#39;./markover&#39;).tangleStream()&quot;&lt;/span&gt; &lt; README.md &gt; markover1.js &amp;&amp; mv markover1.js markover.js
+<pre><code class="lang-sh">node <span class="hljs-operator">-e</span> <span class="hljs-string">"require('./markover').tangleStream()"</span> &lt; README.md &gt; markover1.js &amp;&amp; mv markover1.js markover.js
 </code></pre>
 <p>To weave:</p>
-<pre><code class="lang-sh">node &lt;span class=&quot;hljs-operator&quot;&gt;-e&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&quot;require(&#39;./markover&#39;).weaveStream()&quot;&lt;/span&gt; &lt; README.md &gt; index.html
+<pre><code class="lang-sh">node <span class="hljs-operator">-e</span> <span class="hljs-string">"require('./markover').weaveStream()"</span> &lt; README.md &gt; index.html
 </code></pre>
 <h1 id="github-notes">6. GitHub Notes</h1>
 <p><code>markover</code> documents do not display completely correctly on GitHub using the GitHub
