@@ -1148,7 +1148,10 @@ is highlighted according to the identified language.
 
 ```js#weaveHighlight
 function (lang, code) {
-  return require('highlight.js').highlight(lang, this.unescape(code), true)
+  var hljs = require('highlight.js')
+  code = hljs.highlight(lang, this.unescape(code), true)
+  code.value = this.escape(code.value)
+  return code
 }
 ```
 
@@ -1164,7 +1167,7 @@ function(code, lang, escaped, fields, prefix) {
   var c = code
   if (!lang) {
     return '<pre><code>'
-      + c
+      + this.escape(c)
       + '\n</code></pre>'
   }
 ```
