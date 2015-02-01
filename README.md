@@ -159,7 +159,7 @@ Web Literate Programming
 ```
 
 ```noweave#+version
-0.0.1
+0.0.2
 ```
 
 That's all there is to know about the structure of `markover`
