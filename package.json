@@ -1,7 +1,7 @@
 {
-  "name": "markover",
+  "name": "markover.js",
   "description": "Web Literate Programming",
-  "version": "0.0.1"
+  "version": "0.0.1",
   "keywords": [
     "literate programming",
     "literate",
