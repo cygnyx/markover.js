@@ -6,7 +6,7 @@ var markover = {
 
 "tag":"Web Literate Programming",
 
-"version":"0.0.1",
+"version":"0.0.3",
 
 "head":"<!DOCTYPE html>\n<html lang=\"en\" class=\"\">\n<head>\n  <meta charset=\"utf-8\">\n  <meta http-equiv=\"Content-Language\" content=\"en\">\n  <meta name=\"viewport\" content=\"initial-scale=1\">\n  <script type=\"text/x-mathjax-config\">\n    MathJax.Hub.Config({\n      showProcessingMessages: false,\n      tex2jax: { inlineMath: [['\\\\(','\\\\)']] },\n      TeX: { equationNumbers: {autoNumber: \"AMS\"} }\n    });\n  </script>\n  <script type=\"text/javascript\"\n    src=\"http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML\">\n  </script>\n  <script type=\"text/javascript\"\n    src=\"http://code.jquery.com/jquery-2.1.3.min.js\">\n  </script>",
 

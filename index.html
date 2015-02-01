@@ -436,6 +436,9 @@ to <code>json</code>.</p>
 <p>By convention <code>markover</code> documents have a few common fields.
 A <code>title</code> which names the document and a <code>tag</code> which is a one-line
 description of the document. You may include a <code>version</code> field as well.</p>
+<p>The current version of this document is:</p>
+<pre><div class="field">version</div><code class="lang-json"><span class="hljs-number">0.0</span><span class="hljs-number">.3</span>
+</code></pre>
 <p>That&#39;s all there is to know about the structure of <code>markover</code>
 documents.
 There are no specific dependencies on the target language.</p>
@@ -1489,6 +1492,7 @@ Basically it has a fence prefix and suffix.</p>
 <p>To weave:</p>
 <pre><code class="lang-sh">node <span class="hljs-operator">-e</span> <span class="hljs-string">"require('./markover').weaveStream()"</span> &lt; README.md &gt; index.html
 </code></pre>
+<p>If you have used <code>npm install</code> to get this package then don&#39;t use the relative path.</p>
 <h1 id="github-and-npmjs-note">6. GitHub and npmjs Note</h1>
 <p><code>markover</code> documents do not display completely correctly on standard <code>markdown</code>
 renders used on GitHub and npmjs.

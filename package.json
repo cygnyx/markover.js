@@ -1,13 +1,14 @@
 {
   "name": "markover.js",
   "description": "Web Literate Programming",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "repository": "cygnyx/markover.js",
   "keywords": [
     "literate programming",
     "literate",
     "markdown"
   ],
+  "main": "markover.js",
   "dependencies": {
     "marked": "0.3.x",
     "highlight.js": "8.4.x"

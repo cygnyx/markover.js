@@ -158,8 +158,10 @@ markover
 Web Literate Programming
 ```
 
-```noweave#+version
-0.0.2
+The current version of this document is:
+
+```#+version
+0.0.3
 ```
 
 That's all there is to know about the structure of `markover`
@@ -1445,6 +1447,8 @@ To weave:
 ```sh
 node -e "require('./markover').weaveStream()" < README.md > index.html
 ```
+
+If you have used `npm install` to get this package then don't use the relative path.
 
 # GitHub and npmjs Note
 
