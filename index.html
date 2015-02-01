@@ -311,7 +311,7 @@ a, code, span, b, i, em { display: inline; }</style><style>#content {
 <li><div class="tocsn">4.3.6&nbsp;</div><div class="tocsr"><a href="#weavestream">weaveStream</a></div>
 </ol><li><div class="tocsn">4.4&nbsp;</div><div class="tocsr"><a href="#untangle">untangle</a></div>
 </ol><li><div class="tocsn">5.&nbsp;</div><div class="tocsr"><a href="#unix-build-instructions">Unix build instructions</a></div>
-<li><div class="tocsn">6.&nbsp;</div><div class="tocsr"><a href="#github-notes">GitHub Notes</a></div>
+<li><div class="tocsn">6.&nbsp;</div><div class="tocsr"><a href="#github-and-npmjs-note">GitHub and npmjs Note</a></div>
 <li><div class="tocsn">7.&nbsp;</div><div class="tocsr"><a href="#concluding-remarks">Concluding Remarks</a></div></ol></div>
 <div id="doc"><h1 id="introduction">1. Introduction</h1>
 <p>Programming methodology continues to rapidly change.
@@ -366,7 +366,7 @@ with Web browsers is relatively straight forward.</p>
 <p>This seems an appropriate time to revisit the &#39;Literate Programming&#39; idea of 
 <a href="http://en.wikipedia.org/wiki/Donald_Knuth">Knuth</a>, published in 1984,
 in the context of Web standards.</p>
-<p><a href="https://cygnyx.github.io/markover">markover</a> is a <code>javascript</code> library implemented as a
+<p><a href="https://cygnyx.github.io/markover.js">markover.js</a> is a <code>javascript</code> library implemented as a
 <a href="http://wiki.commonjs.org/wiki/CommonJS">CommonJS</a> module.</p>
 <h1 id="literate-programming">2. Literate Programming</h1>
 <p>This document is a literate program that can be used to make the <code>markover</code> application.
@@ -1489,10 +1489,10 @@ Basically it has a fence prefix and suffix.</p>
 <p>To weave:</p>
 <pre><code class="lang-sh">node <span class="hljs-operator">-e</span> <span class="hljs-string">"require('./markover').weaveStream()"</span> &lt; README.md &gt; index.html
 </code></pre>
-<h1 id="github-notes">6. GitHub Notes</h1>
-<p><code>markover</code> documents do not display completely correctly on GitHub using the GitHub
-display system.
-The field names that are embedded in the code block fence are not interpreted by GitHub.
+<h1 id="github-and-npmjs-note">6. GitHub and npmjs Note</h1>
+<p><code>markover</code> documents do not display completely correctly on standard <code>markdown</code>
+renders used on GitHub and npmjs.
+The field names that are embedded in the code block fence are not interpreted.
 The <code>MathJax</code> processing is not rendered either.
 And, of course, there is no table of contents.
 Nevertheless the displayed <code>markover</code> document is readable.</p>

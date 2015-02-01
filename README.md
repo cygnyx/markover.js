@@ -58,7 +58,7 @@ This seems an appropriate time to revisit the 'Literate Programming' idea of
 [Knuth](http://en.wikipedia.org/wiki/Donald_Knuth), published in 1984,
 in the context of Web standards.
 
-[markover](https://cygnyx.github.io/markover) is a `javascript` library implemented as a
+[markover.js](https://cygnyx.github.io/markover.js) is a `javascript` library implemented as a
 [CommonJS](http://wiki.commonjs.org/wiki/CommonJS) module.
 
 # Literate Programming
@@ -1446,11 +1446,11 @@ To weave:
 node -e "require('./markover').weaveStream()" < README.md > index.html
 ```
 
-# GitHub Notes
+# GitHub and npmjs Note
 
-`markover` documents do not display completely correctly on GitHub using the GitHub
-display system.
-The field names that are embedded in the code block fence are not interpreted by GitHub.
+`markover` documents do not display completely correctly on standard `markdown`
+renders used on GitHub and npmjs.
+The field names that are embedded in the code block fence are not interpreted.
 The `MathJax` processing is not rendered either.
 And, of course, there is no table of contents.
 Nevertheless the displayed `markover` document is readable.
