@@ -11,6 +11,6 @@
   "main": "markover.js",
   "dependencies": {
     "marked": ">=4.0.10",
-    "highlight.js": "8.4.x"
+    "highlight.js": ">=9.18.2"
   }
 }
