@@ -10,7 +10,7 @@
   ],
   "main": "markover.js",
   "dependencies": {
-    "marked": "0.3.x",
+    "marked": ">=4.0.10",
     "highlight.js": "8.4.x"
   }
 }
